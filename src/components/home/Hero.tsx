@@ -106,26 +106,29 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
             Supplying quality agricultural products from India to global markets with reliability and trust.
           </motion.p>
 
-          {/* Micro-Refined CTA Buttons Group (Watermelon CTA-3 Inspired Design Language) */}
+          {/* Premium Editorial Text Link CTAs (No Boxed Buttons) */}
           <motion.div
             variants={contentItem}
-            className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-7 w-full sm:w-auto"
+            className="mt-9 flex flex-row items-center justify-center gap-8 sm:gap-10"
           >
-            {/* Primary Action: Deep Forest Green Rectangular Button (h-12, rounded-lg, subtle lift & arrow hover) */}
+            {/* Primary Action: Editorial Text Link with Muted Gold Underline Accent */}
             <a
               href="#products"
-              className="group inline-flex h-12 items-center justify-center gap-2.5 rounded-lg bg-[#0D3B2E] px-7 text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:bg-[#165342] hover:-translate-y-0.5"
+              className="group relative inline-flex items-center gap-2 py-1 text-sm sm:text-base font-semibold text-[#0D3B2E] transition-colors"
             >
-              <span>Explore Products</span>
-              <span className="text-[#C59B27] text-base transition-transform duration-300 group-hover:translate-x-1">→</span>
+              <span className="relative">
+                Explore Products
+                <span className="absolute bottom-0 left-0 h-[1.5px] w-full bg-[#C59B27]/80 transition-all duration-300 group-hover:bg-[#C59B27]" />
+              </span>
+              <span className="text-[#C59B27] text-base transition-transform duration-300 group-hover:translate-x-1.5">→</span>
             </a>
 
-            {/* Secondary Action: Visually Lighter Text Action with Subtle Gold Underline Hover */}
+            {/* Secondary Action: Visually Lighter Editorial Text Action */}
             <button
               onClick={onOpenQuote}
-              className="group relative inline-flex h-12 items-center justify-center gap-1.5 px-3 text-sm font-semibold text-[#0D3B2E] transition-colors hover:text-[#0D3B2E]"
+              className="group relative inline-flex items-center gap-1.5 py-1 text-sm sm:text-base font-medium text-[#0D3B2E]/90 hover:text-[#0D3B2E] transition-colors"
             >
-              <span className="relative pb-0.5">
+              <span className="relative">
                 Request a Quote
                 <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#C59B27] transition-all duration-300 group-hover:w-full" />
               </span>
