@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion, type Variants } from "motion/react";
-import { companyData } from "@/data/company";
 
 interface HeroProps {
   onOpenQuote: () => void;
@@ -43,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
   return (
     <section className="relative isolate min-h-screen w-full overflow-hidden bg-[#FAFAF7] font-sans text-[#0F1F1A] antialiased border-b border-[#E2DFD5] flex flex-col justify-between pt-36 lg:pt-40">
       
-      {/* Seamless Full-Bleed Background Photo spanning seamlessly behind Header and Hero */}
+      {/* Custom Generated Indian Agricultural Commodities Background Photo */}
       <motion.div
         variants={backgroundVariants}
         initial="hidden"
@@ -53,8 +52,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
         aria-hidden="true"
       >
         <img
-          src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=1800"
-          alt="Indian Agricultural Spices & Produce"
+          src="/images/hero-bg.png"
+          alt="Indian Agricultural Export Produce & Spices"
           className="h-[120%] w-full object-cover object-center"
         />
       </motion.div>
@@ -106,7 +105,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
             Supplying quality agricultural products from India to global markets with reliability and trust.
           </motion.p>
 
-          {/* Premium Editorial Text Link CTAs (No Boxed Buttons) */}
+          {/* Premium Editorial Text Link CTAs */}
           <motion.div
             variants={contentItem}
             className="mt-9 flex flex-row items-center justify-center gap-8 sm:gap-10"
