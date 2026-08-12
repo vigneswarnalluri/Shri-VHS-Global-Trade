@@ -61,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
               </Button>
             </div>
 
-            {/* Highlights */}
+            {/* Factual Highlights */}
             <div className="pt-6 border-t border-[#E2DFD5] grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs font-medium text-[#0F1F1A]">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-[#C59B27] shrink-0" />
@@ -79,35 +79,80 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
 
           </div>
 
-          {/* Right Visual Image Composition */}
+          {/* Right Visual Image Composition - Multi-Commodity Representation */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
-              {/* Main Visual Image Card */}
-              <div className="relative overflow-hidden rounded-2xl border border-[#E2DFD5] bg-white shadow-xl hover-lift">
-                <img
-                  src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=1200"
-                  alt="Indian Agricultural Export Crops"
-                  className="h-80 sm:h-96 w-full object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0D3B2E]/80 via-[#0D3B2E]/20 to-transparent" />
-                
-                {/* Floating Overlay Info Badge */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-[#E2DFD5] shadow-lg flex items-center justify-between">
+              {/* Multi-Commodity Grid Composite */}
+              <div className="relative overflow-hidden rounded-2xl border border-[#E2DFD5] bg-white shadow-xl hover-lift p-2">
+                <div className="grid grid-cols-2 gap-2 rounded-xl overflow-hidden">
+                  
+                  {/* Top Left: Spices (Turmeric / Chillies) */}
+                  <div className="relative h-44 overflow-hidden group">
+                    <img
+                      src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=600"
+                      alt="Indian Export Spices"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute bottom-2 left-2 rounded bg-black/60 backdrop-blur-sm px-2 py-0.5 text-[10px] font-semibold text-white">
+                      Spices & Turmeric
+                    </span>
+                  </div>
+
+                  {/* Top Right: Fresh Fruits (Mangoes / Coconuts) */}
+                  <div className="relative h-44 overflow-hidden group">
+                    <img
+                      src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&q=80&w=600"
+                      alt="Fresh Indian Mangoes"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute bottom-2 left-2 rounded bg-black/60 backdrop-blur-sm px-2 py-0.5 text-[10px] font-semibold text-white">
+                      Fresh Produce
+                    </span>
+                  </div>
+
+                  {/* Bottom Left: Grains (Rice) */}
+                  <div className="relative h-44 overflow-hidden group">
+                    <img
+                      src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=600"
+                      alt="Premium Basmati Rice Grains"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute bottom-2 left-2 rounded bg-black/60 backdrop-blur-sm px-2 py-0.5 text-[10px] font-semibold text-white">
+                      Rice & Grains
+                    </span>
+                  </div>
+
+                  {/* Bottom Right: Fresh Vegetables & Oils */}
+                  <div className="relative h-44 overflow-hidden group bg-[#0D3B2E]/10">
+                    <img
+                      src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=600"
+                      alt="Fresh Vegetables"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute bottom-2 left-2 rounded bg-black/60 backdrop-blur-sm px-2 py-0.5 text-[10px] font-semibold text-white">
+                      Fresh Vegetables
+                    </span>
+                  </div>
+
+                </div>
+
+                {/* Floating Overlay Info Badge - Non-numerical & Supportable */}
+                <div className="mt-2 bg-white/95 backdrop-blur-md p-3.5 rounded-xl border border-[#E2DFD5] shadow-md flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-[#0D3B2E] flex items-center justify-center text-white shrink-0">
-                      <ShieldCheck className="h-6 w-6 text-[#C59B27]" />
+                    <div className="h-9 w-9 rounded-lg bg-[#0D3B2E] flex items-center justify-center text-white shrink-0">
+                      <ShieldCheck className="h-5 w-5 text-[#C59B27]" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-[#0F1F1A]">Export Quality Guaranteed</h4>
-                      <p className="text-[11px] text-[#4A5D56]">18 Product Range • Pure & Hygienic</p>
+                      <h4 className="text-xs font-bold text-[#0F1F1A]">Export-Ready Quality</h4>
+                      <p className="text-[11px] text-[#4A5D56]">Multi-Category Agricultural Supply</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Secondary Floating Accent Card */}
-              <div className="hidden sm:flex absolute -bottom-6 -left-6 bg-[#07241C] text-white p-4 rounded-xl border border-white/10 shadow-xl max-w-xs items-center gap-3">
+              <div className="hidden sm:flex absolute -bottom-5 -left-5 bg-[#07241C] text-white p-3.5 rounded-xl border border-white/10 shadow-xl max-w-xs items-center gap-3">
                 <div className="h-8 w-8 rounded-full bg-[#C59B27]/20 flex items-center justify-center text-[#C59B27] shrink-0">
                   <Globe className="h-4 w-4" />
                 </div>

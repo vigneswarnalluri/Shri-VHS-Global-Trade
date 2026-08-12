@@ -27,7 +27,7 @@ export interface CompanyDetails {
 export const companyData: CompanyDetails = {
   name: "Shri VHS Global Trade Private Limited",
   tagline: "Connecting Indian Agriculture to Global Markets",
-  subline: "Delivering India's finest agricultural products to global markets with uncompromising quality, reliability, and trust.",
+  subline: "Delivering India's finest agricultural products to global markets with quality, reliability, and trust.",
   description: "Shri VHS Global Trade Private Limited is a trusted Indian merchant exporter committed to delivering premium-quality agricultural products to global markets. We source directly from reliable farming communities and certified suppliers, ensuring every product meets the highest standards of quality, freshness, and international compliance.",
   vision: "To become a globally recognised export company by promoting India's finest agricultural products through innovation, reliability, sustainable sourcing, and long-term business relationships.",
   contact: {
@@ -43,7 +43,7 @@ export const companyData: CompanyDetails = {
   trustPillars: [
     {
       title: "Quality Assured",
-      description: "Stringent multi-stage inspection and sorting ensure export-grade purity and fresh standards."
+      description: "Stringent multi-stage inspection and sorting ensure export-grade quality standards."
     },
     {
       title: "Ethical Sourcing",

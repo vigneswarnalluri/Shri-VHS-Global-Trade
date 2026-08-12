@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { ProductCategories } from "@/components/home/ProductCategories";
+import { B2BBuyerBanner } from "@/components/home/B2BBuyerBanner";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { WhyUs } from "@/components/home/WhyUs";
 import { FarmToGlobalProcess } from "@/components/home/FarmToGlobalProcess";
@@ -55,32 +56,35 @@ export default function HomePage() {
         {/* 4. PRODUCT CATEGORIES */}
         <ProductCategories onSelectCategory={handleSelectCategory} />
 
-        {/* 5. FEATURED PRODUCTS */}
+        {/* 5. B2B BUYER BANNER */}
+        <B2BBuyerBanner onOpenQuote={() => handleOpenQuote()} />
+
+        {/* 6. FEATURED PRODUCTS */}
         <FeaturedProducts onSelectQuote={(p) => handleOpenQuote(p)} />
 
-        {/* 6. WHY SHRI VHS GLOBAL TRADE */}
+        {/* 7. WHY SHRI VHS GLOBAL TRADE */}
         <WhyUs />
 
-        {/* 7. FARM TO GLOBAL MARKET */}
+        {/* 8. FARM TO GLOBAL MARKET */}
         <FarmToGlobalProcess />
 
-        {/* 8. PACKAGING */}
+        {/* 9. PACKAGING */}
         <PackagingSection onOpenQuote={() => handleOpenQuote()} />
 
-        {/* 9. QUALITY & COMPLIANCE */}
+        {/* 10. QUALITY & COMPLIANCE */}
         <QualityCompliance />
 
-        {/* 10. GLOBAL MARKETS */}
+        {/* 11. GLOBAL MARKETS */}
         <GlobalMarketsSection onOpenQuote={() => handleOpenQuote()} />
 
-        {/* 11. ABOUT PREVIEW */}
+        {/* 12. ABOUT PREVIEW */}
         <AboutPreview />
 
-        {/* 12. FINAL CTA */}
+        {/* 13. FINAL CTA */}
         <FinalCTA onOpenQuote={() => handleOpenQuote()} />
       </main>
 
-      {/* 13. FOOTER */}
+      {/* 14. FOOTER */}
       <Footer onOpenQuote={() => handleOpenQuote()} />
 
       {/* Interactive Quote Modal */}
