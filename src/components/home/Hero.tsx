@@ -10,165 +10,165 @@ interface HeroProps {
   onOpenQuote: () => void;
 }
 
+const backgroundVariants: Variants = {
+  hidden: { opacity: 0, scale: 1.035, filter: "blur(10px)" },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { type: "spring", duration: 1.15, bounce: 0 },
+  },
+};
+
 const contentContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      delayChildren: 0.08,
-      staggerChildren: 0.08,
+      delayChildren: 0.12,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const contentItem: Variants = {
-  hidden: { opacity: 0, y: 16, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 18, filter: "blur(8px)" },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { type: "spring", duration: 0.6, bounce: 0 },
-  },
-};
-
-const imageVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.98, filter: "blur(8px)" },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: { type: "spring", duration: 0.8, bounce: 0 },
+    transition: { type: "spring", duration: 0.72, bounce: 0 },
   },
 };
 
 export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
   return (
-    <section className="relative overflow-hidden bg-[#FAFAF7] py-14 lg:py-24 border-b border-[#E2DFD5]">
+    <section className="relative isolate min-h-screen w-full overflow-hidden bg-[#FAFAF7] font-sans text-[#0F1F1A] antialiased border-b border-[#E2DFD5] flex flex-col justify-between pt-36 lg:pt-40">
       
-      {/* Subtle radial glows */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-[#C59B27]/8 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-[#0D3B2E]/5 blur-3xl pointer-events-none" />
+      {/* Seamless Full-Bleed Background Photo spanning behind Header and Hero */}
+      <motion.div
+        variants={backgroundVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.35 }}
+        className="absolute inset-0 -top-24 will-change-transform pointer-events-none"
+        aria-hidden="true"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=1800"
+          alt="Indian Agricultural Spices & Produce"
+          className="h-[120%] w-full object-cover object-center"
+        />
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-          
-          {/* Left Column: Editorial Content */}
-          <motion.div
-            variants={contentContainer}
-            initial="hidden"
-            animate="visible"
-            className="lg:col-span-7 space-y-6 text-left"
-          >
-            {/* Eyebrow Tag */}
-            <motion.div variants={contentItem} className="inline-flex">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#0D3B2E]/5 border border-[#0D3B2E]/15 px-3.5 py-1.5 text-xs font-semibold text-[#0D3B2E]">
-                <Globe className="h-3.5 w-3.5 text-[#C59B27]" />
-                <span>Merchant Exporter • Hyderabad, India</span>
-                <span className="text-[#C59B27]">•</span>
-                <span className="text-[#4A5D56] font-normal">Direct B2B Supply</span>
-              </div>
-            </motion.div>
+      {/* Top-Heavy Fade Mask: High opacity white fade at top, reducing smoothly down towards the bottom food colors */}
+      <div
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,250,247,0.96)_0%,rgba(250,250,247,0.88)_25%,rgba(250,250,247,0.55)_55%,rgba(250,250,247,0.12)_82%,rgba(250,250,247,0.02)_100%)]"
+        aria-hidden="true"
+      />
+      
+      {/* Center Radial Soft White Glow Overlay for Headline Contrast */}
+      <div
+        className="absolute inset-x-0 top-1/3 h-[50%] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.94)_0%,rgba(255,255,255,0.55)_45%,rgba(255,255,255,0)_80%)] pointer-events-none"
+        aria-hidden="true"
+      />
 
-            {/* Editorial Serif Headline */}
-            <motion.h1
-              variants={contentItem}
-              className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#0F1F1A] tracking-tight leading-[1.12]"
-            >
-              Connecting Indian Agriculture to <span className="text-[#0D3B2E] italic underline decoration-[#C59B27] decoration-2 underline-offset-8">Global Markets</span>
-            </motion.h1>
-
-            {/* Factual Subline */}
-            <motion.p
-              variants={contentItem}
-              className="text-base sm:text-lg text-[#4A5D56] leading-relaxed max-w-2xl"
-            >
-              {companyData.subline}
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              variants={contentItem}
-              className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
-            >
-              <a href="#products" className="w-full sm:w-auto">
-                <Button
-                  variant="primary-green"
-                  size="lg"
-                  className="w-full sm:w-auto"
-                  icon={<ArrowRight className="h-4 w-4" />}
-                >
-                  Explore Products
-                </Button>
-              </a>
-
-              <Button
-                variant="primary-gold"
-                size="lg"
-                onClick={onOpenQuote}
-                icon={<ChevronRight className="h-4 w-4" />}
-              >
-                Request a Quote
-              </Button>
-            </motion.div>
-
-            {/* 3 Compact Trust Points */}
-            <motion.div
-              variants={contentItem}
-              className="pt-6 border-t border-[#E2DFD5] grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs font-medium text-[#0F1F1A]"
-            >
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-[#C59B27] shrink-0" />
-                <span>Direct Farmer Sourcing</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-[#C59B27] shrink-0" />
-                <span>International Standards</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-[#C59B27] shrink-0" />
-                <span>Bulk Export Logistics</span>
-              </div>
-            </motion.div>
-
-          </motion.div>
-
-          {/* Right Column: ONE Dominant High-Resolution Agricultural Photograph */}
-          <motion.div
-            variants={imageVariants}
-            initial="hidden"
-            animate="visible"
-            className="lg:col-span-5 relative"
-          >
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              
-              {/* Single Dominant Photo Container */}
-              <div className="relative overflow-hidden rounded-2xl border border-[#E2DFD5] bg-white shadow-xl hover-lift">
-                <img
-                  src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=1200"
-                  alt="Indian Agricultural Export Commodities"
-                  className="h-80 sm:h-[420px] w-full object-cover object-center"
-                />
-                
-                {/* Subtle bottom gradient for contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0D3B2E]/80 via-transparent to-transparent opacity-80" />
-
-                {/* Single Minimal Overlay Badge */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-3.5 rounded-xl border border-[#E2DFD5] shadow-lg flex items-center gap-3">
-                  <div className="h-9 w-9 rounded-lg bg-[#0D3B2E] flex items-center justify-center text-white shrink-0">
-                    <ShieldCheck className="h-5 w-5 text-[#C59B27]" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#0F1F1A]">Export-Ready Quality</h4>
-                    <p className="text-[11px] text-[#4A5D56]">Global Supply Chain</p>
-                  </div>
-                </div>
-              </div>
-
+      {/* Centered Main Content Container */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+        
+        <motion.div
+          variants={contentContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          className="mx-auto flex w-full max-w-[820px] flex-col items-center text-center"
+        >
+          {/* Eyebrow Pill */}
+          <motion.div variants={contentItem}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#0D3B2E]/20 bg-white/85 px-4 py-1.5 text-xs font-semibold text-[#0D3B2E] shadow-xs backdrop-blur-md">
+              <Globe className="h-3.5 w-3.5 text-[#C59B27]" />
+              <span>Merchant Exporter • Hyderabad, India</span>
             </div>
           </motion.div>
 
-        </div>
+          {/* Main Editorial Headline */}
+          <motion.h1
+            variants={contentItem}
+            className="mt-6 max-w-4xl font-serif text-[clamp(2.5rem,4.6vw,5.25rem)] leading-[1.02] font-bold tracking-tight text-balance text-[#0F1F1A]"
+          >
+            Connecting Indian Agriculture to <span className="text-[#0D3B2E] italic underline decoration-[#C59B27] decoration-2 underline-offset-8">Global Markets</span>
+          </motion.h1>
+
+          {/* Supporting Subline */}
+          <motion.p
+            variants={contentItem}
+            className="mt-6 max-w-[560px] text-[clamp(1rem,1.3vw,1.18rem)] leading-[1.45] font-normal text-pretty text-[#4A5D56]"
+          >
+            Supplying quality agricultural products from India to global markets with reliability and trust.
+          </motion.p>
+
+          {/* Dual CTAs */}
+          <motion.div
+            variants={contentItem}
+            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+          >
+            <a href="#products" className="w-full sm:w-auto">
+              <Button
+                variant="primary-green"
+                size="lg"
+                className="w-full sm:w-auto px-7 py-3.5 shadow-xs"
+                icon={<ArrowRight className="h-4 w-4 text-[#C59B27]" />}
+              >
+                Explore Products
+              </Button>
+            </a>
+
+            <Button
+              variant="primary-gold"
+              size="lg"
+              onClick={onOpenQuote}
+              className="w-full sm:w-auto px-7 py-3.5 shadow-xs"
+              icon={<ChevronRight className="h-4 w-4" />}
+            >
+              Request a Quote
+            </Button>
+          </motion.div>
+
+        </motion.div>
+
       </div>
+
+      {/* Bottom Floating White Pill */}
+      <div className="relative z-10 pb-8 flex justify-center px-4">
+        <motion.div
+          variants={contentContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex justify-center"
+        >
+          <motion.div
+            variants={contentItem}
+            className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-6 rounded-full bg-white/90 border border-[#E2DFD5] px-6 py-2.5 shadow-md backdrop-blur-md text-xs font-semibold text-[#0F1F1A]"
+          >
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-[#C59B27]" />
+              <span>Export-Ready Quality</span>
+            </div>
+            <span className="hidden sm:inline text-[#E2DFD5]">•</span>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-[#C59B27]" />
+              <span>Trusted Sourcing</span>
+            </div>
+            <span className="hidden sm:inline text-[#E2DFD5]">•</span>
+            <div className="flex items-center gap-2">
+              <Globe className="h-4 w-4 text-[#C59B27]" />
+              <span>Export-Ready Logistics</span>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+
     </section>
   );
 };

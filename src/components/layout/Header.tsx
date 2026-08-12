@@ -44,9 +44,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full transition-all duration-300">
-      {/* Top Bar - Simplified on Mobile */}
-      <div className="bg-[#07241C] text-white/90 text-xs py-2 px-4 border-b border-white/10">
+    <header className={cn("z-40 w-full transition-all duration-300", isScrolled ? "fixed top-0 left-0 right-0 shadow-md bg-white/95 backdrop-blur-md border-b border-[#E2DFD5]" : "absolute top-0 left-0 right-0 bg-transparent")}>
+      {/* Top Bar */}
+      <div className={cn("text-xs py-2 px-4 border-b transition-colors duration-300", isScrolled ? "bg-[#07241C] text-white/90 border-white/10" : "bg-[#07241C]/90 backdrop-blur-md text-white/90 border-white/10")}>
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           
           {/* Left info: Phone & Location */}
@@ -81,12 +81,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
         </div>
       </div>
 
-      {/* Main Floating Pill Header (Watermelon Navigation-5 Inspired) */}
-      <div className={cn("w-full py-3 transition-all duration-300", isScrolled ? "bg-white/95 backdrop-blur-md shadow-md border-b border-[#E2DFD5]" : "bg-white border-b border-[#E2DFD5]")}>
+      {/* Main Floating Pill Header */}
+      <div className="w-full py-3">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6">
           
           {/* Floating Pill Container */}
-          <div className="flex h-16 w-full items-center justify-between gap-2 rounded-full border border-[#E2DFD5] bg-[#FAFAF7] pr-3 shadow-sm">
+          <div className="flex h-16 w-full items-center justify-between gap-2 rounded-full border border-[#E2DFD5]/80 bg-white/80 backdrop-blur-md pr-3 shadow-md">
             
             {/* Logo Section */}
             <a href="#" className="flex items-center gap-3 pl-4 pr-4 group">
@@ -103,7 +103,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
               </div>
             </a>
 
-            {/* Desktop Navigation with Mega-Menu (Watermelon Navigation-5 Style) */}
+            {/* Desktop Navigation with Mega-Menu */}
             <div className="hidden lg:block">
               <NavigationMenu
                 className={cn(
@@ -304,7 +304,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
         {/* Mobile Dropdown Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-[#E2DFD5] px-4 pt-2 pb-6 space-y-3 mt-2">
+          <div className="lg:hidden bg-white/95 backdrop-blur-md border-b border-[#E2DFD5] px-4 pt-2 pb-6 space-y-3 mt-2 rounded-2xl shadow-xl">
             <div className="flex flex-col space-y-2 pt-2">
               <a href="#" onClick={() => setMobileMenuOpen(false)} className="px-3 py-2 text-sm font-medium text-[#0F1F1A]">Home</a>
               <a href="#about" onClick={() => setMobileMenuOpen(false)} className="px-3 py-2 text-sm font-medium text-[#0F1F1A]">About</a>
