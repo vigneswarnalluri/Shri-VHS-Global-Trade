@@ -43,7 +43,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
   return (
     <section className="relative isolate min-h-screen w-full overflow-hidden bg-[#FAFAF7] font-sans text-[#0F1F1A] antialiased border-b border-[#E2DFD5] flex flex-col justify-between pt-36 lg:pt-40">
       
-      {/* Full-Bleed Background Photo spanning seamlessly behind Header and Hero */}
+      {/* Seamless Full-Bleed Background Photo spanning seamlessly behind Header and Hero */}
       <motion.div
         variants={backgroundVariants}
         initial="hidden"
@@ -81,7 +81,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
           viewport={{ once: true, amount: 0.4 }}
           className="mx-auto flex w-full max-w-[820px] flex-col items-center text-center"
         >
-          {/* 3. Refined Editorial Eyebrow Label (No Pill, No Heavy Border) */}
+          {/* Refined Editorial Eyebrow Label */}
           <motion.div variants={contentItem}>
             <div className="inline-flex items-center gap-2.5 text-[11px] font-semibold tracking-[0.22em] text-[#0D3B2E] uppercase">
               <span>MERCHANT EXPORTER</span>
@@ -106,27 +106,30 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
             Supplying quality agricultural products from India to global markets with reliability and trust.
           </motion.p>
 
-          {/* 1. CTA Group with 24-28px Visual Spacing */}
+          {/* Micro-Refined CTA Buttons Group (Watermelon CTA-3 Inspired Design Language) */}
           <motion.div
             variants={contentItem}
             className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-7 w-full sm:w-auto"
           >
-            {/* Primary Action */}
+            {/* Primary Action: Deep Forest Green Rectangular Button (h-12, rounded-lg, subtle lift & arrow hover) */}
             <a
               href="#products"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0D3B2E] px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-[#165342] transition-all duration-200"
+              className="group inline-flex h-12 items-center justify-center gap-2.5 rounded-lg bg-[#0D3B2E] px-7 text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:bg-[#165342] hover:-translate-y-0.5"
             >
               <span>Explore Products</span>
-              <span className="text-[#C59B27] text-sm">→</span>
+              <span className="text-[#C59B27] text-base transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
 
-            {/* Secondary Action: Distinct Text-Based Action */}
+            {/* Secondary Action: Visually Lighter Text Action with Subtle Gold Underline Hover */}
             <button
               onClick={onOpenQuote}
-              className="group inline-flex items-center justify-center gap-1.5 py-2 text-xs sm:text-sm font-semibold text-[#0D3B2E] transition-colors hover:text-[#C59B27]"
+              className="group relative inline-flex h-12 items-center justify-center gap-1.5 px-3 text-sm font-semibold text-[#0D3B2E] transition-colors hover:text-[#0D3B2E]"
             >
-              <span>Request a Quote</span>
-              <span className="text-[#C59B27] text-sm transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+              <span className="relative pb-0.5">
+                Request a Quote
+                <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#C59B27] transition-all duration-300 group-hover:w-full" />
+              </span>
+              <span className="text-[#C59B27] text-base transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
             </button>
           </motion.div>
 
@@ -134,7 +137,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
 
       </div>
 
-      {/* 2. Repositioned Editorial Trust Line with High Contrast */}
+      {/* Repositioned Editorial Trust Line with High Contrast */}
       <div className="relative z-10 pb-10 flex justify-center px-4">
         <motion.div
           variants={contentContainer}
