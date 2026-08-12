@@ -81,12 +81,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
         </div>
       </div>
 
-      {/* Main Floating Pill Header */}
+      {/* Main Navigation Pill (Seamless Translucent Integration into Hero Composition) */}
       <div className="w-full py-3">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6">
           
-          {/* Floating Pill Container */}
-          <div className="flex h-16 w-full items-center justify-between gap-2 rounded-full border border-[#E2DFD5]/80 bg-white/80 backdrop-blur-md pr-3 shadow-md">
+          {/* Translucent Seamless Floating Pill */}
+          <div className={cn("flex h-16 w-full items-center justify-between gap-2 rounded-full pr-3 transition-all duration-300", isScrolled ? "bg-white/90 border border-[#E2DFD5] shadow-xs" : "bg-white/40 backdrop-blur-md border border-white/40 shadow-none")}>
             
             {/* Logo Section */}
             <a href="#" className="flex items-center gap-3 pl-4 pr-4 group">
@@ -118,7 +118,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#4A5D56] transition-colors hover:text-[#0D3B2E] hover:bg-white"
+                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#"
                     >
                       Home
@@ -127,7 +127,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#4A5D56] transition-colors hover:text-[#0D3B2E] hover:bg-white"
+                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#about"
                     >
                       About
@@ -136,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   {/* Mega Menu Trigger: Products */}
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className="h-auto rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#4A5D56] transition-all hover:bg-white hover:text-[#0D3B2E] data-[state=open]:bg-white data-[state=open]:text-[#0D3B2E]">
+                    <NavigationMenuTrigger className="h-auto rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-all hover:bg-white/60 hover:text-[#0D3B2E] data-[state=open]:bg-white data-[state=open]:text-[#0D3B2E]">
                       Products & Range
                     </NavigationMenuTrigger>
                     
@@ -232,7 +232,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#4A5D56] transition-colors hover:text-[#0D3B2E] hover:bg-white"
+                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#process"
                     >
                       Our Process
@@ -241,7 +241,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#4A5D56] transition-colors hover:text-[#0D3B2E] hover:bg-white"
+                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#quality"
                     >
                       Quality
@@ -250,7 +250,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#4A5D56] transition-colors hover:text-[#0D3B2E] hover:bg-white"
+                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#markets"
                     >
                       Global Markets
@@ -259,7 +259,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#4A5D56] transition-colors hover:text-[#0D3B2E] hover:bg-white"
+                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#contact"
                     >
                       Contact

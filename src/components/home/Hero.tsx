@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion, type Variants } from "motion/react";
-import { Globe } from "lucide-react";
 import { companyData } from "@/data/company";
 
 interface HeroProps {
@@ -44,7 +43,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
   return (
     <section className="relative isolate min-h-screen w-full overflow-hidden bg-[#FAFAF7] font-sans text-[#0F1F1A] antialiased border-b border-[#E2DFD5] flex flex-col justify-between pt-36 lg:pt-40">
       
-      {/* Seamless Full-Bleed Background Photo spanning behind Header and Hero */}
+      {/* Full-Bleed Background Photo spanning seamlessly behind Header and Hero */}
       <motion.div
         variants={backgroundVariants}
         initial="hidden"
@@ -82,11 +81,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
           viewport={{ once: true, amount: 0.4 }}
           className="mx-auto flex w-full max-w-[820px] flex-col items-center text-center"
         >
-          {/* Eyebrow Pill */}
+          {/* 3. Refined Editorial Eyebrow Label (No Pill, No Heavy Border) */}
           <motion.div variants={contentItem}>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#0D3B2E]/20 bg-white/85 px-4 py-1.5 text-xs font-semibold text-[#0D3B2E] shadow-xs backdrop-blur-md">
-              <Globe className="h-3.5 w-3.5 text-[#C59B27]" />
-              <span>Merchant Exporter • Hyderabad, India</span>
+            <div className="inline-flex items-center gap-2.5 text-[11px] font-semibold tracking-[0.22em] text-[#0D3B2E] uppercase">
+              <span>MERCHANT EXPORTER</span>
+              <span className="text-[#C59B27]">•</span>
+              <span>HYDERABAD, INDIA</span>
             </div>
           </motion.div>
 
@@ -106,12 +106,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
             Supplying quality agricultural products from India to global markets with reliability and trust.
           </motion.p>
 
-          {/* Micro-Refined CTA Buttons Group */}
+          {/* 1. CTA Group with 24-28px Visual Spacing */}
           <motion.div
             variants={contentItem}
-            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-6 w-full sm:w-auto"
+            className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-7 w-full sm:w-auto"
           >
-            {/* Primary CTA: Refined Rectangular Deep Green Button */}
+            {/* Primary Action */}
             <a
               href="#products"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0D3B2E] px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-[#165342] transition-all duration-200"
@@ -120,10 +120,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
               <span className="text-[#C59B27] text-sm">→</span>
             </a>
 
-            {/* Secondary CTA: Transparent Refined Typographic Accent */}
+            {/* Secondary Action: Distinct Text-Based Action */}
             <button
               onClick={onOpenQuote}
-              className="group inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold text-[#0D3B2E] transition-colors border-b border-transparent hover:border-[#C59B27]"
+              className="group inline-flex items-center justify-center gap-1.5 py-2 text-xs sm:text-sm font-semibold text-[#0D3B2E] transition-colors hover:text-[#C59B27]"
             >
               <span>Request a Quote</span>
               <span className="text-[#C59B27] text-sm transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
@@ -134,8 +134,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
 
       </div>
 
-      {/* Editorial Trust Line (NO White Pill, NO Card, Pure Typography with Gold Separators) */}
-      <div className="relative z-10 pb-8 flex justify-center px-4">
+      {/* 2. Repositioned Editorial Trust Line with High Contrast */}
+      <div className="relative z-10 pb-10 flex justify-center px-4">
         <motion.div
           variants={contentContainer}
           initial="hidden"
@@ -145,7 +145,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
         >
           <motion.div
             variants={contentItem}
-            className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase text-[#4A5D56]"
+            className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase text-[#0D3B2E]"
           >
             <span>QUALITY-FOCUSED SUPPLY</span>
             <span className="text-[#C59B27]">•</span>
