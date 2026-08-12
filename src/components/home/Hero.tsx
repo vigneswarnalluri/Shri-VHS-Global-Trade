@@ -2,9 +2,8 @@
 
 import React from "react";
 import { motion, type Variants } from "motion/react";
-import { ArrowRight, Globe, ShieldCheck, CheckCircle2, ChevronRight } from "lucide-react";
+import { Globe } from "lucide-react";
 import { companyData } from "@/data/company";
-import { Button } from "../ui/Button";
 
 interface HeroProps {
   onOpenQuote: () => void;
@@ -61,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
         />
       </motion.div>
 
-      {/* Top-Heavy Fade Mask: High opacity white fade at top, reducing smoothly down towards the bottom food colors */}
+      {/* Top-Heavy Fade Mask: High opacity white fade at top, reducing smoothly down towards bottom */}
       <div
         className="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,250,247,0.96)_0%,rgba(250,250,247,0.88)_25%,rgba(250,250,247,0.55)_55%,rgba(250,250,247,0.12)_82%,rgba(250,250,247,0.02)_100%)]"
         aria-hidden="true"
@@ -107,38 +106,35 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
             Supplying quality agricultural products from India to global markets with reliability and trust.
           </motion.p>
 
-          {/* Dual CTAs */}
+          {/* Micro-Refined CTA Buttons Group */}
           <motion.div
             variants={contentItem}
-            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-6 w-full sm:w-auto"
           >
-            <a href="#products" className="w-full sm:w-auto">
-              <Button
-                variant="primary-green"
-                size="lg"
-                className="w-full sm:w-auto px-7 py-3.5 shadow-xs"
-                icon={<ArrowRight className="h-4 w-4 text-[#C59B27]" />}
-              >
-                Explore Products
-              </Button>
+            {/* Primary CTA: Refined Rectangular Deep Green Button */}
+            <a
+              href="#products"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0D3B2E] px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-[#165342] transition-all duration-200"
+            >
+              <span>Explore Products</span>
+              <span className="text-[#C59B27] text-sm">→</span>
             </a>
 
-            <Button
-              variant="primary-gold"
-              size="lg"
+            {/* Secondary CTA: Transparent Refined Typographic Accent */}
+            <button
               onClick={onOpenQuote}
-              className="w-full sm:w-auto px-7 py-3.5 shadow-xs"
-              icon={<ChevronRight className="h-4 w-4" />}
+              className="group inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold text-[#0D3B2E] transition-colors border-b border-transparent hover:border-[#C59B27]"
             >
-              Request a Quote
-            </Button>
+              <span>Request a Quote</span>
+              <span className="text-[#C59B27] text-sm transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+            </button>
           </motion.div>
 
         </motion.div>
 
       </div>
 
-      {/* Bottom Floating White Pill */}
+      {/* Editorial Trust Line (NO White Pill, NO Card, Pure Typography with Gold Separators) */}
       <div className="relative z-10 pb-8 flex justify-center px-4">
         <motion.div
           variants={contentContainer}
@@ -149,22 +145,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
         >
           <motion.div
             variants={contentItem}
-            className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-6 rounded-full bg-white/90 border border-[#E2DFD5] px-6 py-2.5 shadow-md backdrop-blur-md text-xs font-semibold text-[#0F1F1A]"
+            className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase text-[#4A5D56]"
           >
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-[#C59B27]" />
-              <span>Export-Ready Quality</span>
-            </div>
-            <span className="hidden sm:inline text-[#E2DFD5]">•</span>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-[#C59B27]" />
-              <span>Trusted Sourcing</span>
-            </div>
-            <span className="hidden sm:inline text-[#E2DFD5]">•</span>
-            <div className="flex items-center gap-2">
-              <Globe className="h-4 w-4 text-[#C59B27]" />
-              <span>Export-Ready Logistics</span>
-            </div>
+            <span>QUALITY-FOCUSED SUPPLY</span>
+            <span className="text-[#C59B27]">•</span>
+            <span>EXPORT-READY</span>
+            <span className="text-[#C59B27]">•</span>
+            <span>GLOBAL DELIVERY</span>
           </motion.div>
         </motion.div>
       </div>
