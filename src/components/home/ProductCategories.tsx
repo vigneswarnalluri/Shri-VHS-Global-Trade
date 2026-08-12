@@ -14,7 +14,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({ onSelectCa
         
         <SectionHeading
           badge="Product Range"
-          title="Core Export Categories"
+          title="Explore Our Product Range"
           description="We specialize in six primary agricultural export categories sourced directly from India's agricultural hubs."
           align="center"
           className="mb-14"
