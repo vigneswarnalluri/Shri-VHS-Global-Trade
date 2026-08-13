@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { companyData } from "@/data/company";
 import { categoriesData } from "@/data/categories";
+import { RunActionButton } from "@/components/ui/run-action-button";
 
 interface HeaderProps {
   onOpenQuote: () => void;
@@ -48,11 +49,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
       {/* Top Bar */}
       <div className={cn("text-xs py-2 px-4 border-b transition-colors duration-300", isScrolled ? "bg-[#07241C] text-white/90 border-white/10" : "bg-[#07241C]/90 backdrop-blur-md text-white/90 border-white/10")}>
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          
+
           {/* Left info: Phone & Location */}
           <div className="flex items-center gap-4 text-[11px] sm:text-xs">
-            <a 
-              href={`tel:${companyData.contact.phone.replace(/\s+/g, '')}`} 
+            <a
+              href={`tel:${companyData.contact.phone.replace(/\s+/g, '')}`}
               className="flex items-center gap-1.5 font-semibold text-[#C59B27] hover:underline"
             >
               <Phone className="h-3.5 w-3.5" />
@@ -62,8 +63,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
               <MapPin className="h-3.5 w-3.5 text-[#C59B27]" />
               <span>Hyderabad, India</span>
             </span>
-            <a 
-              href={`mailto:${companyData.contact.email}`} 
+            <a
+              href={`mailto:${companyData.contact.email}`}
               className="hidden lg:flex items-center gap-1.5 hover:text-[#C59B27] transition-colors"
             >
               <Mail className="h-3.5 w-3.5 text-[#C59B27]" />
@@ -82,25 +83,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
       </div>
 
       {/* Main Navigation Pill (Seamless Translucent Integration into Hero Composition) */}
-      <div className="w-full py-3">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6">
-          
+      <div className="w-full py-3.5">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6">
+
           {/* Translucent Seamless Floating Pill */}
-          <div className={cn("flex h-16 w-full items-center justify-between gap-2 rounded-full pr-3 transition-all duration-300", isScrolled ? "bg-white/90 border border-[#E2DFD5] shadow-xs" : "bg-white/40 backdrop-blur-md border border-white/40 shadow-none")}>
-            
+          <div className={cn("flex h-16 w-full items-center justify-between gap-3 rounded-full pr-3.5 transition-all duration-300", isScrolled ? "bg-white/90 border border-[#E2DFD5] shadow-xs" : "bg-white/40 backdrop-blur-md border border-white/40 shadow-none")}>
+
             {/* Logo Section */}
-            <a href="#" className="flex items-center gap-3 pl-4 pr-4 group">
-              <div className="h-9 w-9 rounded-full bg-[#0D3B2E] flex items-center justify-center text-white shadow-sm group-hover:bg-[#165342] transition-colors shrink-0">
-                <span className="font-serif font-bold text-sm text-[#C59B27]">VHS</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif font-bold text-sm sm:text-base tracking-tight text-[#0F1F1A] leading-tight">
-                  Shri VHS Global Trade
-                </span>
-                <span className="text-[9px] uppercase tracking-wider text-[#C59B27] font-semibold">
-                  Private Limited
-                </span>
-              </div>
+            <a href="#" className="flex items-center pl-3.5 sm:pl-5 pr-3 group">
+              <img
+                src="/logo.png"
+                alt="Shri VHS Global Trade Logo"
+                className="h-10 sm:h-12 w-auto object-contain shrink-0"
+              />
             </a>
 
             {/* Desktop Navigation with Mega-Menu */}
@@ -115,10 +110,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                 )}
               >
                 <NavigationMenuList className="gap-1">
-                  
+
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
+                      className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#"
                     >
                       Home
@@ -127,7 +122,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
+                      className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#about"
                     >
                       About
@@ -136,13 +131,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   {/* Mega Menu Trigger: Products */}
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className="h-auto rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-all hover:bg-white/60 hover:text-[#0D3B2E] data-[state=open]:bg-white data-[state=open]:text-[#0D3B2E]">
+                    <NavigationMenuTrigger className="h-auto rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-all hover:bg-white/60 hover:text-[#0D3B2E] data-[state=open]:bg-white data-[state=open]:text-[#0D3B2E]">
                       Products & Range
                     </NavigationMenuTrigger>
-                    
+
                     <NavigationMenuContent className="p-0">
                       <div className="grid w-5xl grid-cols-4 gap-6 divide-x divide-[#E2DFD5]/60 px-8 py-8">
-                        
+
                         {/* Col 1: Categories Overview */}
                         <div className="flex flex-col col-span-2 pr-4">
                           <div className="flex items-center gap-2 mb-3">
@@ -232,7 +227,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
+                      className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#process"
                     >
                       Our Process
@@ -241,7 +236,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
+                      className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#quality"
                     >
                       Quality
@@ -250,7 +245,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
+                      className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#markets"
                     >
                       Global Markets
@@ -259,7 +254,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                   <NavigationMenuItem>
                     <NavigationMenuLink
-                      className="rounded-full bg-transparent px-3.5 py-1.5 text-xs font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
+                      className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
                       href="#contact"
                     >
                       Contact
@@ -272,13 +267,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
             {/* Action CTA Button */}
             <div className="flex items-center gap-2">
-              <button
-                onClick={onOpenQuote}
-                className="hidden md:flex items-center gap-2 rounded-full bg-[#C59B27] px-5 py-2 text-xs font-semibold text-white shadow-sm hover:bg-[#D4AF37] transition-all"
-              >
-                <span>Request a Quote</span>
-                <ChevronRight className="h-3.5 w-3.5" />
-              </button>
+              <div className="hidden md:block">
+                <RunActionButton onClick={onOpenQuote} />
+              </div>
 
               {/* Mobile Menu Trigger */}
               <div className="lg:hidden flex items-center gap-2">
@@ -308,7 +299,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
             <div className="flex flex-col space-y-2 pt-2">
               <a href="#" onClick={() => setMobileMenuOpen(false)} className="px-3 py-2 text-sm font-medium text-[#0F1F1A]">Home</a>
               <a href="#about" onClick={() => setMobileMenuOpen(false)} className="px-3 py-2 text-sm font-medium text-[#0F1F1A]">About</a>
-              
+
               <div className="px-3 py-2 text-xs font-semibold text-[#C59B27] uppercase tracking-wider">
                 Export Categories
               </div>

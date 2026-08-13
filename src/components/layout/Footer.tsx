@@ -15,18 +15,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
           
           {/* Col 1 & 2: Company Overview */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-[#C59B27] flex items-center justify-center text-white font-serif font-bold text-lg">
-                VHS
-              </div>
-              <div>
-                <h3 className="font-serif font-bold text-lg text-white">
-                  Shri VHS Global Trade
-                </h3>
-                <p className="text-xs uppercase tracking-widest text-[#C59B27]">
-                  Private Limited
-                </p>
-              </div>
+            <div className="flex items-center">
+              <img
+                src="/logo.png"
+                alt="Shri VHS Global Trade Logo"
+                className="h-14 sm:h-16 w-auto object-contain shrink-0"
+              />
             </div>
 
             <p className="text-sm text-gray-300 leading-relaxed max-w-md">

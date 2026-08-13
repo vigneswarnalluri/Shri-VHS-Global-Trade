@@ -47,13 +47,20 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
       <div className="relative w-full max-w-2xl rounded-2xl bg-white shadow-2xl overflow-hidden border border-[#E2DFD5]">
         {/* Header */}
         <div className="bg-[#0D3B2E] px-6 py-5 text-white flex items-center justify-between">
-          <div>
-            <span className="text-xs uppercase tracking-widest text-[#C59B27] font-semibold">
-              B2B Export Enquiry
-            </span>
-            <h3 className="text-xl font-serif font-bold text-white mt-0.5">
-              Request a Commercial Quote
-            </h3>
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo.png"
+              alt="Shri VHS Global Trade Logo"
+              className="h-10 sm:h-12 w-auto object-contain shrink-0"
+            />
+            <div>
+              <span className="text-xs uppercase tracking-widest text-[#C59B27] font-semibold">
+                B2B Export Enquiry
+              </span>
+              <h3 className="text-xl font-serif font-bold text-white mt-0.5">
+                Request a Commercial Quote
+              </h3>
+            </div>
           </div>
           <button
             onClick={onClose}

@@ -2,6 +2,8 @@
 
 import React from "react";
 import { motion, type Variants } from "motion/react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ButtonGroup9 } from "@/components/ui/button-group-9";
 
 interface HeroProps {
   onOpenQuote: () => void;
@@ -105,34 +107,27 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
             Supplying quality agricultural products from India to global markets with reliability and trust.
           </motion.p>
 
-          {/* Premium Editorial Text Link CTAs */}
+          {/* ButtonGroup9 Hero Action CTA */}
           <motion.div
             variants={contentItem}
-            className="mt-9 flex flex-row items-center justify-center gap-8 sm:gap-10"
+            className="mt-9 flex justify-center"
           >
-            {/* Primary Action: Editorial Text Link with Muted Gold Underline Accent */}
-            <a
-              href="#products"
-              className="group relative inline-flex items-center gap-2 py-1 text-sm sm:text-base font-semibold text-[#0D3B2E] transition-colors"
-            >
-              <span className="relative">
-                Explore Products
-                <span className="absolute bottom-0 left-0 h-[1.5px] w-full bg-[#C59B27]/80 transition-all duration-300 group-hover:bg-[#C59B27]" />
-              </span>
-              <span className="text-[#C59B27] text-base transition-transform duration-300 group-hover:translate-x-1.5">→</span>
-            </a>
-
-            {/* Secondary Action: Visually Lighter Editorial Text Action */}
-            <button
-              onClick={onOpenQuote}
-              className="group relative inline-flex items-center gap-1.5 py-1 text-sm sm:text-base font-medium text-[#0D3B2E]/90 hover:text-[#0D3B2E] transition-colors"
-            >
-              <span className="relative">
-                Request a Quote
-                <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#C59B27] transition-all duration-300 group-hover:w-full" />
-              </span>
-              <span className="text-[#C59B27] text-base transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-            </button>
+            <ButtonGroup9
+              items={[
+                {
+                  label: "Explore Products",
+                  icon: ArrowRight,
+                  href: "#products",
+                  variant: "primary",
+                },
+                {
+                  label: "Request a Quote",
+                  icon: ArrowUpRight,
+                  onClick: onOpenQuote,
+                  variant: "secondary",
+                },
+              ]}
+            />
           </motion.div>
 
         </motion.div>
