@@ -104,9 +104,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                 className={cn(
                   'static',
                   '[&>div:last-child]:inset-x-0 [&>div:last-child]:top-full [&>div:last-child]:w-full',
-                  '[&_[data-slot=navigation-menu-viewport]]:mx-auto [&_[data-slot=navigation-menu-viewport]]:-mt-4 [&_[data-slot=navigation-menu-viewport]]:max-w-6xl',
-                  '[&_[data-slot=navigation-menu-viewport]]:rounded-2xl [&_[data-slot=navigation-menu-viewport]]:border [&_[data-slot=navigation-menu-viewport]]:border-[#E2DFD5]',
-                  '[&_[data-slot=navigation-menu-viewport]]:bg-white [&_[data-slot=navigation-menu-viewport]]:shadow-2xl'
+                  '[&_[data-slot=navigation-menu-viewport]]:mx-auto [&_[data-slot=navigation-menu-viewport]]:mt-4 [&_[data-slot=navigation-menu-viewport]]:max-w-6xl',
+                  '[&_[data-slot=navigation-menu-viewport]]:rounded-2xl [&_[data-slot=navigation-menu-viewport]]:border [&_[data-slot=navigation-menu-viewport]]:border-[#E2DFD5]/80',
+                  '[&_[data-slot=navigation-menu-viewport]]:bg-white/95 [&_[data-slot=navigation-menu-viewport]]:backdrop-blur-xl [&_[data-slot=navigation-menu-viewport]]:shadow-[0_20px_50px_rgba(13,59,46,0.15)]'
                 )}
               >
                 <NavigationMenuList className="gap-1">

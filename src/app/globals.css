@@ -82,3 +82,36 @@
   background: radial-gradient(circle at 80% 20%, rgba(197, 155, 39, 0.15) 0%, transparent 50%),
               linear-gradient(180deg, #0D3B2E 0%, #07241C 100%);
 }
+
+/* Synchronized Slow Slide-Down & Fade-In Keyframes for Mega Menu */
+@keyframes slowSlideAndFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-48px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slowSlideAndFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+[data-slot="navigation-menu-viewport"][data-state="open"],
+[data-slot="navigation-menu-content"][data-state="open"] {
+  animation: slowSlideAndFadeIn 1.4s cubic-bezier(0.25, 1, 0.4, 1) forwards;
+}
+
+[data-slot="navigation-menu-viewport"][data-state="closed"],
+[data-slot="navigation-menu-content"][data-state="closed"] {
+  animation: slowSlideAndFadeOut 0.4s ease-in forwards;
+}
