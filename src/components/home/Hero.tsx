@@ -42,7 +42,7 @@ const contentItem: Variants = {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
   return (
-    <section className="relative isolate min-h-screen w-full overflow-hidden bg-[#FAFAF7] font-sans text-[#0F1F1A] antialiased border-b border-[#E2DFD5] flex flex-col justify-between pt-36 lg:pt-40">
+    <section className="relative isolate min-h-screen min-h-svh w-full overflow-hidden bg-[#FAFAF7] font-sans text-[#0F1F1A] antialiased border-b border-[#E2DFD5] flex flex-col justify-between pt-20 sm:pt-24 lg:pt-28 pb-6 sm:pb-8">
       
       {/* Custom Generated Indian Agricultural Commodities Background Photo */}
       <motion.div
@@ -73,7 +73,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
       />
 
       {/* Centered Main Content Container */}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-2 sm:py-6">
         
         <motion.div
           variants={contentContainer}
@@ -130,22 +130,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
             />
           </motion.div>
 
-        </motion.div>
-
-      </div>
-
-      {/* Repositioned Editorial Trust Line with High Contrast */}
-      <div className="relative z-10 pb-10 flex justify-center px-4">
-        <motion.div
-          variants={contentContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          className="flex justify-center"
-        >
+          {/* Editorial Trust Line placed directly under CTAs */}
           <motion.div
             variants={contentItem}
-            className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase text-[#0D3B2E]"
+            className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] font-semibold tracking-[0.2em] uppercase text-[#0D3B2E]"
           >
             <span>QUALITY-FOCUSED SUPPLY</span>
             <span className="text-[#C59B27]">•</span>
@@ -153,9 +141,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
             <span className="text-[#C59B27]">•</span>
             <span>GLOBAL DELIVERY</span>
           </motion.div>
-        </motion.div>
-      </div>
 
+        </motion.div>
+
+      </div>
     </section>
   );
 };
