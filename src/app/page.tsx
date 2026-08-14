@@ -17,7 +17,7 @@ import { AboutPreview } from "@/components/home/AboutPreview";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { QuoteModal } from "@/components/ui/QuoteModal";
 import { Product } from "@/data/products";
-import { Category } from "@/data/categories";
+
 
 export default function HomePage() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -33,12 +33,14 @@ export default function HomePage() {
     setSelectedProductForQuote(null);
   };
 
-  const handleSelectCategory = (category: Category) => {
+  const handleSelectCategory = () => {
     const section = document.getElementById("products");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFAF7] text-[#0F1F1A]">

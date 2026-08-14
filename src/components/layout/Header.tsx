@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import {
@@ -24,9 +25,9 @@ import {
   Package,
   Layers,
   Sprout,
-  ShieldCheck,
-  ChevronRight
+  ShieldCheck
 } from "lucide-react";
+
 import { companyData } from "@/data/company";
 import { categoriesData } from "@/data/categories";
 import { RunActionButton } from "@/components/ui/run-action-button";
@@ -49,9 +50,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
   }, []);
 
   return (
-    <header className={cn("z-40 w-full transition-all duration-300", isScrolled ? "fixed top-0 left-0 right-0 shadow-md bg-white/95 backdrop-blur-md border-b border-[#E2DFD5]" : "absolute top-0 left-0 right-0 bg-transparent")}>
+    <header className={cn("z-40 w-full transition-[background-color,box-shadow,backdrop-filter] duration-300", isScrolled ? "fixed top-0 left-0 right-0 shadow-sm bg-white/95 backdrop-blur-md" : "absolute top-0 left-0 right-0 bg-transparent")}>
       {/* Top Bar */}
-      <div className={cn("text-xs py-2 px-4 border-b transition-colors duration-300", isScrolled ? "bg-[#07241C] text-white/90 border-white/10" : "bg-[#07241C]/90 backdrop-blur-md text-white/90 border-white/10")}>
+      <div className={cn("text-xs py-2 px-4 border-b border-white/10 transition-colors duration-300", isScrolled ? "bg-[#07241C] text-white/90" : "bg-[#07241C]/90 backdrop-blur-md text-white/90")}>
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
 
           {/* Left info: Phone & Location */}
@@ -95,12 +96,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
             {/* Logo Section */}
             <a href="#" className="flex items-center pl-3.5 sm:pl-5 pr-3 group">
-              <img
+              <Image
                 src="/logo.png"
                 alt="Shri VHS Global Trade Logo"
+                width={200}
+                height={60}
                 className="h-10 sm:h-12 w-auto object-contain shrink-0"
               />
             </a>
+
 
             {/* Desktop Navigation with Mega-Menu */}
             <div className="hidden lg:block">
@@ -109,8 +113,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   'static',
                   '[&>div:last-child]:inset-x-0 [&>div:last-child]:top-full [&>div:last-child]:w-full',
                   '[&_[data-slot=navigation-menu-viewport]]:mx-auto [&_[data-slot=navigation-menu-viewport]]:mt-4 [&_[data-slot=navigation-menu-viewport]]:max-w-6xl',
-                  '[&_[data-slot=navigation-menu-viewport]]:rounded-2xl [&_[data-slot=navigation-menu-viewport]]:border [&_[data-slot=navigation-menu-viewport]]:border-[#E2DFD5]/80',
-                  '[&_[data-slot=navigation-menu-viewport]]:bg-white/95 [&_[data-slot=navigation-menu-viewport]]:backdrop-blur-xl [&_[data-slot=navigation-menu-viewport]]:shadow-[0_20px_50px_rgba(13,59,46,0.15)]'
+                  '[&_[data-slot=navigation-menu-viewport][data-state=open]]:rounded-2xl [&_[data-slot=navigation-menu-viewport][data-state=open]]:border [&_[data-slot=navigation-menu-viewport][data-state=open]]:border-[#E2DFD5]/80',
+                  '[&_[data-slot=navigation-menu-viewport][data-state=open]]:bg-white/95 [&_[data-slot=navigation-menu-viewport][data-state=open]]:backdrop-blur-xl [&_[data-slot=navigation-menu-viewport][data-state=open]]:shadow-[0_20px_50px_rgba(13,59,46,0.15)]',
+                  '[&_[data-slot=navigation-menu-viewport][data-state=closed]]:hidden [&_[data-slot=navigation-menu-viewport][data-state=closed]]:border-0'
                 )}
               >
                 <NavigationMenuList className="gap-1">
@@ -322,12 +327,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                 {/* Header: Logo & Close Button */}
                 <div className="flex items-center justify-between border-b border-white/10 pb-5">
                   <div className="flex items-center gap-3">
-                    <img
+                    <Image
                       src="/logo.png"
                       alt="Shri VHS Global Trade Logo"
+                      width={160}
+                      height={48}
                       className="h-9 w-auto object-contain"
                     />
                   </div>
+
                   <button
                     onClick={() => setMobileMenuOpen(false)}
                     className="p-2 text-white/70 hover:text-white rounded-full transition-colors focus:outline-none"

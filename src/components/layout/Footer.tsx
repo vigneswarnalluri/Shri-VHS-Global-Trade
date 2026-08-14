@@ -1,5 +1,6 @@
 import React from "react";
-import { MapPin, Phone, Mail, Globe, ArrowUpRight, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Phone, Globe, ArrowUpRight } from "lucide-react";
 import { companyData } from "@/data/company";
 import { categoriesData } from "@/data/categories";
 
@@ -16,12 +17,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
           {/* Col 1 & 2: Company Overview */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center">
-              <img
+              <Image
                 src="/logo.png"
                 alt="Shri VHS Global Trade Logo"
+                width={240}
+                height={80}
                 className="h-14 sm:h-16 w-auto object-contain shrink-0"
               />
             </div>
+
 
             <p className="text-sm text-gray-300 leading-relaxed max-w-md">
               {companyData.subline}

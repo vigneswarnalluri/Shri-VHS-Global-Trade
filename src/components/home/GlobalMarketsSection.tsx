@@ -1,6 +1,6 @@
 import React from "react";
-import { SectionHeading } from "../ui/SectionHeading";
 import { Globe, Ship, Compass, ArrowRight } from "lucide-react";
+
 
 interface GlobalMarketsProps {
   onOpenQuote: () => void;

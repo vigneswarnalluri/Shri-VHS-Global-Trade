@@ -53,11 +53,39 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Shri VHS Global Trade Private Limited",
+    "url": "https://www.shrivhsglobaltrade.com",
+    "logo": "https://www.shrivhsglobaltrade.com/logo.png",
+    "description": "Trusted Indian merchant exporter connecting premium Indian agricultural products—rice, spices, fresh fruits, vegetables, edible oils, and natural commodities—with global markets.",
+    "telephone": "+91 70958 51852",
+    "email": "info@shrivhsglobaltrade.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "addressCountry": "India"
+    },
+    "sameAs": [
+      "https://x.com/VHSGlobalTrade",
+      "https://www.instagram.com"
+    ]
+  };
+
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-screen bg-[#FAFAF7] text-[#0F1F1A] antialiased selection:bg-[#C59B27] selection:text-white">
         {children}
       </body>
     </html>
   );
 }
+

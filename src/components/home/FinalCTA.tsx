@@ -1,7 +1,8 @@
 import React from "react";
-import { ArrowRight, Phone, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, Phone, ShieldCheck } from "lucide-react";
 import { companyData } from "@/data/company";
 import { Button } from "../ui/Button";
+
 
 interface FinalCTAProps {
   onOpenQuote: () => void;

@@ -1,7 +1,8 @@
 import React from "react";
+import Image from "next/image";
 import { companyData } from "@/data/company";
 import { SectionHeading } from "../ui/SectionHeading";
-import { MapPin, Phone, Mail, Globe, CheckCircle2, ShieldCheck } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 
 export const AboutPreview: React.FC = () => {
   return (
@@ -22,7 +23,7 @@ export const AboutPreview: React.FC = () => {
                 Our Corporate Vision
               </h4>
               <p className="text-sm text-[#0F1F1A] font-serif italic leading-relaxed">
-                "{companyData.vision}"
+                &quot;{companyData.vision}&quot;
               </p>
             </div>
 
@@ -40,9 +41,11 @@ export const AboutPreview: React.FC = () => {
 
           <div className="lg:col-span-6">
             <div className="relative rounded-2xl overflow-hidden border border-[#E2DFD5] shadow-lg">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=1000"
                 alt="Agricultural Sourcing India"
+                width={1000}
+                height={600}
                 className="w-full h-80 sm:h-96 object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D3B2E]/90 via-transparent to-transparent" />
@@ -64,3 +67,4 @@ export const AboutPreview: React.FC = () => {
     </section>
   );
 };
+

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Package, Check, ArrowRight } from "lucide-react";
 import { Product } from "@/data/products";
 
@@ -11,11 +12,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelectQuote
   return (
     <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl bg-white border border-[#E2DFD5] hover-lift">
       <div className="relative h-52 w-full overflow-hidden bg-[#0D3B2E]/5">
-        <img
+        <Image
           src={product.image}
           alt={product.name}
+          width={500}
+          height={300}
           className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
         />
         <div className="absolute top-3 left-3">
           <span className="rounded-md bg-[#0D3B2E]/90 text-white backdrop-blur-sm px-2.5 py-1 text-xs font-medium tracking-wide">
@@ -38,7 +40,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelectQuote
           )}
 
           <p className="mt-2 text-xs italic text-[#4A5D56] font-serif">
-            "{product.tagline}"
+            &quot;{product.tagline}&quot;
           </p>
 
           <p className="mt-2 text-sm text-[#4A5D56] line-clamp-3 leading-relaxed">
@@ -90,3 +92,4 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelectQuote
     </div>
   );
 };
+

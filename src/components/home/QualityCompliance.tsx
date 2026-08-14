@@ -1,6 +1,7 @@
 import React from "react";
 import { SectionHeading } from "../ui/SectionHeading";
-import { ShieldCheck, FileCheck, CheckCircle, Search, Award } from "lucide-react";
+import { ShieldCheck, CheckCircle } from "lucide-react";
+
 
 export const QualityCompliance: React.FC = () => {
   const qualityPillars = [

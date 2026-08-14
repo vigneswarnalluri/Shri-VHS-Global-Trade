@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, Send, CheckCircle2, Phone, Mail, Globe, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { X, Send, CheckCircle2, ShieldCheck } from "lucide-react";
 import { Product, productsData } from "@/data/products";
 import { companyData } from "@/data/company";
 
@@ -48,11 +49,14 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
         {/* Header */}
         <div className="bg-[#0D3B2E] px-6 py-5 text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img
+            <Image
               src="/logo.png"
               alt="Shri VHS Global Trade Logo"
+              width={200}
+              height={60}
               className="h-10 sm:h-12 w-auto object-contain shrink-0"
             />
+
             <div>
               <span className="text-xs uppercase tracking-widest text-[#C59B27] font-semibold">
                 B2B Export Enquiry

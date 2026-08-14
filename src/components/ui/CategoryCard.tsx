@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Category } from "@/data/categories";
 
@@ -14,17 +15,19 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category, onSelect }
       className="group relative flex flex-col justify-between overflow-hidden rounded-xl bg-white border border-[#E2DFD5] p-6 hover-lift cursor-pointer"
     >
       <div className="relative h-44 w-full overflow-hidden rounded-lg bg-[#0D3B2E]/5 mb-5">
-        <img
+        <Image
           src={category.image}
           alt={category.name}
+          width={400}
+          height={250}
           className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0D3B2E]/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
         <span className="absolute top-3 right-3 rounded-full bg-white/90 backdrop-blur-sm px-2.5 py-1 text-xs font-semibold text-[#0D3B2E]">
           {category.itemCount} Varieties
         </span>
       </div>
+
 
       <div className="flex flex-col flex-1 justify-between">
         <div>

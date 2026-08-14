@@ -43,7 +43,7 @@ export const categoriesData: Category[] = [
     description: "Farm-fresh Onions, bright Green Chillies, and nutrient-dense Drumsticks handled with export care.",
     itemCount: 3,
     featuredProducts: ["fresh-onions", "fresh-green-chillies", "drumsticks"],
-    image: "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cf?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=800"
   },
   {
     id: "edible-oils",
