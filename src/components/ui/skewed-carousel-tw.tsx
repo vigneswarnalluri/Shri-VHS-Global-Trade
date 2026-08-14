@@ -51,8 +51,7 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [isHovered, setIsHovered] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragOffset, setDragOffset] = useState(0);
+  const isDraggingRef = useRef(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const total = items.length;
@@ -70,14 +69,14 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
     setActiveIndex(index);
   };
 
-  // Autoplay support (paused while hovered or dragging)
+  // Autoplay support (paused on hover)
   useEffect(() => {
-    if (!autoplay || isHovered || isDragging) return;
+    if (!autoplay || isHovered) return;
     const timer = setInterval(() => {
       nextSlide();
     }, autoplayInterval);
     return () => clearInterval(timer);
-  }, [autoplay, autoplayInterval, isHovered, isDragging, nextSlide]);
+  }, [autoplay, autoplayInterval, isHovered, nextSlide]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -89,22 +88,15 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [nextSlide, prevSlide]);
 
-  // Current continuous floating position during drag
-  const currentPos = activeIndex - dragOffset / cardSpacing;
-
-  // Calculate continuous circular offset for each card
-  const getContinuousOffset = (index: number) => {
-    let diff = index - currentPos;
-    diff = ((diff % total) + total) % total;
-    if (diff > total / 2) {
-      diff -= total;
-    }
+  // Calculate circular offset
+  const getOffset = (index: number) => {
+    let diff = index - activeIndex;
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
     return diff;
   };
 
-  // Live active index for title and dots
-  const liveActiveIndex = ((Math.round(currentPos) % total) + total) % total;
-  const activeItem = items[liveActiveIndex] || items[activeIndex];
+  const activeItem = items[activeIndex];
 
   return (
     <div
@@ -117,39 +109,50 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
       )}
       style={{ perspective: `${perspective}px` }}
     >
-      {/* 3D Draggable Carousel Stage */}
+      {/* 3D Hardware-Accelerated Draggable Stage */}
       <motion.div
-        className={cn(
-          "relative w-full flex items-center justify-center touch-pan-y",
-          isDragging ? "cursor-grabbing" : "cursor-grab"
-        )}
+        className="relative w-full flex items-center justify-center cursor-grab active:cursor-grabbing touch-pan-y"
         style={{ height: `${cardHeight + 40}px` }}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={1}
-        onDragStart={() => setIsDragging(true)}
-        onDrag={(_, info) => {
-          setDragOffset(info.offset.x);
+        dragElastic={0.25}
+        onDragStart={() => {
+          isDraggingRef.current = true;
         }}
         onDragEnd={(_, info) => {
-          const cardsMoved = Math.round(-info.offset.x / cardSpacing - info.velocity.x / 600);
-          const newIndex = ((activeIndex + cardsMoved) % total + total) % total;
-          setActiveIndex(newIndex);
-          setDragOffset(0);
-          setTimeout(() => setIsDragging(false), 50);
+          const threshold = 35;
+          const velocityThreshold = 200;
+
+          // Proportional multi-card slide calculation on large drag or fast flick
+          const offsetCards = -info.offset.x / cardSpacing;
+          const velocityCards = -info.velocity.x / 700;
+          const totalMoved = Math.round(offsetCards + velocityCards);
+
+          if (totalMoved !== 0) {
+            setActiveIndex((prev) => ((prev + totalMoved) % total + total) % total);
+          } else if (info.offset.x < -threshold || info.velocity.x < -velocityThreshold) {
+            nextSlide();
+          } else if (info.offset.x > threshold || info.velocity.x > velocityThreshold) {
+            prevSlide();
+          }
+
+          setTimeout(() => {
+            isDraggingRef.current = false;
+          }, 80);
         }}
       >
         {items.map((item, idx) => {
-          const diff = getContinuousOffset(idx);
-          const absDiff = Math.abs(diff);
+          const offset = getOffset(idx);
+          const isCurrent = offset === 0;
+          const isVisible = Math.abs(offset) <= 2;
 
-          // All cards remain visible and positioned continuously during drag
-          const xOffset = diff * cardSpacing;
-          const rotateY = -diff * rotation;
-          const scale = Math.max(0.65, Math.pow(inactiveScale, absDiff));
-          const opacity = Math.max(0.25, 1 - absDiff * 0.28);
-          const zIndex = Math.round(50 - absDiff * 10);
-          const isCentered = absDiff < 0.4;
+          if (!isVisible) return null;
+
+          const xOffset = offset * cardSpacing;
+          const rotateY = -offset * rotation;
+          const scale = isCurrent ? 1 : Math.pow(inactiveScale, Math.abs(offset));
+          const opacity = isCurrent ? 1 : Math.abs(offset) === 1 ? 0.78 : 0.35;
+          const zIndex = 30 - Math.abs(offset) * 5;
 
           return (
             <motion.div
@@ -162,22 +165,18 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
                 opacity: opacity,
                 zIndex: zIndex,
               }}
-              transition={
-                isDragging
-                  ? { duration: 0 }
-                  : {
-                      type: "spring",
-                      stiffness: 220,
-                      damping: 24,
-                      mass: 0.7,
-                    }
-              }
+              transition={{
+                type: "spring",
+                stiffness: 220,
+                damping: 24,
+                mass: 0.7,
+              }}
               onClick={(e) => {
-                if (isDragging || Math.abs(dragOffset) > 5) {
+                if (isDraggingRef.current) {
                   e.preventDefault();
                   return;
                 }
-                if (idx !== activeIndex) {
+                if (!isCurrent) {
                   goToSlide(idx);
                 } else if (onSelect) {
                   onSelect(item);
@@ -189,9 +188,9 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
                 transformStyle: "preserve-3d",
               }}
               className={cn(
-                "group absolute rounded-3xl overflow-hidden bg-[#FAFAF7] border-2 transition-all duration-300 pointer-events-auto",
-                isCentered
-                  ? "cursor-pointer border-[#C59B27] shadow-[0_18px_36px_-8px_rgba(0,0,0,0.18)] hover:-translate-y-2.5 hover:shadow-[0_26px_50px_-10px_rgba(197,155,39,0.35)] hover:ring-4 hover:ring-[#C59B27]/25"
+                "group absolute rounded-3xl overflow-hidden bg-[#182C25] border-2 transition-all duration-300 transform-gpu will-change-transform pointer-events-auto",
+                isCurrent
+                  ? "cursor-pointer border-[#C59B27] shadow-[0_18px_36px_-8px_rgba(0,0,0,0.18)] hover:-translate-y-2 hover:shadow-[0_24px_48px_-10px_rgba(197,155,39,0.3)] hover:ring-4 hover:ring-[#C59B27]/25"
                   : "cursor-grab border-[#E2DFD5] shadow-[0_12px_28px_-8px_rgba(0,0,0,0.12)] hover:border-[#C59B27]/70 hover:opacity-90"
               )}
             >
@@ -201,42 +200,37 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
                   src={item.image}
                   alt={item.name}
                   fill
-                  sizes="(max-width: 768px) 100vw, 360px"
+                  sizes="(max-width: 768px) 300px, 360px"
                   className={cn(
-                    "object-cover object-center pointer-events-none select-none transition-transform duration-700 ease-out",
-                    isCentered ? "group-hover:scale-110" : "group-hover:scale-105"
+                    "object-cover object-center pointer-events-none select-none transition-transform duration-500 ease-out",
+                    isCurrent ? "group-hover:scale-108" : "group-hover:scale-104"
                   )}
-                  priority={isCentered}
+                  priority={isCurrent}
                   draggable={false}
                 />
 
-                {/* Multi-Stop Cinematic Scrim Gradient */}
+                {/* Scrim Gradient */}
                 <div
                   className={cn(
                     "absolute inset-0 transition-opacity duration-300 pointer-events-none",
-                    isCentered
-                      ? "bg-gradient-to-t from-black/85 via-black/30 to-transparent group-hover:from-black/90 group-hover:via-black/35"
+                    isCurrent
+                      ? "bg-gradient-to-t from-black/85 via-black/30 to-transparent group-hover:from-black/90"
                       : "bg-gradient-to-t from-black/80 via-black/25 to-transparent"
                   )}
                 />
-
-                {/* Shimmer Light Reflection on Center Card Hover */}
-                {isCentered && (
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                )}
 
                 {/* Top Variety Badge */}
                 {item.itemCount && (
                   <div className="absolute top-4 left-4 z-10 pointer-events-none">
                     <span
                       className={cn(
-                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full backdrop-blur-md text-[11px] font-bold text-[#0D3B2E] transition-all duration-300",
-                        isCentered
+                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold text-[#0D3B2E] transition-all duration-300",
+                        isCurrent
                           ? "bg-white/95 shadow-sm group-hover:bg-white group-hover:shadow-md"
-                          : "bg-white/85 shadow-xs"
+                          : "bg-white/90 shadow-xs"
                       )}
                     >
-                      {isCentered && (
+                      {isCurrent && (
                         <span className="h-1.5 w-1.5 rounded-full bg-[#C59B27] animate-pulse" />
                       )}
                       {item.itemCount} Varieties
@@ -248,9 +242,9 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
                 <div className="absolute top-4 right-4 z-10 pointer-events-none">
                   <div
                     className={cn(
-                      "h-8 w-8 rounded-full flex items-center justify-center backdrop-blur-md transition-all duration-300 shadow-xs",
-                      isCentered
-                        ? "bg-white/40 text-white group-hover:bg-[#C59B27] group-hover:text-white group-hover:scale-115 group-hover:rotate-45 group-hover:shadow-md"
+                      "h-8 w-8 rounded-full flex items-center justify-center transition-all duration-300 shadow-xs",
+                      isCurrent
+                        ? "bg-white/40 text-white group-hover:bg-[#C59B27] group-hover:text-white group-hover:scale-110 group-hover:rotate-45 group-hover:shadow-md"
                         : "bg-white/25 text-white/90 group-hover:bg-white/40"
                     )}
                   >
@@ -263,7 +257,7 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
                   <h3
                     className={cn(
                       "font-serif text-xl font-bold tracking-tight text-white leading-tight drop-shadow-sm transition-colors duration-300",
-                      isCentered ? "group-hover:text-[#F8F1DE]" : ""
+                      isCurrent ? "group-hover:text-[#F8F1DE]" : ""
                     )}
                   >
                     {item.name}
@@ -316,7 +310,7 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
                   aria-label={`Go to category ${dotIdx + 1}`}
                   className={cn(
                     "rounded-full transition-all duration-300 cursor-pointer",
-                    dotIdx === liveActiveIndex
+                    dotIdx === activeIndex
                       ? "h-2 w-5 bg-[#0D3B2E]"
                       : "h-2 w-2 bg-gray-300 hover:bg-[#C59B27]"
                   )}
