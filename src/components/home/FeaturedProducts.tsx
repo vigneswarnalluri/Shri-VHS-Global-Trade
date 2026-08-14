@@ -31,7 +31,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectQuot
   return (
     <section id="products" className="py-20 bg-white border-b border-[#E2DFD5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <SectionHeading
             badge="Catalogue Selection"
@@ -62,11 +62,10 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectQuot
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`shrink-0 rounded-lg px-4 py-2 text-xs font-semibold transition-all ${
-                activeCategory === cat.id
+              className={`shrink-0 rounded-lg px-4 py-2 text-xs font-semibold transition-all ${activeCategory === cat.id
                   ? "bg-[#0D3B2E] text-white shadow-sm"
                   : "bg-[#FAFAF7] text-[#4A5D56] hover:bg-[#0D3B2E]/10 hover:text-[#0D3B2E] border border-[#E2DFD5]"
-              }`}
+                }`}
             >
               {cat.name}
             </button>

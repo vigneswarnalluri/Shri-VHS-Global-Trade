@@ -13,7 +13,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({ onSelectCa
   return (
     <section id="categories" className="py-20 sm:py-24 bg-[#FAFAF7] border-b border-[#E2DFD5] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <SectionHeading
           title="Explore Our Product Range"
           description="We specialize in six primary agricultural export categories sourced directly from India's agricultural hubs."

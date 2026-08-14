@@ -44,7 +44,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFAF7] text-[#0F1F1A]">
-      
+
       {/* 1. HEADER */}
       <Header onOpenQuote={() => handleOpenQuote()} />
 
