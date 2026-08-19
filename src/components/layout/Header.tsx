@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -18,9 +17,6 @@ import {
   MapPin,
   Globe,
   ArrowUpRight,
-  Menu,
-  X,
-  ChevronDown,
   CheckCircle2,
   Package,
   Layers,
@@ -31,6 +27,7 @@ import {
 import { companyData } from "@/data/company";
 import { categoriesData } from "@/data/categories";
 import { RunActionButton } from "@/components/ui/run-action-button";
+import { StaggeredMenu, StaggeredMenuItem, StaggeredMenuSocialItem } from "@/components/ui/StaggeredMenu";
 
 interface HeaderProps {
   onOpenQuote: () => void;
@@ -38,8 +35,6 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,6 +43,23 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const mobileNavItems: StaggeredMenuItem[] = [
+    { label: 'Home', ariaLabel: 'Go to home page', link: '#' },
+    { label: 'About Us', ariaLabel: 'About Shri VHS Global Trade', link: '#about' },
+    { label: 'Products', ariaLabel: 'Explore our product range', link: '#products' },
+    { label: 'Our Process', ariaLabel: 'Farm to global delivery process', link: '#process' },
+    { label: 'Quality', ariaLabel: 'Quality & compliance certifications', link: '#quality' },
+    { label: 'Markets', ariaLabel: 'Global export markets', link: '#markets' },
+    { label: 'Contact', ariaLabel: 'Get in touch with us', link: '#contact' },
+  ];
+
+  const mobileSocialItems: StaggeredMenuSocialItem[] = [
+    { label: 'WhatsApp', link: 'https://wa.me/917095851852' },
+    { label: 'Call (+91 70958 51852)', link: `tel:${companyData.contact.phone.replace(/\s+/g, '')}` },
+    { label: 'Email Us', link: `mailto:${companyData.contact.email}` },
+    { label: 'Twitter / X', link: companyData.socials.twitter || 'https://x.com/VHSGlobalTrade' },
+  ];
 
   return (
     <header className={cn("z-40 w-full transition-[background-color,box-shadow,backdrop-filter] duration-300", isScrolled ? "fixed top-0 left-0 right-0 shadow-sm bg-white/95 backdrop-blur-md" : "absolute top-0 left-0 right-0 bg-transparent")}>
@@ -87,7 +99,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
         </div>
       </div>
 
-      {/* Main Navigation Pill (Seamless Translucent Integration into Hero Composition) */}
+      {/* Main Navigation Pill */}
       <div className="w-full py-3.5">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6">
 
@@ -104,7 +116,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                 className="h-10 sm:h-12 w-auto object-contain shrink-0"
               />
             </a>
-
 
             {/* Desktop Navigation with Mega-Menu */}
             <div className="hidden lg:block">
@@ -274,209 +285,63 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
               </NavigationMenu>
             </div>
 
-            {/* Action CTA Button */}
+            {/* Right Action Section */}
             <div className="flex items-center gap-2">
               <div className="hidden md:block">
                 <RunActionButton onClick={onOpenQuote} />
               </div>
 
-              {/* Mobile Menu Trigger */}
+              {/* Mobile Trigger & StaggeredMenu Integration */}
               <div className="lg:hidden flex items-center gap-2">
                 <button
                   onClick={onOpenQuote}
-                  className="px-3 py-1.5 text-xs font-semibold bg-[#C59B27] text-white rounded-full shadow-sm sm:hidden"
+                  className="h-9 px-3.5 text-xs font-bold bg-[#C59B27] text-white rounded-full shadow-xs sm:hidden hover:bg-[#D4AF37] transition-all cursor-pointer inline-flex items-center justify-center"
                 >
                   Quote
                 </button>
-                <button
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="p-2 text-[#0F1F1A] hover:text-[#0D3B2E] rounded-full focus:outline-none"
-                  aria-label="Toggle menu"
-                >
-                  <Menu className="h-5 w-5" />
-                </button>
+
+                {/* React Bits StaggeredMenu */}
+                <StaggeredMenu
+                  position="right"
+                  isFixed={false}
+                  items={mobileNavItems}
+                  socialItems={mobileSocialItems}
+                  displaySocials={true}
+                  displayItemNumbering={true}
+                  menuButtonColor="#0F1F1A"
+                  openMenuButtonColor="#FFFFFF"
+                  changeMenuColorOnOpen={true}
+                  colors={['#C59B27', '#165342', '#0D3B2E']}
+                  logoUrl="/logo.png"
+                  accentColor="#C59B27"
+                  actionButton={
+                    <button
+                      onClick={onOpenQuote}
+                      className="w-full flex items-center justify-between rounded-2xl bg-[#07241C] hover:bg-[#0D3B2E] p-4 text-white shadow-md hover:shadow-xl transition-all duration-200 group cursor-pointer border border-[#0F1F1A]"
+                    >
+                      <div className="flex flex-col text-left">
+                        <span className="text-white text-[0.95rem] font-extrabold tracking-tight group-hover:text-[#F8F1DE] transition-colors">
+                          Request Commercial Quote
+                        </span>
+                        <span className="text-[#C59B27] text-xs font-medium mt-0.5">
+                          Export pricing & container estimates
+                        </span>
+                      </div>
+                      <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#C59B27] group-hover:bg-[#D4AF37] group-hover:scale-105 text-white transition-all shadow-xs shrink-0 ml-3">
+                        <ArrowUpRight className="h-5 w-5 stroke-[2.5]" />
+                      </span>
+                    </button>
+                  }
+                />
               </div>
             </div>
 
           </div>
 
         </div>
-
-        {/* Full-Height Mobile Side Sheet / Drawer (Navigation-5 Dark Luxury Pattern) */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <>
-              {/* Dark Backdrop Overlay */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                onClick={() => setMobileMenuOpen(false)}
-                className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm lg:hidden"
-              />
-
-              {/* Side Drawer Panel */}
-              <motion.div
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "100%" }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-[320px] sm:max-w-[340px] bg-[#07241C] text-white flex flex-col justify-between p-6 shadow-2xl lg:hidden border-l border-white/10 overflow-y-auto"
-              >
-                {/* Header: Logo & Close Button */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-5">
-                  <div className="flex items-center gap-3">
-                    <Image
-                      src="/logo.png"
-                      alt="Shri VHS Global Trade Logo"
-                      width={160}
-                      height={48}
-                      className="h-9 w-auto object-contain"
-                    />
-                  </div>
-
-                  <button
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="p-2 text-white/70 hover:text-white rounded-full transition-colors focus:outline-none"
-                    aria-label="Close menu"
-                  >
-                    <X className="h-5 w-5" />
-                  </button>
-                </div>
-
-                {/* Navigation Items List */}
-                <div className="flex flex-col space-y-4 my-6 flex-1">
-                  <a
-                    href="#"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors"
-                  >
-                    Home
-                  </a>
-                  <a
-                    href="#about"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors"
-                  >
-                    About
-                  </a>
-
-                  {/* Collapsible Accordion: Solutions / Products */}
-                  <div className="flex flex-col space-y-2">
-                    <button
-                      onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                      className="flex items-center justify-between text-base font-semibold text-white focus:outline-none w-full text-left py-1"
-                    >
-                      <span>Products & Range</span>
-                      <ChevronDown
-                        className={cn(
-                          "h-4 w-4 text-white/70 transition-transform duration-200",
-                          mobileProductsOpen && "rotate-180 text-[#C59B27]"
-                        )}
-                      />
-                    </button>
-
-                    <AnimatePresence>
-                      {mobileProductsOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25 }}
-                          className="overflow-hidden border-l border-white/15 pl-4 ml-1 space-y-4 pt-1"
-                        >
-                          <div>
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-white/40 block mb-2">
-                              EXPORT CATEGORIES
-                            </span>
-                            <div className="flex flex-col space-y-2">
-                              {categoriesData.map((cat) => (
-                                <a
-                                  key={cat.id}
-                                  href="#products"
-                                  onClick={() => setMobileMenuOpen(false)}
-                                  className="text-sm font-medium text-white/80 hover:text-[#C59B27] transition-colors flex items-center justify-between"
-                                >
-                                  <span>{cat.name}</span>
-                                  <span className="text-[10px] text-[#C59B27] bg-[#C59B27]/10 px-2 py-0.5 rounded-full font-semibold">
-                                    {cat.itemCount}
-                                  </span>
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div>
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-white/40 block mb-2">
-                              EXPORT FORMATS
-                            </span>
-                            <div className="flex flex-col space-y-2 text-sm text-white/80">
-                              <a href="#packaging" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C59B27]">Retail Packaging</a>
-                              <a href="#packaging" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C59B27]">Wholesale Units</a>
-                              <a href="#packaging" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C59B27]">Bulk Container Freight</a>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  <a
-                    href="#process"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors"
-                  >
-                    Our Process
-                  </a>
-                  <a
-                    href="#quality"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors"
-                  >
-                    Quality & Compliance
-                  </a>
-                  <a
-                    href="#markets"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors"
-                  >
-                    Global Markets
-                  </a>
-                  <a
-                    href="#contact"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors"
-                  >
-                    Contact
-                  </a>
-                </div>
-
-                {/* Bottom Action CTA Buttons Pinned at Bottom */}
-                <div className="border-t border-white/10 pt-5 space-y-3">
-                  <a
-                    href="#products"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="w-full flex items-center justify-center rounded-full border border-white/25 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
-                  >
-                    Explore Products
-                  </a>
-                  <button
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      onOpenQuote();
-                    }}
-                    className="w-full flex items-center justify-center gap-2 rounded-full bg-[#C59B27] px-5 py-3 text-sm font-bold text-white shadow-lg hover:bg-[#D4AF37] transition-all"
-                  >
-                    <span>Request a Quote</span>
-                    <ArrowUpRight className="h-4 w-4" />
-                  </button>
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
       </div>
     </header>
   );
 };
+
+export default Header;
