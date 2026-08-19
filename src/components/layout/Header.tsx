@@ -21,7 +21,8 @@ import {
   Package,
   Layers,
   Sprout,
-  ShieldCheck
+  ShieldCheck,
+  MessageCircle,
 } from "lucide-react";
 
 import { companyData } from "@/data/company";
@@ -55,10 +56,52 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
   ];
 
   const mobileSocialItems: StaggeredMenuSocialItem[] = [
-    { label: 'WhatsApp', link: 'https://wa.me/917095851852' },
-    { label: 'Call (+91 70958 51852)', link: `tel:${companyData.contact.phone.replace(/\s+/g, '')}` },
-    { label: 'Email Us', link: `mailto:${companyData.contact.email}` },
-    { label: 'Twitter / X', link: companyData.socials.twitter || 'https://x.com/VHSGlobalTrade' },
+    {
+      label: 'WhatsApp',
+      link: 'https://wa.me/917095851852',
+      icon: (
+        <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2Z"
+            fill="#25D366"
+          />
+          <path
+            d="M17.51 14.39C17.21 14.24 15.74 13.51 15.46 13.41C15.19 13.31 14.99 13.26 14.79 13.56C14.59 13.86 14.02 14.54 13.84 14.74C13.67 14.94 13.49 14.96 13.19 14.81C12.89 14.66 11.93 14.35 10.79 13.33C9.9 12.54 9.3 11.56 9.13 11.26C8.95 10.96 9.11 10.8 9.26 10.65C9.39 10.52 9.55 10.3 9.7 10.13C9.85 9.96 9.9 9.83 10 9.63C10.1 9.43 10.05 9.26 9.98 9.11C9.9 8.96 9.3 7.5 9.05 6.9C8.81 6.32 8.57 6.4 8.39 6.39C8.22 6.38 8.02 6.38 7.82 6.38C7.62 6.38 7.3 6.46 7.02 6.76C6.75 7.06 6 7.76 6 9.18C6 10.6 7.04 11.97 7.19 12.17C7.34 12.37 9.23 15.28 12.13 16.53C12.82 16.83 13.36 17.01 13.78 17.14C14.47 17.36 15.1 17.33 15.6 17.26C16.15 17.18 17.29 16.57 17.53 15.9C17.77 15.23 17.77 14.65 17.7 14.53C17.63 14.41 17.81 14.54 17.51 14.39Z"
+            fill="white"
+          />
+        </svg>
+      ),
+    },
+    {
+      label: 'Phone Call',
+      link: `tel:${companyData.contact.phone.replace(/\s+/g, '')}`,
+      icon: <Phone className="h-6.5 w-6.5 text-[#0D3B2E] stroke-[2.2]" />,
+    },
+    {
+      label: 'Email',
+      link: `mailto:${companyData.contact.email}`,
+      icon: <Mail className="h-6.5 w-6.5 text-[#C59B27] stroke-[2.2]" />,
+    },
+    {
+      label: 'Twitter / X',
+      link: companyData.socials.twitter || 'https://x.com/VHSGlobalTrade',
+      icon: (
+        <svg className="h-6 w-6 text-[#0F1F1A]" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      ),
+    },
+    {
+      label: 'Instagram',
+      link: companyData.socials.instagram || 'https://www.instagram.com',
+      icon: (
+        <svg className="h-6.5 w-6.5 text-[#E4405F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+        </svg>
+      ),
+    },
   ];
 
   return (

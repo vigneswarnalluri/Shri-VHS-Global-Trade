@@ -14,7 +14,9 @@ export interface StaggeredMenuItem {
 
 export interface StaggeredMenuSocialItem {
   label: string;
+  subLabel?: string;
   link: string;
+  icon?: React.ReactNode;
 }
 
 export interface StaggeredMenuProps {
@@ -599,25 +601,25 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                   </div>
                 )}
 
-                {/* Social and Direct Inquiries */}
+                {/* Social & Connect Icon Row (Logos only) */}
                 {displaySocials && socialItems && socialItems.length > 0 && (
-                  <div className="sm-socials" aria-label="Social links">
-                    <h3 className="sm-socials-title">Direct Inquiries & Connect</h3>
-                    <ul className="sm-socials-list" role="list">
+                  <div className="sm-socials" aria-label="Social and connect links">
+                    <div className="sm-socials-row" role="list">
                       {socialItems.map((s, i) => (
-                        <li key={s.label + i} className="sm-socials-item">
-                          <a
-                            href={s.link}
-                            target={s.link.startsWith('http') ? '_blank' : undefined}
-                            rel={s.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                            className="sm-socials-link"
-                            onClick={closeMenu}
-                          >
-                            {s.label}
-                          </a>
-                        </li>
+                        <a
+                          key={s.label + i}
+                          href={s.link}
+                          target={s.link.startsWith('http') ? '_blank' : undefined}
+                          rel={s.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                          className="sm-social-icon-btn"
+                          aria-label={s.label}
+                          title={s.label}
+                          onClick={closeMenu}
+                        >
+                          {s.icon}
+                        </a>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 )}
               </div>
