@@ -5,7 +5,7 @@ import { companyData } from "@/data/company";
 import { categoriesData } from "@/data/categories";
 
 interface FooterProps {
-  onOpenQuote: () => void;
+  onOpenQuote?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
@@ -91,7 +91,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
             <ul className="space-y-2.5 text-xs text-gray-300">
               {categoriesData.map((cat) => (
                 <li key={cat.id}>
-                  <a href="#products" className="hover:text-white transition-colors flex items-center gap-1">
+                  <a href="/#products" className="hover:text-white transition-colors flex items-center gap-1">
                     <span>{cat.name}</span>
                   </a>
                 </li>
@@ -105,15 +105,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
               Quick Links
             </h4>
             <ul className="space-y-2.5 text-xs text-gray-300">
-              <li><a href="#about" className="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#process" className="hover:text-white transition-colors">Farm to Global Process</a></li>
-              <li><a href="#packaging" className="hover:text-white transition-colors">Packaging Standards</a></li>
-              <li><a href="#quality" className="hover:text-white transition-colors">Quality & Compliance</a></li>
-              <li><a href="#markets" className="hover:text-white transition-colors">Global Connectivity</a></li>
+              <li><a href="/#about" className="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="/#process" className="hover:text-white transition-colors">Farm to Global Process</a></li>
+              <li><a href="/#packaging" className="hover:text-white transition-colors">Packaging Standards</a></li>
+              <li><a href="/#quality" className="hover:text-white transition-colors">Quality &amp; Compliance</a></li>
+              <li><a href="/#markets" className="hover:text-white transition-colors">Global Connectivity</a></li>
+              <li><a href="/contact" className="hover:text-[#C59B27] font-semibold transition-colors">Contact Trade Desk</a></li>
               <li>
-                <button onClick={onOpenQuote} className="text-[#C59B27] font-semibold hover:underline">
+                <a href="/quote" className="text-[#C59B27] font-semibold hover:underline cursor-pointer">
                   Request B2B Quote
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -126,13 +127,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
             <p className="text-xs text-gray-300 leading-relaxed mb-4">
               We cater exclusively to global importers, food distributors, retail chains, and institutional buyers seeking authentic Indian agricultural commodities.
             </p>
-            <button
-              onClick={onOpenQuote}
+            <a
+              href="/quote"
               className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-[#C59B27] px-4 py-2.5 text-xs font-semibold text-white shadow hover:bg-[#D4AF37] transition-colors"
             >
-              <span>Submit Inquiry</span>
+              <span>Request Quote</span>
               <ArrowUpRight className="h-3.5 w-3.5" />
-            </button>
+            </a>
           </div>
 
         </div>

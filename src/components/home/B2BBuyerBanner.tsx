@@ -2,7 +2,7 @@ import React from "react";
 import { Layers, PackageCheck, Sliders, FileSpreadsheet, ArrowRight } from "lucide-react";
 
 interface B2BBuyerBannerProps {
-  onOpenQuote: () => void;
+  onOpenQuote?: () => void;
 }
 
 export const B2BBuyerBanner: React.FC<B2BBuyerBannerProps> = ({ onOpenQuote }) => {
@@ -45,13 +45,13 @@ export const B2BBuyerBanner: React.FC<B2BBuyerBannerProps> = ({ onOpenQuote }) =
               </h3>
             </div>
             
-            <button
-              onClick={onOpenQuote}
+            <a
+              href="/quote"
               className="shrink-0 inline-flex items-center gap-2 rounded-lg bg-[#0D3B2E] px-4 py-2 text-xs font-semibold text-white hover:bg-[#165342] transition-colors"
             >
               <span>Submit B2B Inquiry</span>
               <ArrowRight className="h-3.5 w-3.5 text-[#C59B27]" />
-            </button>
+            </a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

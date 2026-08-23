@@ -5,7 +5,7 @@ import { Button } from "../ui/Button";
 
 
 interface FinalCTAProps {
-  onOpenQuote: () => void;
+  onOpenQuote?: () => void;
 }
 
 export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenQuote }) => {
@@ -33,22 +33,28 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenQuote }) => {
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              variant="primary-gold"
-              size="lg"
-              onClick={onOpenQuote}
-              className="w-full sm:w-auto"
-              icon={<ArrowRight className="h-4 w-4" />}
+            <a
+              href="/quote"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-[#C59B27] px-6 py-3.5 text-sm font-semibold text-white hover:bg-[#D4AF37] shadow-md transition-all"
             >
-              Request a Quote
-            </Button>
+              <span>Request a Quote</span>
+              <ArrowRight className="h-4 w-4" />
+            </a>
+
+            <a
+              href="/contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-white/10 border border-white/30 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white hover:text-[#0D3B2E] transition-all"
+            >
+              <span>Visit Contact Desk Page</span>
+              <ArrowRight className="h-4 w-4 text-[#C59B27]" />
+            </a>
 
             <a
               href={`tel:${companyData.contact.phone.replace(/\s+/g, '')}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md border border-white/30 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white hover:text-[#0D3B2E] transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md border border-white/20 px-6 py-3.5 text-sm font-semibold text-gray-200 hover:bg-white/10 hover:text-white transition-all"
             >
               <Phone className="h-4 w-4 text-[#C59B27]" />
-              <span>Call Export Desk: {companyData.contact.phone}</span>
+              <span>{companyData.contact.phone}</span>
             </a>
           </div>
 

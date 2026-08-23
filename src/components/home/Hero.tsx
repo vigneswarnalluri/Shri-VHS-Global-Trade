@@ -7,7 +7,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { ButtonGroup9 } from "@/components/ui/button-group-9";
 
 interface HeroProps {
-  onOpenQuote: () => void;
+  onOpenQuote?: () => void;
 }
 
 const backgroundVariants: Variants = {
@@ -112,13 +112,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
                 {
                   label: "Explore Products",
                   icon: ArrowRight,
-                  href: "#products",
+                  href: "/#products",
                   variant: "primary",
                 },
                 {
                   label: "Request a Quote",
                   icon: ArrowUpRight,
-                  onClick: onOpenQuote,
+                  href: "/quote",
                   variant: "secondary",
                 },
               ]}

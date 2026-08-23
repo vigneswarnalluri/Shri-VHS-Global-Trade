@@ -8,7 +8,7 @@ import { Button } from "../ui/Button";
 import { ArrowRight, Filter } from "lucide-react";
 
 interface FeaturedProductsProps {
-  onSelectQuote: (product: Product) => void;
+  onSelectQuote?: (product: Product) => void;
 }
 
 export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectQuote }) => {
@@ -40,14 +40,13 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectQuot
           />
 
           <div className="shrink-0">
-            <Button
-              variant="outline-green"
-              size="md"
-              onClick={() => onSelectQuote(productsData[0])}
-              icon={<ArrowRight className="h-4 w-4" />}
+            <a
+              href="/quote"
+              className="inline-flex items-center gap-2 rounded-lg border border-[#0D3B2E] px-5 py-2.5 text-xs font-semibold text-[#0D3B2E] hover:bg-[#0D3B2E] hover:text-white transition-colors"
             >
-              Request Custom Catalogue Quote
-            </Button>
+              <span>Request Custom Catalogue Quote</span>
+              <ArrowRight className="h-4 w-4 text-[#C59B27]" />
+            </a>
           </div>
         </div>
 

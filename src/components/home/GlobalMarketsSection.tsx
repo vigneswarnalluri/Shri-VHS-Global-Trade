@@ -3,7 +3,7 @@ import { Globe, Ship, Compass, ArrowRight } from "lucide-react";
 
 
 interface GlobalMarketsProps {
-  onOpenQuote: () => void;
+  onOpenQuote?: () => void;
 }
 
 export const GlobalMarketsSection: React.FC<GlobalMarketsProps> = ({ onOpenQuote }) => {
@@ -70,13 +70,13 @@ export const GlobalMarketsSection: React.FC<GlobalMarketsProps> = ({ onOpenQuote
             <h4 className="text-base font-bold text-white">Importing to your region?</h4>
             <p className="text-xs text-gray-300">Submit your port requirement and order quantities for an immediate export quote.</p>
           </div>
-          <button
-            onClick={onOpenQuote}
+          <a
+            href="/quote"
             className="shrink-0 inline-flex items-center gap-2 rounded-lg bg-[#C59B27] px-5 py-2.5 text-xs font-semibold text-white hover:bg-[#D4AF37] transition-colors"
           >
             <span>Inquire for Global Import</span>
             <ArrowRight className="h-3.5 w-3.5" />
-          </button>
+          </a>
         </div>
 
       </div>

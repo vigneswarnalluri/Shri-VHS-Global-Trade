@@ -80,13 +80,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelectQuote
             </div>
           </div>
 
-          <button
-            onClick={() => onSelectQuote?.(product)}
+          <a
+            href={`/quote?product=${product.id}`}
             className="w-full flex items-center justify-center gap-2 rounded-lg bg-[#0D3B2E] px-4 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-[#165342] transition-colors"
           >
             <span>Request Quote</span>
             <ArrowRight className="h-3.5 w-3.5 text-[#C59B27]" />
-          </button>
+          </a>
         </div>
       </div>
     </div>

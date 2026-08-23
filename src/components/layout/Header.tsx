@@ -31,7 +31,7 @@ import { RunActionButton } from "@/components/ui/run-action-button";
 import { StaggeredMenu, StaggeredMenuItem, StaggeredMenuSocialItem } from "@/components/ui/StaggeredMenu";
 
 interface HeaderProps {
-  onOpenQuote: () => void;
+  onOpenQuote?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
@@ -46,13 +46,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
   }, []);
 
   const mobileNavItems: StaggeredMenuItem[] = [
-    { label: 'Home', ariaLabel: 'Go to home page', link: '#' },
-    { label: 'About Us', ariaLabel: 'About Shri VHS Global Trade', link: '#about' },
-    { label: 'Products', ariaLabel: 'Explore our product range', link: '#products' },
-    { label: 'Our Process', ariaLabel: 'Farm to global delivery process', link: '#process' },
-    { label: 'Quality', ariaLabel: 'Quality & compliance certifications', link: '#quality' },
-    { label: 'Markets', ariaLabel: 'Global export markets', link: '#markets' },
-    { label: 'Contact', ariaLabel: 'Get in touch with us', link: '#contact' },
+    { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+    { label: 'About Us', ariaLabel: 'About Shri VHS Global Trade', link: '/#about' },
+    { label: 'Products', ariaLabel: 'Explore our product range', link: '/#products' },
+    { label: 'Our Process', ariaLabel: 'Farm to global delivery process', link: '/#process' },
+    { label: 'Quality', ariaLabel: 'Quality & compliance certifications', link: '/#quality' },
+    { label: 'Markets', ariaLabel: 'Global export markets', link: '/#markets' },
+    { label: 'Contact', ariaLabel: 'Contact our Global Trade Desk', link: '/contact' },
   ];
 
   const mobileSocialItems: StaggeredMenuSocialItem[] = [
@@ -150,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
           <div className={cn("flex h-16 w-full items-center justify-between gap-3 rounded-full pr-3.5 transition-all duration-300", isScrolled ? "bg-white/90 border border-[#E2DFD5] shadow-xs" : "bg-white/40 backdrop-blur-md border border-white/40 shadow-none")}>
 
             {/* Logo Section */}
-            <a href="#" className="flex items-center pl-3.5 sm:pl-5 pr-3 group">
+            <a href="/" className="flex items-center pl-3.5 sm:pl-5 pr-3 group">
               <Image
                 src="/logo.png"
                 alt="Shri VHS Global Trade Logo"
@@ -177,7 +177,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   <NavigationMenuItem>
                     <NavigationMenuLink
                       className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
-                      href="#"
+                      href="/"
                     >
                       Home
                     </NavigationMenuLink>
@@ -186,7 +186,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   <NavigationMenuItem>
                     <NavigationMenuLink
                       className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
-                      href="#about"
+                      href="/#about"
                     >
                       About
                     </NavigationMenuLink>
@@ -214,7 +214,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                             {categoriesData.map((cat) => (
                               <a
                                 key={cat.id}
-                                href="#products"
+                                href="/#products"
                                 className="group flex flex-col p-2.5 rounded-lg bg-[#FAFAF7] border border-[#E2DFD5]/80 hover:bg-[#0D3B2E] hover:text-white transition-all"
                               >
                                 <div className="flex items-center justify-between">
@@ -238,19 +238,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                           <h4 className="mb-1 text-xs uppercase tracking-wider font-bold text-[#C59B27]">
                             Export Formats
                           </h4>
-                          <a href="#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
+                          <a href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
                             <Package className="h-3.5 w-3.5 text-[#C59B27]" />
                             <span>Retail Packaging</span>
                           </a>
-                          <a href="#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
+                          <a href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
                             <Layers className="h-3.5 w-3.5 text-[#C59B27]" />
                             <span>Wholesale Units</span>
                           </a>
-                          <a href="#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
+                          <a href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
                             <ShieldCheck className="h-3.5 w-3.5 text-[#C59B27]" />
                             <span>Bulk Container Freight</span>
                           </a>
-                          <a href="#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
+                          <a href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
                             <CheckCircle2 className="h-3.5 w-3.5 text-[#C59B27]" />
                             <span>Custom Buyer Specs</span>
                           </a>
@@ -261,8 +261,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                           <h4 className="mb-3 text-xs uppercase tracking-wider font-bold text-[#C59B27]">
                             B2B Counter
                           </h4>
-                          <div
-                            onClick={onOpenQuote}
+                          <a
+                            href="/quote"
                             className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl p-4 border border-[#C59B27]/40 bg-[#0D3B2E] text-white hover:shadow-lg transition-all cursor-pointer"
                           >
                             <div>
@@ -281,7 +281,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                               <span>Inquire Now</span>
                               <ArrowUpRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                             </div>
-                          </div>
+                          </a>
                         </div>
 
                       </div>
@@ -291,7 +291,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   <NavigationMenuItem>
                     <NavigationMenuLink
                       className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
-                      href="#process"
+                      href="/#process"
                     >
                       Our Process
                     </NavigationMenuLink>
@@ -300,7 +300,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   <NavigationMenuItem>
                     <NavigationMenuLink
                       className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
-                      href="#quality"
+                      href="/#quality"
                     >
                       Quality
                     </NavigationMenuLink>
@@ -309,7 +309,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   <NavigationMenuItem>
                     <NavigationMenuLink
                       className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
-                      href="#markets"
+                      href="/#markets"
                     >
                       Global Markets
                     </NavigationMenuLink>
@@ -318,7 +318,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   <NavigationMenuItem>
                     <NavigationMenuLink
                       className="rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-colors hover:text-[#0D3B2E] hover:bg-white/60"
-                      href="#contact"
+                      href="/contact"
                     >
                       Contact
                     </NavigationMenuLink>
@@ -331,17 +331,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
             {/* Right Action Section */}
             <div className="flex items-center gap-2">
               <div className="hidden md:block">
-                <RunActionButton onClick={onOpenQuote} />
+                <a href="/quote" className="block">
+                  <RunActionButton onClick={onOpenQuote} />
+                </a>
               </div>
 
               {/* Mobile Trigger & StaggeredMenu Integration */}
               <div className="lg:hidden flex items-center gap-2">
-                <button
-                  onClick={onOpenQuote}
+                <a
+                  href="/quote"
                   className="h-9 px-3.5 text-xs font-bold bg-[#C59B27] text-white rounded-full shadow-xs sm:hidden hover:bg-[#D4AF37] transition-all cursor-pointer inline-flex items-center justify-center"
                 >
                   Quote
-                </button>
+                </a>
 
                 {/* React Bits StaggeredMenu */}
                 <StaggeredMenu
@@ -358,8 +360,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   logoUrl="/logo.png"
                   accentColor="#C59B27"
                   actionButton={
-                    <button
-                      onClick={onOpenQuote}
+                    <a
+                      href="/quote"
                       className="w-full flex items-center justify-between rounded-2xl bg-[#07241C] hover:bg-[#0D3B2E] p-4 text-white shadow-md hover:shadow-xl transition-all duration-200 group cursor-pointer border border-[#0F1F1A]"
                     >
                       <div className="flex flex-col text-left">
@@ -367,13 +369,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                           Request Commercial Quote
                         </span>
                         <span className="text-[#C59B27] text-xs font-medium mt-0.5">
-                          Export pricing & container estimates
+                          Export pricing &amp; container estimates
                         </span>
                       </div>
                       <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#C59B27] group-hover:bg-[#D4AF37] group-hover:scale-105 text-white transition-all shadow-xs shrink-0 ml-3">
                         <ArrowUpRight className="h-5 w-5 stroke-[2.5]" />
                       </span>
-                    </button>
+                    </a>
                   }
                 />
               </div>

@@ -3,7 +3,7 @@ import { SectionHeading } from "../ui/SectionHeading";
 import { Package, Box, Layers, Shield, Check } from "lucide-react";
 
 interface PackagingSectionProps {
-  onOpenQuote: () => void;
+  onOpenQuote?: () => void;
 }
 
 export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote }) => {
@@ -78,12 +78,12 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
               </div>
 
               <div className="mt-6 pt-4 border-t border-[#E2DFD5]">
-                <button
-                  onClick={onOpenQuote}
-                  className="w-full text-center text-xs font-semibold text-[#0D3B2E] hover:text-[#C59B27] transition-colors"
+                <a
+                  href="/quote"
+                  className="block w-full text-center text-xs font-semibold text-[#0D3B2E] hover:text-[#C59B27] transition-colors"
                 >
                   Specify Packaging Needs →
-                </button>
+                </a>
               </div>
             </div>
           ))}
