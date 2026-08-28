@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useCallback, useLayoutEffect, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useLayoutEffect, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import './StaggeredMenu.css';
 
@@ -41,6 +42,7 @@ export interface StaggeredMenuProps {
 }
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+const emptySubscribe = () => () => { };
 
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   position = 'right',
@@ -62,7 +64,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   onMenuClose,
   actionButton
 }: StaggeredMenuProps) => {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -81,10 +83,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
   const busyRef = useRef(false);
   const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -458,7 +456,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   return (
     <div
       className={(className ? className + ' ' : '') + 'staggered-menu-wrapper' + (isFixed ? ' fixed-wrapper' : '')}
-      style={accentColor ? { ['--sm-accent' as any]: accentColor } : undefined}
+      style={accentColor ? ({ '--sm-accent': accentColor } as React.CSSProperties) : undefined}
       data-position={position}
       data-open={open || undefined}
     >
@@ -504,7 +502,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         createPortal(
           <div
             className="staggered-menu-portal-root"
-            style={accentColor ? { ['--sm-accent' as any]: accentColor } : undefined}
+            style={accentColor ? ({ '--sm-accent': accentColor } as React.CSSProperties) : undefined}
             data-position={position}
             data-open={open || undefined}
           >
@@ -521,7 +519,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             <div ref={preLayersRef} className="sm-prelayers" aria-hidden="true">
               {(() => {
                 const raw = colors && colors.length ? colors.slice(0, 4) : ['#C59B27', '#165342', '#0D3B2E'];
-                let arr = [...raw];
+                const arr = [...raw];
                 if (arr.length >= 3) {
                   const mid = Math.floor(arr.length / 2);
                   arr.splice(mid, 1);
@@ -535,13 +533,17 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
               <div className="sm-panel-inner">
                 {/* Top Bar inside Fullscreen Panel */}
                 <div className="sm-panel-top-bar">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={logoUrl || '/logo.png'}
-                      alt="Shri VHS Global Trade Logo"
-                      className="h-9 w-auto object-contain"
-                    />
-                  </div>
+                  {showLogo && (
+                    <div className="flex items-center gap-3">
+                      <Image
+                        src={logoUrl || '/logo.png'}
+                        alt="Shri VHS Global Trade Logo"
+                        width={140}
+                        height={36}
+                        className="h-9 w-auto object-contain"
+                      />
+                    </div>
+                  )}
                   <button
                     type="button"
                     onClick={closeMenu}

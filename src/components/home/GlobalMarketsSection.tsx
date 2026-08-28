@@ -6,9 +6,9 @@ interface GlobalMarketsProps {
   onOpenQuote?: () => void;
 }
 
-export const GlobalMarketsSection: React.FC<GlobalMarketsProps> = ({ onOpenQuote }) => {
+export const GlobalMarketsSection: React.FC<GlobalMarketsProps> = () => {
   return (
-    <section id="markets" className="py-20 bg-[#07241C] text-white border-b border-white/10 relative overflow-hidden">
+    <section id="markets" className="py-20 bg-[#07241C] text-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

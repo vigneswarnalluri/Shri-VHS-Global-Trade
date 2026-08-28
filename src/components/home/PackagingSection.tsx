@@ -6,7 +6,7 @@ interface PackagingSectionProps {
   onOpenQuote?: () => void;
 }
 
-export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote }) => {
+export const PackagingSection: React.FC<PackagingSectionProps> = () => {
   const options = [
     {
       title: "Retail Packaging",
@@ -35,7 +35,7 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
   ];
 
   return (
-    <section id="packaging" className="py-20 bg-white border-b border-[#E2DFD5]">
+    <section id="packaging" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <SectionHeading

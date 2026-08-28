@@ -50,7 +50,7 @@ const defaultFeatures: FeatureCardItem[] = [
 
 export const Features11: React.FC<Features11Props> = ({ className = "" }) => {
   return (
-    <section className={cn("relative isolate overflow-hidden bg-[#FAFAF7] text-[#0F1F1A] py-20 sm:py-24 lg:py-28 border-b border-[#E2DFD5]", className)}>
+    <section className={cn("relative isolate overflow-hidden bg-[#FAFAF7] text-[#0F1F1A] py-20 sm:py-24 lg:py-28", className)}>
       
       {/* Soft Ambient Radial Light Glow with gentle drift */}
       <motion.div 

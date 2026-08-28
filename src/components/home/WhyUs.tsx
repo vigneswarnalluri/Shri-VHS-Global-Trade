@@ -16,7 +16,7 @@ export const WhyUs: React.FC = () => {
   ];
 
   return (
-    <section id="why-us" className="py-20 bg-[#FAFAF7] border-b border-[#E2DFD5]">
+    <section id="why-us" className="py-20 bg-[#FAFAF7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <SectionHeading

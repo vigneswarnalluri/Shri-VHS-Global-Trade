@@ -15,9 +15,6 @@ import {
   Phone,
   Layers,
   Clock,
-  Sparkles,
-  Award,
-  ArrowRight,
   MessageCircle,
   FileSpreadsheet,
   Check,
@@ -66,7 +63,6 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
 
   const [submitted, setSubmitted] = useState(false);
   const [referenceId, setReferenceId] = useState("");
-  const [activeTab, setActiveTab] = useState<"specs" | "buyer">("specs");
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -119,16 +115,16 @@ Please provide the latest FOB/CIF commercial rate sheet.`
 
       {/* Main Modal Card */}
       <div className="relative w-full max-w-3xl rounded-3xl bg-white shadow-[0_25px_70px_-15px_rgba(7,36,28,0.45)] border border-[#C59B27]/30 overflow-hidden z-10 transition-all transform animate-in zoom-in-95 duration-200 flex flex-col max-h-[92vh]">
-        
+
         {/* Luxury Emerald & Gold Header */}
         <div className="relative bg-gradient-to-r from-[#07241C] via-[#0D3B2E] to-[#124838] px-6 sm:px-8 py-5 text-white overflow-hidden shrink-0 border-b border-[#C59B27]/20">
-          
+
           {/* Subtle Golden Glow / Ambient Sheen */}
           <div className="absolute -top-24 -right-24 w-60 h-60 rounded-full bg-[#C59B27]/20 blur-3xl pointer-events-none" />
           <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-[#165342]/40 blur-2xl pointer-events-none" />
 
           <div className="relative flex items-center justify-between gap-4">
-            
+
             {/* Left Brand Identity */}
             <div className="flex items-center gap-4">
               <div className="relative bg-white/95 rounded-xl p-1.5 shadow-md ring-1 ring-[#C59B27]/40 shrink-0">
@@ -201,9 +197,9 @@ Please provide the latest FOB/CIF commercial rate sheet.`
             <h4 className="text-2xl sm:text-3xl font-serif font-bold text-[#0F1F1A]">
               Commercial RFQ Received
             </h4>
-            
+
             <p className="mt-2 text-sm text-[#4A5D56] max-w-lg mx-auto leading-relaxed">
-              Thank you, <strong className="text-[#0F1F1A]">{formData.buyerName || "Esteemed Buyer"}</strong>. 
+              Thank you, <strong className="text-[#0F1F1A]">{formData.buyerName || "Esteemed Buyer"}</strong>.
               Our international export desk at <span className="font-semibold text-[#0D3B2E]">Shri VHS Global Trade Private Limited</span> is computing your customized FOB/CIF pricing for <strong>{formData.productName}</strong>.
             </p>
 
@@ -271,7 +267,7 @@ Please provide the latest FOB/CIF commercial rate sheet.`
         ) : (
           /* ================= ACTIVE ENQUIRY FORM ================= */
           <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-5 sm:p-7 space-y-6">
-            
+
             {/* Step / Section 1: Commodity Selection & Specifications */}
             <div className="rounded-2xl bg-[#FAFAF7] border border-[#E2DFD5] p-4 sm:p-5 transition-all">
               <div className="flex items-center justify-between mb-3.5">
@@ -290,7 +286,7 @@ Please provide the latest FOB/CIF commercial rate sheet.`
 
               {/* Product Selector Row */}
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-start">
-                
+
                 {/* Product Dropdown */}
                 <div className="sm:col-span-7">
                   <label className="block text-xs font-bold text-[#0F1F1A] mb-1.5 flex items-center justify-between">
@@ -359,11 +355,10 @@ Please provide the latest FOB/CIF commercial rate sheet.`
                     key={pack}
                     type="button"
                     onClick={() => setFormData({ ...formData, packaging: `${pack} Export Packing` })}
-                    className={`text-[10px] px-2 py-0.5 rounded-md font-medium border transition-colors ${
-                      formData.packaging.includes(pack)
+                    className={`text-[10px] px-2 py-0.5 rounded-md font-medium border transition-colors ${formData.packaging.includes(pack)
                         ? "bg-[#0D3B2E] text-[#C59B27] border-[#0D3B2E]"
                         : "bg-white text-[#4A5D56] border-[#E2DFD5] hover:border-[#0D3B2E] hover:text-[#0D3B2E]"
-                    }`}
+                      }`}
                   >
                     {pack}
                   </button>
@@ -384,11 +379,10 @@ Please provide the latest FOB/CIF commercial rate sheet.`
                         key={term.id}
                         type="button"
                         onClick={() => setFormData({ ...formData, incoterm: term.id })}
-                        className={`text-left p-2.5 rounded-xl border transition-all ${
-                          isSelected
+                        className={`text-left p-2.5 rounded-xl border transition-all ${isSelected
                             ? "bg-[#0D3B2E] border-[#0D3B2E] text-white shadow-sm ring-2 ring-[#C59B27]/40"
                             : "bg-white border-[#E2DFD5] text-[#0F1F1A] hover:border-[#0D3B2E]/50 hover:bg-[#FAFAF7]"
-                        }`}
+                          }`}
                       >
                         <div className="flex items-center justify-between">
                           <span className={`text-xs font-bold ${isSelected ? "text-[#C59B27]" : "text-[#0D3B2E]"}`}>
@@ -482,7 +476,7 @@ Please provide the latest FOB/CIF commercial rate sheet.`
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                
+
                 {/* Full Name */}
                 <div>
                   <label className="block text-xs font-bold text-[#0F1F1A] mb-1.5">
@@ -583,7 +577,7 @@ Please provide the latest FOB/CIF commercial rate sheet.`
 
             {/* Bottom Sticky Action Footer */}
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#E2DFD5]">
-              
+
               {/* Trust Badges */}
               <div className="flex items-center gap-3 text-[11px] text-[#4A5D56]">
                 <div className="flex items-center gap-1.5 bg-[#FAFAF7] border border-[#E2DFD5] px-2.5 py-1 rounded-lg">

@@ -1,16 +1,14 @@
 import React from "react";
 import { ArrowRight, Phone, ShieldCheck } from "lucide-react";
 import { companyData } from "@/data/company";
-import { Button } from "../ui/Button";
-
 
 interface FinalCTAProps {
   onOpenQuote?: () => void;
 }
 
-export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenQuote }) => {
+export const FinalCTA: React.FC<FinalCTAProps> = () => {
   return (
-    <section id="contact" className="py-20 bg-[#FAFAF7] border-b border-[#E2DFD5] relative overflow-hidden">
+    <section id="contact" className="py-20 bg-[#FAFAF7] relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

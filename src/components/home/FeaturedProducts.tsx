@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { productsData, Product } from "@/data/products";
-import { ProductCard } from "../ui/ProductCard";
-import { SectionHeading } from "../ui/SectionHeading";
-import { Button } from "../ui/Button";
+import { AppleCardsCarousel } from "../ui/apple-cards-carousel";
 import { ArrowRight, Filter } from "lucide-react";
 
 interface FeaturedProductsProps {
@@ -29,31 +28,35 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectQuot
     : productsData.filter((p) => p.categoryId === activeCategory);
 
   return (
-    <section id="products" className="py-20 bg-white border-b border-[#E2DFD5]">
+    <section id="products" className="py-20 sm:py-24 bg-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <SectionHeading
-            badge="Catalogue Selection"
-            title="Featured Export Products"
-            description="Explore our full selection of export-grade commodities. Select any item to view packaging options or request a bulk commercial quote."
-          />
+        {/* Section Heading */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-6">
+          <div className="max-w-3xl">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#0F1F1A] tracking-tight leading-tight">
+              Our Export Catalogue
+            </h2>
+            <p className="mt-3 text-base sm:text-lg text-[#4A5D56] font-light leading-relaxed">
+              Explore our range of agricultural commodities sourced from India for international buyers and bulk commercial supply.
+            </p>
+          </div>
 
           <div className="shrink-0">
-            <a
+            <Link
               href="/quote"
-              className="inline-flex items-center gap-2 rounded-lg border border-[#0D3B2E] px-5 py-2.5 text-xs font-semibold text-[#0D3B2E] hover:bg-[#0D3B2E] hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-[#0D3B2E] px-5 py-2.5 text-xs font-semibold text-[#0D3B2E] hover:bg-[#0D3B2E] hover:text-white transition-colors"
             >
               <span>Request Custom Catalogue Quote</span>
               <ArrowRight className="h-4 w-4 text-[#C59B27]" />
-            </a>
+            </Link>
           </div>
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar">
-          <div className="flex items-center gap-1.5 text-xs text-[#7A8E87] font-semibold pr-2 border-r border-[#E2DFD5] shrink-0">
-            <Filter className="h-3.5 w-3.5" />
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 sm:mb-10 no-scrollbar">
+          <div className="flex items-center gap-1.5 text-xs text-[#7A8E87] font-semibold pr-3 border-r border-[#E2DFD5] shrink-0">
+            <Filter className="h-3.5 w-3.5 text-[#C59B27]" />
             <span>Filter:</span>
           </div>
 
@@ -61,28 +64,26 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectQuot
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`shrink-0 rounded-lg px-4 py-2 text-xs font-semibold transition-all ${activeCategory === cat.id
+              className={`shrink-0 rounded-xl px-4 py-2.5 text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                activeCategory === cat.id
                   ? "bg-[#0D3B2E] text-white shadow-sm"
                   : "bg-[#FAFAF7] text-[#4A5D56] hover:bg-[#0D3B2E]/10 hover:text-[#0D3B2E] border border-[#E2DFD5]"
-                }`}
+              }`}
             >
               {cat.name}
             </button>
           ))}
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onSelectQuote={onSelectQuote}
-            />
-          ))}
-        </div>
+        {/* Apple Cards Carousel with Filtered Commodities */}
+        <AppleCardsCarousel
+          products={filteredProducts}
+          onSelectQuote={onSelectQuote}
+        />
 
       </div>
     </section>
   );
 };
+
+export default FeaturedProducts;

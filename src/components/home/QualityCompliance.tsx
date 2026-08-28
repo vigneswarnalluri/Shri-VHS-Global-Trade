@@ -24,7 +24,7 @@ export const QualityCompliance: React.FC = () => {
   ];
 
   return (
-    <section id="quality" className="py-20 bg-[#FAFAF7] border-b border-[#E2DFD5]">
+    <section id="quality" className="py-20 bg-[#FAFAF7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

@@ -21,6 +21,7 @@ export interface SkewedCarouselProps {
   initialIndex?: number;
   cardWidth?: number;
   cardHeight?: number;
+  cardSpacing?: number;
   rotation?: number;
   inactiveScale?: number;
   perspective?: number;
@@ -38,6 +39,7 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
   initialIndex = 0,
   cardWidth = 350,
   cardHeight = 460,
+  cardSpacing: propCardSpacing,
   rotation = 24,
   inactiveScale = 0.86,
   perspective = 1200,
@@ -55,7 +57,7 @@ export const SkewedCarousel: React.FC<SkewedCarouselProps> = ({
 
   const containerRef = useRef<HTMLDivElement>(null);
   const total = items.length;
-  const cardSpacing = cardWidth * 0.82;
+  const cardSpacing = propCardSpacing ?? (cardWidth * 0.82);
 
   const nextSlide = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % total);

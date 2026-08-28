@@ -1,27 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, Suspense } from "react";
+import React, { useState, useMemo, Suspense } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
   CheckCircle2,
-  Package,
-  Ship,
-  Building2,
-  User,
-  Mail,
-  Phone,
-  Layers,
-  ArrowRight,
   MessageCircle,
-  FileSpreadsheet,
   Check,
   ChevronDown,
-  Anchor,
-  FileCheck,
-  ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -79,17 +65,6 @@ function QuoteContent() {
     return productsData.find((p) => p.id === formData.productId) || productsData[0];
   }, [formData.productId]);
 
-  useEffect(() => {
-    if (initialProduct) {
-      setFormData((prev) => ({
-        ...prev,
-        productId: initialProduct.id,
-        productName: initialProduct.name,
-        packaging: initialProduct.packaging[0] || "50kg PP Woven Bags",
-      }));
-    }
-  }, [initialProduct]);
-
   const handleSelectProduct = (product: Product) => {
     setFormData((prev) => ({
       ...prev,
@@ -125,7 +100,7 @@ Please provide a formal proforma quote.`
       <Header />
 
       <main className="flex-1 pt-28 sm:pt-36">
-        
+
         {/* Editorial Top Section */}
         <section className="border-b border-[#E2DFD5] bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -151,7 +126,7 @@ Please provide a formal proforma quote.`
 
         {/* Main Quotation Sheet Layout */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          
+
           {isSubmitted ? (
             /* ================= SUBMITTED PROFORMA SUMMARY ================= */
             <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-[#E2DFD5] p-8 sm:p-12 text-center shadow-sm">
@@ -210,12 +185,12 @@ Please provide a formal proforma quote.`
           ) : (
             /* ================= ACTIVE PROCUREMENT SHEET ================= */
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-              
+
               {/* Left Column: The Commercial RFQ Form (8 Cols) */}
               <div className="lg:col-span-8 bg-white rounded-2xl border border-[#E2DFD5] p-8 sm:p-12 shadow-sm">
-                
+
                 <form onSubmit={handleSubmit} className="space-y-10">
-                  
+
                   {/* STAGE 1: Commodity Selection */}
                   <div className="space-y-6">
                     <div className="flex items-center justify-between pb-3 border-b border-[#E2DFD5]">
@@ -307,11 +282,10 @@ Please provide a formal proforma quote.`
                               key={pack}
                               type="button"
                               onClick={() => setFormData({ ...formData, packaging: `${pack} Export Packaging` })}
-                              className={`text-[11px] px-2.5 py-1 rounded-md font-medium border transition-colors ${
-                                isActive
+                              className={`text-[11px] px-2.5 py-1 rounded-md font-medium border transition-colors ${isActive
                                   ? "bg-[#0D3B2E] text-white border-[#0D3B2E]"
                                   : "bg-[#FAFAF7] text-[#4A5D56] border-[#E2DFD5] hover:border-[#0D3B2E]"
-                              }`}
+                                }`}
                             >
                               {pack}
                             </button>
@@ -363,11 +337,10 @@ Please provide a formal proforma quote.`
                               key={size.label}
                               type="button"
                               onClick={() => setFormData({ ...formData, quantity: size.label })}
-                              className={`text-left p-3 rounded-xl border transition-all ${
-                                isSelected
+                              className={`text-left p-3 rounded-xl border transition-all ${isSelected
                                   ? "bg-[#0D3B2E] border-[#0D3B2E] text-white shadow-xs"
                                   : "bg-[#FAFAF7] border-[#E2DFD5] text-[#0F1F1A] hover:border-[#0D3B2E]"
-                              }`}
+                                }`}
                             >
                               <span className={`text-xs font-bold block ${isSelected ? "text-[#C59B27]" : "text-[#0F1F1A]"}`}>
                                 {size.label}
@@ -405,11 +378,10 @@ Please provide a formal proforma quote.`
                               key={term.id}
                               type="button"
                               onClick={() => setFormData({ ...formData, incoterm: term.id })}
-                              className={`text-left p-3.5 rounded-xl border transition-all ${
-                                isSelected
+                              className={`text-left p-3.5 rounded-xl border transition-all ${isSelected
                                   ? "bg-[#0D3B2E] border-[#0D3B2E] text-white shadow-xs"
                                   : "bg-[#FAFAF7] border-[#E2DFD5] text-[#0F1F1A] hover:border-[#0D3B2E]"
-                              }`}
+                                }`}
                             >
                               <div className="flex items-center justify-between">
                                 <span className={`text-xs font-bold ${isSelected ? "text-[#C59B27]" : "text-[#0D3B2E]"}`}>
@@ -564,7 +536,7 @@ Please provide a formal proforma quote.`
 
               {/* Right Column: Proforma Overview & Trade Desk (4 Cols) */}
               <div className="lg:col-span-4 space-y-6">
-                
+
                 {/* Active Commodity Card */}
                 <div className="bg-white rounded-2xl border border-[#E2DFD5] p-6 shadow-sm">
                   <div className="relative h-44 w-full rounded-xl overflow-hidden mb-4 bg-gray-100">

@@ -4,17 +4,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Phone,
-  Mail,
-  MapPin,
   Clock,
   ArrowRight,
   MessageCircle,
   CheckCircle2,
-  Anchor,
-  ShieldCheck,
-  Building2,
-  Globe,
 } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -51,7 +44,7 @@ export default function ContactPage() {
       <Header />
 
       <main className="flex-1 pt-28 sm:pt-36">
-        
+
         {/* Editorial Top Section */}
         <section className="border-b border-[#E2DFD5] bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -84,10 +77,10 @@ export default function ContactPage() {
         {/* Two-Column Split Architecture */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            
+
             {/* Left Column: Authentic Trade House Dossier (5 Cols) */}
             <div className="lg:col-span-5 space-y-10">
-              
+
               {/* Feature Image with subtle caption */}
               <div className="relative rounded-2xl overflow-hidden border border-[#E2DFD5] bg-gray-100 shadow-sm aspect-[16/10]">
                 <Image
@@ -200,7 +193,7 @@ export default function ContactPage() {
             {/* Right Column: Clean Form Workspace (7 Cols) */}
             <div className="lg:col-span-7">
               <div className="bg-white rounded-2xl border border-[#E2DFD5] p-8 sm:p-12 shadow-sm">
-                
+
                 {isSubmitted ? (
                   <div className="text-center py-10">
                     <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#0D3B2E]/10 text-[#0D3B2E] mb-5">
@@ -247,7 +240,7 @@ export default function ContactPage() {
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-5">
-                      
+
                       {/* Full Name & Designation */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
@@ -359,11 +352,10 @@ export default function ContactPage() {
                                 key={type}
                                 type="button"
                                 onClick={() => setFormData({ ...formData, inquiryType: type })}
-                                className={`text-xs px-3.5 py-1.5 rounded-lg border transition-all ${
-                                  isSelected
+                                className={`text-xs px-3.5 py-1.5 rounded-lg border transition-all ${isSelected
                                     ? "bg-[#0D3B2E] text-white border-[#0D3B2E] font-semibold"
                                     : "bg-[#FAFAF7] text-[#4A5D56] border-[#E2DFD5] hover:border-[#0D3B2E]"
-                                }`}
+                                  }`}
                               >
                                 {type}
                               </button>

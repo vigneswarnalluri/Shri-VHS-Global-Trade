@@ -41,9 +41,9 @@ const contentItem: Variants = {
   },
 };
 
-export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
+export const Hero: React.FC<HeroProps> = () => {
   return (
-    <section className="relative isolate min-h-screen min-h-svh w-full overflow-hidden bg-[#FAFAF7] font-sans text-[#0F1F1A] antialiased border-b border-[#E2DFD5] flex flex-col justify-center pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12">
+    <section className="relative isolate min-h-screen min-h-svh w-full overflow-hidden bg-[#FAFAF7] font-sans text-[#0F1F1A] antialiased flex flex-col justify-center pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12">
 
       {/* Custom Generated Indian Agricultural Commodities Background Photo */}
       <motion.div

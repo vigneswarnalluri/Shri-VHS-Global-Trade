@@ -6,7 +6,7 @@ import { MapPin, Phone } from "lucide-react";
 
 export const AboutPreview: React.FC = () => {
   return (
-    <section id="about" className="py-20 bg-white border-b border-[#E2DFD5]">
+    <section id="about" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

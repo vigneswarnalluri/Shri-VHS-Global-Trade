@@ -11,7 +11,7 @@ interface ProductCategoriesProps {
 
 export const ProductCategories: React.FC<ProductCategoriesProps> = ({ onSelectCategory }) => {
   return (
-    <section id="categories" className="py-20 sm:py-24 bg-[#FAFAF7] border-b border-[#E2DFD5] overflow-hidden">
+    <section id="categories" className="py-20 sm:py-24 bg-[#FAFAF7] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <SectionHeading
@@ -28,6 +28,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({ onSelectCa
             initialIndex={1}
             cardWidth={350}
             cardHeight={460}
+            cardSpacing={290}
             rotation={24}
             inactiveScale={0.86}
             perspective={1200}

@@ -4,7 +4,7 @@ import { SectionHeading } from "../ui/SectionHeading";
 
 export const FarmToGlobalProcess: React.FC = () => {
   return (
-    <section id="process" className="py-20 bg-[#0D3B2E] text-white border-b border-white/10 relative overflow-hidden">
+    <section id="process" className="py-20 bg-[#0D3B2E] text-white relative overflow-hidden">
       
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C59B27]/10 rounded-full blur-3xl pointer-events-none" />

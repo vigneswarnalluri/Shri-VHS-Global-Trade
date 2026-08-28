@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -22,7 +23,6 @@ import {
   Layers,
   Sprout,
   ShieldCheck,
-  MessageCircle,
 } from "lucide-react";
 
 import { companyData } from "@/data/company";
@@ -150,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
           <div className={cn("flex h-16 w-full items-center justify-between gap-3 rounded-full pr-3.5 transition-all duration-300", isScrolled ? "bg-white/90 border border-[#E2DFD5] shadow-xs" : "bg-white/40 backdrop-blur-md border border-white/40 shadow-none")}>
 
             {/* Logo Section */}
-            <a href="/" className="flex items-center pl-3.5 sm:pl-5 pr-3 group">
+            <Link href="/" className="flex items-center pl-3.5 sm:pl-5 pr-3 group">
               <Image
                 src="/logo.png"
                 alt="Shri VHS Global Trade Logo"
@@ -158,7 +158,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                 height={60}
                 className="h-10 sm:h-12 w-auto object-contain shrink-0"
               />
-            </a>
+            </Link>
 
             {/* Desktop Navigation with Mega-Menu */}
             <div className="hidden lg:block">
@@ -212,7 +212,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
 
                           <div className="grid grid-cols-2 gap-2 mt-2">
                             {categoriesData.map((cat) => (
-                              <a
+                              <Link
                                 key={cat.id}
                                 href="/#products"
                                 className="group flex flex-col p-2.5 rounded-lg bg-[#FAFAF7] border border-[#E2DFD5]/80 hover:bg-[#0D3B2E] hover:text-white transition-all"
@@ -228,7 +228,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                                 <span className="text-[10px] text-[#4A5D56] group-hover:text-gray-200 mt-1 line-clamp-1">
                                   {cat.description}
                                 </span>
-                              </a>
+                              </Link>
                             ))}
                           </div>
                         </div>
@@ -238,22 +238,22 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                           <h4 className="mb-1 text-xs uppercase tracking-wider font-bold text-[#C59B27]">
                             Export Formats
                           </h4>
-                          <a href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
+                          <Link href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
                             <Package className="h-3.5 w-3.5 text-[#C59B27]" />
                             <span>Retail Packaging</span>
-                          </a>
-                          <a href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
+                          </Link>
+                          <Link href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
                             <Layers className="h-3.5 w-3.5 text-[#C59B27]" />
                             <span>Wholesale Units</span>
-                          </a>
-                          <a href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
+                          </Link>
+                          <Link href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
                             <ShieldCheck className="h-3.5 w-3.5 text-[#C59B27]" />
                             <span>Bulk Container Freight</span>
-                          </a>
-                          <a href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
+                          </Link>
+                          <Link href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
                             <CheckCircle2 className="h-3.5 w-3.5 text-[#C59B27]" />
                             <span>Custom Buyer Specs</span>
-                          </a>
+                          </Link>
                         </div>
 
                         {/* Col 3: Featured B2B Card */}
@@ -261,7 +261,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                           <h4 className="mb-3 text-xs uppercase tracking-wider font-bold text-[#C59B27]">
                             B2B Counter
                           </h4>
-                          <a
+                          <Link
                             href="/quote"
                             className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl p-4 border border-[#C59B27]/40 bg-[#0D3B2E] text-white hover:shadow-lg transition-all cursor-pointer"
                           >
@@ -281,7 +281,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                               <span>Inquire Now</span>
                               <ArrowUpRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                             </div>
-                          </a>
+                          </Link>
                         </div>
 
                       </div>
