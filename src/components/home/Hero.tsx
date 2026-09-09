@@ -52,22 +52,31 @@ export const Hero: React.FC<HeroProps> = () => {
 
   // Handle video autoplay & pause based on reduced motion
   useEffect(() => {
-    if (videoRef.current) {
-      if (prefersReducedMotion) {
-        videoRef.current.pause();
-      } else {
-        const playPromise = videoRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Autoplay was prevented by browser policy; poster image remains clean fallback
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Explicitly set DOM properties to bypass strict browser autoplay policies
+    video.muted = true;
+    video.defaultMuted = true;
+
+    if (prefersReducedMotion) {
+      video.pause();
+    } else {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsVideoLoaded(true);
+          })
+          .catch(() => {
+            // Autoplay was prevented by browser policy
           });
-        }
       }
     }
   }, [prefersReducedMotion]);
 
   return (
-    <section className="relative isolate min-h-screen min-h-svh w-full overflow-hidden bg-[#07241C] font-sans antialiased flex flex-col justify-center pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12">
+    <section className="sticky top-0 z-0 isolate h-screen h-svh w-full overflow-hidden bg-[#07241C] font-sans antialiased flex flex-col justify-center pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12">
 
       {/* 1. Background Video & Static Poster Layer */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
@@ -91,10 +100,13 @@ export const Hero: React.FC<HeroProps> = () => {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
+            src="/videos/hero-bg.mp4"
             poster="/images/hero-poster.webp"
             aria-hidden="true"
             onLoadedData={() => setIsVideoLoaded(true)}
+            onCanPlay={() => setIsVideoLoaded(true)}
+            onPlay={() => setIsVideoLoaded(true)}
             onError={() => setVideoError(true)}
             className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ${
               isVideoLoaded ? "opacity-100" : "opacity-0"

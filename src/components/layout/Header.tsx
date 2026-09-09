@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -36,12 +36,44 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      // Track if scrolled past top
+      setIsScrolled(currentScrollY > 20);
+
+      // Check if user is inside Section 2 (export journey cinematic section)
+      const section2 = document.getElementById("export-journey");
+      if (section2) {
+        const rect = section2.getBoundingClientRect();
+        // While Section 2 is active or in viewport, keep navbar hidden
+        if (rect.top <= 120 && rect.bottom >= 0) {
+          setIsVisible(false);
+          lastScrollY.current = currentScrollY;
+          return;
+        }
+      }
+
+      // Auto hide when scrolling down, show when scrolling up
+      if (currentScrollY <= 60) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current + 8) {
+        // Scrolling down -> hide navbar
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY.current - 8) {
+        // Scrolling up -> show navbar
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -105,7 +137,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
   ];
 
   return (
-    <header className={cn("z-40 w-full transition-[background-color,box-shadow,backdrop-filter] duration-300", isScrolled ? "fixed top-0 left-0 right-0 shadow-sm bg-white/95 backdrop-blur-md" : "absolute top-0 left-0 right-0 bg-transparent")}>
+    <header
+      className={cn(
+        "z-40 w-full transition-all duration-300 ease-in-out",
+        isScrolled
+          ? "fixed top-0 left-0 right-0 shadow-sm bg-white/95 backdrop-blur-md"
+          : "absolute top-0 left-0 right-0 bg-transparent",
+        isScrolled && !isVisible ? "-translate-y-full" : "translate-y-0"
+      )}
+    >
       {/* Top Bar */}
       <div className={cn("text-xs py-2 px-4 border-b border-white/10 transition-colors duration-300", isScrolled ? "bg-[#07241C] text-white/90" : "bg-[#07241C]/90 backdrop-blur-md text-white/90")}>
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">

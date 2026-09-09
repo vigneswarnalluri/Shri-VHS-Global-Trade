@@ -56,38 +56,40 @@ export default function HomePage() {
         {/* 2.5 CINEMATIC SCROLL JOURNEY */}
         <CinematicJourneySection />
 
-        {/* 3. TRUST STRIP */}
-        <TrustStrip />
+        <div className="relative z-20 bg-[#FAFAF7]">
+          {/* 3. TRUST STRIP */}
+          <TrustStrip />
 
-        {/* 4. PRODUCT CATEGORIES */}
-        <ProductCategories onSelectCategory={handleSelectCategory} />
+          {/* 4. PRODUCT CATEGORIES */}
+          <ProductCategories onSelectCategory={handleSelectCategory} />
 
-        {/* 5. B2B BUYER BANNER */}
-        <B2BBuyerBanner onOpenQuote={() => handleOpenQuote()} />
+          {/* 5. B2B BUYER BANNER */}
+          <B2BBuyerBanner onOpenQuote={() => handleOpenQuote()} />
 
-        {/* 6. FEATURED PRODUCTS */}
-        <FeaturedProducts onSelectQuote={(p) => handleOpenQuote(p)} />
+          {/* 6. FEATURED PRODUCTS */}
+          <FeaturedProducts onSelectQuote={(p) => handleOpenQuote(p)} />
 
-        {/* 7. WHY SHRI VHS GLOBAL TRADE */}
-        <WhyUs />
+          {/* 7. WHY SHRI VHS GLOBAL TRADE */}
+          <WhyUs />
 
-        {/* 8. FARM TO GLOBAL MARKET */}
-        <FarmToGlobalProcess />
+          {/* 8. FARM TO GLOBAL MARKET */}
+          <FarmToGlobalProcess />
 
-        {/* 9. PACKAGING */}
-        <PackagingSection onOpenQuote={() => handleOpenQuote()} />
+          {/* 9. PACKAGING */}
+          <PackagingSection onOpenQuote={() => handleOpenQuote()} />
 
-        {/* 10. QUALITY & COMPLIANCE */}
-        <QualityCompliance />
+          {/* 10. QUALITY & COMPLIANCE */}
+          <QualityCompliance />
 
-        {/* 11. GLOBAL MARKETS */}
-        <GlobalMarketsSection onOpenQuote={() => handleOpenQuote()} />
+          {/* 11. GLOBAL MARKETS */}
+          <GlobalMarketsSection onOpenQuote={() => handleOpenQuote()} />
 
-        {/* 12. ABOUT PREVIEW */}
-        <AboutPreview />
+          {/* 12. ABOUT PREVIEW */}
+          <AboutPreview />
 
-        {/* 13. FINAL CTA */}
-        <FinalCTA onOpenQuote={() => handleOpenQuote()} />
+          {/* 13. FINAL CTA */}
+          <FinalCTA onOpenQuote={() => handleOpenQuote()} />
+        </div>
       </main>
 
       {/* 14. FOOTER */}
