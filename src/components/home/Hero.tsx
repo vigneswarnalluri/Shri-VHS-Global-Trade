@@ -105,30 +105,7 @@ export const Hero: React.FC<HeroProps> = () => {
         )}
       </div>
 
-      {/* 2. Sophisticated Dark Gradient Overlay System */}
-      {/* Top Header Scrim: Smooth dark gradient so floating navigation pill & top bar sit elegantly */}
-      <div
-        className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#07241C]/90 via-[#07241C]/65 to-transparent pointer-events-none"
-        aria-hidden="true"
-      />
 
-      {/* Full Section Ambient Scrim: Deep emerald-charcoal balance keeping video visible yet text razor-sharp */}
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-[#07241C]/80 via-[#07241C]/60 to-[#07241C]/85 pointer-events-none"
-        aria-hidden="true"
-      />
-
-      {/* Center Radial Soft Glow Vignette for Headline Contrast */}
-      <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(7,36,28,0.30)_0%,rgba(7,36,28,0.72)_75%,rgba(5,26,20,0.92)_100%)] pointer-events-none"
-        aria-hidden="true"
-      />
-
-      {/* Bottom Smooth Transition to #FAFAF7 (blends seamlessly into next section) */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-20 sm:h-28 bg-gradient-to-t from-[#FAFAF7] via-[#FAFAF7]/30 to-transparent pointer-events-none"
-        aria-hidden="true"
-      />
 
       {/* 3. Balanced Main Content Container */}
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-2 sm:py-6">
@@ -143,7 +120,7 @@ export const Hero: React.FC<HeroProps> = () => {
           {/* Main Editorial Headline */}
           <motion.h1
             variants={contentItem}
-            className="font-serif text-[clamp(2.15rem,4.4vw,5rem)] leading-[1.06] font-bold tracking-tight text-balance text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.45)]"
+            className="font-serif text-[clamp(2.15rem,4.4vw,5rem)] leading-[1.06] font-bold tracking-tight text-balance text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]"
           >
             Connecting Indian Agriculture to{" "}
             <span className="text-[#E5C365] italic underline decoration-[#C59B27] decoration-2 underline-offset-8">
@@ -154,7 +131,7 @@ export const Hero: React.FC<HeroProps> = () => {
           {/* Supporting Subline */}
           <motion.p
             variants={contentItem}
-            className="mt-4 sm:mt-5 max-w-[560px] text-[clamp(0.95rem,1.25vw,1.15rem)] leading-[1.45] font-normal text-pretty text-white/90 drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)]"
+            className="mt-4 sm:mt-5 max-w-[560px] text-[clamp(0.95rem,1.25vw,1.15rem)] leading-[1.45] font-medium text-pretty text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
           >
             Supplying quality agricultural products from India to global markets with reliability and trust.
           </motion.p>

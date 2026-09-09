@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/home/Hero";
+import { CinematicJourneySection } from "@/components/home/CinematicJourneySection";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { ProductCategories } from "@/components/home/ProductCategories";
 import { B2BBuyerBanner } from "@/components/home/B2BBuyerBanner";
@@ -51,6 +52,9 @@ export default function HomePage() {
       <main className="flex-1">
         {/* 2. HERO */}
         <Hero onOpenQuote={() => handleOpenQuote()} />
+
+        {/* 2.5 CINEMATIC SCROLL JOURNEY */}
+        <CinematicJourneySection />
 
         {/* 3. TRUST STRIP */}
         <TrustStrip />
