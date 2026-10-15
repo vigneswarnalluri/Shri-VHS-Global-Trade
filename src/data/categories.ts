@@ -61,6 +61,6 @@ export const categoriesData: Category[] = [
     description: "High-absorbency raw Cotton, pure natural Honey, fresh Coffee Seeds/Powder, and eco Banana Leaves.",
     itemCount: 4,
     featuredProducts: ["cotton", "pure-honey", "coffee", "banana-leaves"],
-    image: "https://images.unsplash.com/photo-1587049352847-4a222e784d38?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&q=80&w=800"
   }
 ];

@@ -134,6 +134,7 @@ Please provide the latest FOB/CIF commercial rate sheet.`
                   width={140}
                   height={45}
                   className="h-9 sm:h-10 w-auto object-contain"
+                  style={{ width: "auto" }}
                 />
               </div>
 
@@ -592,7 +593,7 @@ Please provide the latest FOB/CIF commercial rate sheet.`
               {/* Primary Submit Button */}
               <button
                 type="submit"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[#0D3B2E] via-[#124838] to-[#0D3B2E] hover:from-[#165342] hover:to-[#0D3B2E] text-white px-8 py-3 text-xs font-bold shadow-lg shadow-[#0D3B2E]/25 hover:shadow-xl hover:shadow-[#0D3B2E]/35 border border-[#C59B27]/40 hover:border-[#C59B27] transition-all transform hover:-translate-y-0.5 cursor-pointer"
+                className="btn-geometric-wipe w-full sm:w-auto px-8 py-3 text-xs rounded-none shadow-sm"
               >
                 <span>Submit Export Quote Request</span>
               </button>

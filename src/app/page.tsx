@@ -70,7 +70,7 @@ export default function HomePage() {
           <FeaturedProducts onSelectQuote={(p) => handleOpenQuote(p)} />
 
           {/* 7. WHY SHRI VHS GLOBAL TRADE */}
-          <WhyUs />
+          <WhyUs onOpenQuote={() => handleOpenQuote()} />
 
           {/* 8. FARM TO GLOBAL MARKET */}
           <FarmToGlobalProcess />

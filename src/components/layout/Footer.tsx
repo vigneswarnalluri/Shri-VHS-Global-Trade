@@ -24,6 +24,7 @@ export const Footer: React.FC<FooterProps> = () => {
                 width={240}
                 height={80}
                 className="h-14 sm:h-16 w-auto object-contain shrink-0"
+                style={{ width: "auto" }}
               />
             </div>
 

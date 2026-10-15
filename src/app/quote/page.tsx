@@ -524,7 +524,7 @@ Please provide a formal proforma quote.`
 
                     <button
                       type="submit"
-                      className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-[#0D3B2E] px-8 py-3.5 text-xs font-semibold text-white hover:bg-[#165342] transition-colors cursor-pointer shadow-sm"
+                      className="btn-geometric-wipe w-full sm:w-auto px-8 py-3.5 text-xs rounded-none shadow-sm"
                     >
                       <span>Submit Export Quotation Request</span>
                     </button>

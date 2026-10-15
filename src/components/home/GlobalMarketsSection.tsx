@@ -1,5 +1,5 @@
 import React from "react";
-import { Globe, Ship, Compass, ArrowRight } from "lucide-react";
+import { Globe, Ship, Compass } from "lucide-react";
 
 
 interface GlobalMarketsProps {
@@ -72,10 +72,9 @@ export const GlobalMarketsSection: React.FC<GlobalMarketsProps> = () => {
           </div>
           <a
             href="/quote"
-            className="shrink-0 inline-flex items-center gap-2 rounded-lg bg-[#C59B27] px-5 py-2.5 text-xs font-semibold text-white hover:bg-[#D4AF37] transition-colors"
+            className="shrink-0 btn-geometric-wipe px-6 py-2.5 text-xs rounded-none shadow-xs"
           >
             <span>Inquire for Global Import</span>
-            <ArrowRight className="h-3.5 w-3.5" />
           </a>
         </div>
 

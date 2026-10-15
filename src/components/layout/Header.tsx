@@ -18,11 +18,8 @@ import {
   MapPin,
   Globe,
   ArrowUpRight,
-  CheckCircle2,
-  Package,
-  Layers,
-  Sprout,
-  ShieldCheck,
+  ArrowRight,
+  FileText,
 } from "lucide-react";
 
 import { companyData } from "@/data/company";
@@ -33,6 +30,15 @@ import { StaggeredMenu, StaggeredMenuItem, StaggeredMenuSocialItem } from "@/com
 interface HeaderProps {
   onOpenQuote?: () => void;
 }
+
+const categorySummaries: Record<string, string> = {
+  "rice-grains": "Basmati 1121, Sona Masoori, Traditional Varieties",
+  "spices": "Dry Red Chillies, High-Curcumin Turmeric",
+  "fresh-fruits": "Alphonso Mangoes, Pineapples, Coconuts",
+  "fresh-vegetables": "Farm-Fresh Onions, Green Chillies, Drumsticks",
+  "edible-oils": "Cold-Pressed Groundnut Oil, Sunflower Oil",
+  "natural-agricultural": "Raw Cotton Bales, Pure Honey, Coffee Beans",
+};
 
 export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -196,7 +202,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                 alt="Shri VHS Global Trade Logo"
                 width={200}
                 height={60}
+                priority
                 className="h-10 sm:h-12 w-auto object-contain shrink-0"
+                style={{ width: "auto" }}
               />
             </Link>
 
@@ -206,9 +214,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                 className={cn(
                   'static',
                   '[&>div:last-child]:inset-x-0 [&>div:last-child]:top-full [&>div:last-child]:w-full',
-                  '[&_[data-slot=navigation-menu-viewport]]:mx-auto [&_[data-slot=navigation-menu-viewport]]:mt-4 [&_[data-slot=navigation-menu-viewport]]:max-w-6xl',
-                  '[&_[data-slot=navigation-menu-viewport][data-state=open]]:rounded-2xl [&_[data-slot=navigation-menu-viewport][data-state=open]]:border [&_[data-slot=navigation-menu-viewport][data-state=open]]:border-[#E2DFD5]/80',
-                  '[&_[data-slot=navigation-menu-viewport][data-state=open]]:bg-white/95 [&_[data-slot=navigation-menu-viewport][data-state=open]]:backdrop-blur-xl [&_[data-slot=navigation-menu-viewport][data-state=open]]:shadow-[0_20px_50px_rgba(13,59,46,0.15)]',
+                  '[&_[data-slot=navigation-menu-viewport]]:mx-auto [&_[data-slot=navigation-menu-viewport]]:mt-3 [&_[data-slot=navigation-menu-viewport]]:max-w-[1104px]',
+                  '[&_[data-slot=navigation-menu-viewport]]:rounded-2xl [&_[data-slot=navigation-menu-viewport]]:border [&_[data-slot=navigation-menu-viewport]]:border-[#E2DFD5]',
+                  '[&_[data-slot=navigation-menu-viewport]]:bg-white [&_[data-slot=navigation-menu-viewport]]:shadow-[0_25px_70px_-15px_rgba(7,36,28,0.22),0_0_0_1px_rgba(13,59,46,0.06)]',
+                  '[&_[data-slot=navigation-menu-viewport]]:overflow-hidden',
                   '[&_[data-slot=navigation-menu-viewport][data-state=closed]]:hidden [&_[data-slot=navigation-menu-viewport][data-state=closed]]:border-0'
                 )}
               >
@@ -235,93 +244,184 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   {/* Mega Menu Trigger: Products */}
                   <NavigationMenuItem>
                     <NavigationMenuTrigger className="h-auto rounded-full bg-transparent px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#0F1F1A] transition-all hover:bg-white/60 hover:text-[#0D3B2E] data-[state=open]:bg-white data-[state=open]:text-[#0D3B2E]">
-                      Products & Range
+                      Products &amp; Range
                     </NavigationMenuTrigger>
 
-                    <NavigationMenuContent className="p-0">
-                      <div className="grid w-5xl grid-cols-4 gap-6 divide-x divide-[#E2DFD5]/60 px-8 py-8">
+                    <NavigationMenuContent className="p-0 bg-white border-0 shadow-none">
+                      <div className="w-[1104px] max-w-[calc(100vw-3rem)] bg-white text-[#0F1F1A]">
 
-                        {/* Col 1: Categories Overview */}
-                        <div className="flex flex-col col-span-2 pr-4">
-                          <div className="flex items-center gap-2 mb-3">
-                            <Sprout className="h-5 w-5 text-[#C59B27]" />
-                            <h4 className="text-xs uppercase tracking-wider font-bold text-[#0D3B2E]">
-                              Export Categories
-                            </h4>
-                          </div>
+                        {/* Main Grid: 3 Harmonious Columns (Col-Span 6 / 3 / 3) */}
+                        <div className="grid grid-cols-12 gap-8 p-7">
 
-                          <div className="grid grid-cols-2 gap-2 mt-2">
-                            {categoriesData.map((cat) => (
-                              <Link
-                                key={cat.id}
-                                href="/#products"
-                                className="group flex flex-col p-2.5 rounded-lg bg-[#FAFAF7] border border-[#E2DFD5]/80 hover:bg-[#0D3B2E] hover:text-white transition-all"
-                              >
-                                <div className="flex items-center justify-between">
-                                  <span className="text-xs font-bold text-[#0F1F1A] group-hover:text-white">
-                                    {cat.name}
-                                  </span>
-                                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-white text-[#0D3B2E] group-hover:bg-[#C59B27] group-hover:text-white font-semibold">
-                                    {cat.itemCount}
-                                  </span>
-                                </div>
-                                <span className="text-[10px] text-[#4A5D56] group-hover:text-gray-200 mt-1 line-clamp-1">
-                                  {cat.description}
-                                </span>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Col 2: Packaging Standards */}
-                        <div className="flex flex-col gap-3 pl-4">
-                          <h4 className="mb-1 text-xs uppercase tracking-wider font-bold text-[#C59B27]">
-                            Export Formats
-                          </h4>
-                          <Link href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
-                            <Package className="h-3.5 w-3.5 text-[#C59B27]" />
-                            <span>Retail Packaging</span>
-                          </Link>
-                          <Link href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
-                            <Layers className="h-3.5 w-3.5 text-[#C59B27]" />
-                            <span>Wholesale Units</span>
-                          </Link>
-                          <Link href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
-                            <ShieldCheck className="h-3.5 w-3.5 text-[#C59B27]" />
-                            <span>Bulk Container Freight</span>
-                          </Link>
-                          <Link href="/#packaging" className="text-xs font-medium text-[#4A5D56] hover:text-[#0D3B2E] flex items-center gap-2">
-                            <CheckCircle2 className="h-3.5 w-3.5 text-[#C59B27]" />
-                            <span>Custom Buyer Specs</span>
-                          </Link>
-                        </div>
-
-                        {/* Col 3: Featured B2B Card */}
-                        <div className="flex flex-col pl-4">
-                          <h4 className="mb-3 text-xs uppercase tracking-wider font-bold text-[#C59B27]">
-                            B2B Counter
-                          </h4>
-                          <Link
-                            href="/quote"
-                            className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl p-4 border border-[#C59B27]/40 bg-[#0D3B2E] text-white hover:shadow-lg transition-all cursor-pointer"
-                          >
+                          {/* Column 1: Categories (Col-Span 6) */}
+                          <div className="col-span-6 flex flex-col justify-between">
                             <div>
-                              <span className="text-[10px] font-semibold text-[#C59B27] uppercase tracking-wider block mb-1">
-                                Commercial Desk
-                              </span>
-                              <h4 className="text-xs font-bold text-white mb-1">
+                              <div className="flex items-center justify-between h-7 pb-3 mb-4 border-b border-[#EFECE6]">
+                                <span className="text-[11px] font-semibold tracking-wider text-[#7A8E87] uppercase whitespace-nowrap">
+                                  Export Categories
+                                </span>
+                                <Link
+                                  href="/#products"
+                                  className="text-xs font-medium text-[#0D3B2E] hover:underline inline-flex items-center gap-1 group whitespace-nowrap"
+                                >
+                                  <span>View all 18 commodities</span>
+                                  <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                                </Link>
+                              </div>
+
+                              <div className="grid grid-cols-2 gap-x-6 gap-y-2.5">
+                                {categoriesData.map((cat) => (
+                                  <Link
+                                    key={cat.id}
+                                    href="/#products"
+                                    className="group rounded-lg p-2.5 -mx-2.5 hover:bg-[#F7F7F5] transition-colors"
+                                  >
+                                    <div className="flex items-baseline justify-between gap-2">
+                                      <span className="text-sm font-medium text-[#0F1F1A] group-hover:text-[#0D3B2E] transition-colors truncate">
+                                        {cat.name}
+                                      </span>
+                                      <span className="text-[11px] text-[#8F9E98] group-hover:text-[#0D3B2E] transition-colors shrink-0">
+                                        {cat.itemCount} items
+                                      </span>
+                                    </div>
+                                    <p className="text-xs text-[#5C6E67] mt-0.5 truncate">
+                                      {categorySummaries[cat.id] || cat.description}
+                                    </p>
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Column 2: Export Formats (Col-Span 3) */}
+                          <div className="col-span-3 flex flex-col justify-between border-l border-[#EFECE6] pl-8">
+                            <div>
+                              <div className="flex items-center h-7 pb-3 mb-4 border-b border-[#EFECE6]">
+                                <span className="text-[11px] font-semibold tracking-wider text-[#7A8E87] uppercase whitespace-nowrap">
+                                  Export Formats
+                                </span>
+                              </div>
+
+                              <div className="space-y-3">
+                                <Link href="/#packaging" className="group block">
+                                  <span className="text-xs font-semibold text-[#0F1F1A] group-hover:text-[#0D3B2E] transition-colors">
+                                    Retail Packaging
+                                  </span>
+                                  <p className="text-[11.5px] text-[#6B7C76] mt-0.5 leading-snug">
+                                    500g to 5kg branded consumer packs &amp; pouches
+                                  </p>
+                                </Link>
+
+                                <Link href="/#packaging" className="group block">
+                                  <span className="text-xs font-semibold text-[#0F1F1A] group-hover:text-[#0D3B2E] transition-colors">
+                                    Wholesale Units
+                                  </span>
+                                  <p className="text-[11.5px] text-[#6B7C76] mt-0.5 leading-snug">
+                                    25kg &amp; 50kg PP woven, multi-wall paper &amp; jute
+                                  </p>
+                                </Link>
+
+                                <Link href="/#packaging" className="group block">
+                                  <span className="text-xs font-semibold text-[#0F1F1A] group-hover:text-[#0D3B2E] transition-colors">
+                                    Bulk Container Freight
+                                  </span>
+                                  <p className="text-[11.5px] text-[#6B7C76] mt-0.5 leading-snug">
+                                    20ft &amp; 40ft FCL ocean shipments (24–26 MT)
+                                  </p>
+                                </Link>
+
+                                <Link href="/#packaging" className="group block">
+                                  <span className="text-xs font-semibold text-[#0F1F1A] group-hover:text-[#0D3B2E] transition-colors">
+                                    Custom Specifications
+                                  </span>
+                                  <p className="text-[11.5px] text-[#6B7C76] mt-0.5 leading-snug">
+                                    Private labeling, custom grading &amp; SGS inspection
+                                  </p>
+                                </Link>
+                              </div>
+                            </div>
+
+                            <div className="pt-3 border-t border-[#EFECE6] space-y-1 text-xs">
+                              <div className="flex items-center gap-1.5 text-[11px] text-[#6B7C76]">
+                                <span>Gateway Ports:</span>
+                                <span className="font-medium text-[#0F1F1A]">JNPT · Mundra · Chennai</span>
+                              </div>
+                              <div className="flex items-center gap-1.5 text-[11px] text-[#6B7C76]">
+                                <span>Export Terms:</span>
+                                <span className="font-medium text-[#0D3B2E]">FOB · CIF · CFR Delivery</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Column 3: Commercial Desk (Col-Span 3) */}
+                          <div className="col-span-3 flex flex-col justify-between border-l border-[#EFECE6] pl-8">
+                            <div>
+                              <div className="flex items-center h-7 pb-3 mb-4 border-b border-[#EFECE6]">
+                                <span className="text-[11px] font-semibold tracking-wider text-[#7A8E87] uppercase whitespace-nowrap">
+                                  Commercial Desk
+                                </span>
+                              </div>
+
+                              <h5 className="text-xs font-semibold text-[#0F1F1A]">
                                 Request Commercial Quote
-                              </h4>
-                              <p className="text-[11px] text-gray-300 leading-relaxed">
+                              </h5>
+                              <p className="text-xs text-[#6B7C76] mt-1 leading-relaxed">
                                 Get instant FOB/CIF export pricing for bulk orders from Hyderabad, India.
                               </p>
+
+                              <Link
+                                href="/quote"
+                                onClick={(e) => {
+                                  if (onOpenQuote) {
+                                    e.preventDefault();
+                                    onOpenQuote();
+                                  }
+                                }}
+                                className="btn-geometric-wipe w-full mt-4 py-2.5 px-3 text-xs rounded-none shadow-xs text-center"
+                              >
+                                <span>Inquire Now</span>
+                              </Link>
                             </div>
 
-                            <div className="mt-3 flex items-center text-xs font-semibold text-[#C59B27] group-hover:text-white">
-                              <span>Inquire Now</span>
-                              <ArrowUpRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                            <div className="pt-3 border-t border-[#EFECE6] space-y-1 text-xs">
+                              <a
+                                href="/catalogue.pdf"
+                                download="Shri_VHS_Global_Trade_Catalogue.pdf"
+                                className="text-[#0D3B2E] hover:underline flex items-center gap-1.5 font-medium text-[11.5px]"
+                              >
+                                <FileText className="h-3.5 w-3.5 text-[#C59B27]" />
+                                <span>Download Catalogue</span>
+                              </a>
+                              <a
+                                href="https://wa.me/917095851852"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#6B7C76] hover:text-[#0D3B2E] transition-colors flex items-center gap-1.5 text-[11px]"
+                              >
+                                <span>WhatsApp:</span>
+                                <span className="font-medium text-[#0F1F1A]">+91 70958 51852</span>
+                              </a>
                             </div>
-                          </Link>
+                          </div>
+
+                        </div>
+
+                        {/* Bottom Minimal Footer Strip */}
+                        <div className="px-7 py-3 bg-[#FAF9F6] border-t border-[#EFECE6] flex items-center justify-between text-xs text-[#7A8E87]">
+                          <div className="flex items-center gap-2">
+                            <span>Merchant Exporter</span>
+                            <span className="text-[#C59B27]">•</span>
+                            <span>APEDA</span>
+                            <span className="text-[#C59B27]">•</span>
+                            <span>Spices Board</span>
+                            <span className="text-[#C59B27]">•</span>
+                            <span>FSSAI Certified</span>
+                            <span className="text-[#C59B27]">•</span>
+                            <span>ISO 9001:2015</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 text-[#5C6E67]">
+                            <span>Direct Dispatch from Hyderabad, India</span>
+                          </div>
                         </div>
 
                       </div>

@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 const sansFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans-custom",
   display: "swap",
-});
-
-const serifFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-serif-custom",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -78,7 +72,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${sansFont.variable} ${serifFont.variable} scroll-smooth`}>
+    <html lang="en" className={`${sansFont.variable} scroll-smooth`}>
       <head>
         <script
           type="application/ld+json"

@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Phone, ShieldCheck } from "lucide-react";
+import { Phone, ShieldCheck } from "lucide-react";
 import { companyData } from "@/data/company";
 
 interface FinalCTAProps {
@@ -33,25 +33,23 @@ export const FinalCTA: React.FC<FinalCTAProps> = () => {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="/quote"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-[#C59B27] px-6 py-3.5 text-sm font-semibold text-white hover:bg-[#D4AF37] shadow-md transition-all"
+              className="w-full sm:w-auto btn-geometric-wipe px-7 py-3.5 text-xs sm:text-sm rounded-none shadow-md"
             >
               <span>Request a Quote</span>
-              <ArrowRight className="h-4 w-4" />
             </a>
 
             <a
               href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-white/10 border border-white/30 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white hover:text-[#0D3B2E] transition-all"
+              className="w-full sm:w-auto btn-geometric-wipe-light px-7 py-3.5 text-xs sm:text-sm rounded-none"
             >
               <span>Visit Contact Desk Page</span>
-              <ArrowRight className="h-4 w-4 text-[#C59B27]" />
             </a>
 
             <a
               href={`tel:${companyData.contact.phone.replace(/\s+/g, '')}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md border border-white/20 px-6 py-3.5 text-sm font-semibold text-gray-200 hover:bg-white/10 hover:text-white transition-all"
+              className="w-full sm:w-auto btn-geometric-wipe-light px-6 py-3.5 text-xs sm:text-sm gap-2 rounded-none"
             >
-              <Phone className="h-4 w-4 text-[#C59B27]" />
+              <Phone className="h-4 w-4 btn-icon text-[#C59B27]" />
               <span>{companyData.contact.phone}</span>
             </a>
           </div>

@@ -6,7 +6,6 @@ import {
   Layers,
   PackageCheck,
   FileSpreadsheet,
-  ArrowRight,
   ShieldCheck,
   Ship,
   CheckCircle2,
@@ -246,14 +245,13 @@ export const B2BBuyerBanner: React.FC<B2BBuyerBannerProps> = () => {
             <div className="space-y-3">
               <Link
                 href="/quote"
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#C59B27] px-5 py-3 text-xs font-bold text-white hover:bg-[#D4AF37] transition-colors shadow-md"
+                className="w-full btn-geometric-wipe px-5 py-3 text-xs rounded-none shadow-md text-center"
               >
                 <span>Request Commercial Quote</span>
-                <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/contact"
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 px-5 py-2.5 text-xs font-semibold text-gray-200 hover:text-white transition-colors"
+                className="w-full btn-geometric-wipe-light px-5 py-2.5 text-xs gap-2 rounded-none"
               >
                 <span>Contact Export Desk</span>
               </Link>

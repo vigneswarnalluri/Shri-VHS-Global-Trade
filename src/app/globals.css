@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-sans-custom), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-serif: var(--font-serif-custom), Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-sans-custom), Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-sans-custom), Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0F1F1A;
 }
 
 @layer base {
@@ -88,42 +90,249 @@
               linear-gradient(180deg, #0D3B2E 0%, #07241C 100%);
 }
 
-/* Synchronized Slow Slide-Down & Fade-In Keyframes for Mega Menu */
-@keyframes slowSlideAndFadeIn {
+/* Fast, Butter-Smooth Animations for Mega Menu */
+@keyframes megaMenuSlideIn {
   0% {
     opacity: 0;
-    transform: translateY(-48px);
+    transform: translateY(-8px) scale(0.985);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slowSlideAndFadeOut {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(0) scale(1);
   }
 }
 
 [data-slot="navigation-menu-viewport"][data-state="open"],
 [data-slot="navigation-menu-content"][data-state="open"] {
-  animation: slowSlideAndFadeIn 1.4s cubic-bezier(0.25, 1, 0.4, 1) forwards;
+  animation: megaMenuSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-[data-slot="navigation-menu-viewport"][data-state="closed"] {
-  display: none !important;
-  border: none !important;
-  opacity: 0 !important;
-  height: 0 !important;
+/* ==========================================================================
+   Minimalist Architectural Packaging Cards (Zero Blobs, Sharp Borders, Dual-Side Sweep)
+   ========================================================================== */
+.minimal-packaging-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0px !important;
+  cursor: pointer;
+  background-color: #FFFFFF;
+  border: 1px solid #E5E2D9;
+  transition: border-color 0.5s cubic-bezier(0.25, 1, 0.35, 1), 
+              box-shadow 0.5s cubic-bezier(0.25, 1, 0.35, 1);
+  transform: none !important;
 }
 
-[data-slot="navigation-menu-content"][data-state="closed"] {
-  display: none !important;
-  opacity: 0 !important;
+/* Left panel comes from left on hover */
+.minimal-packaging-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: #0D3B2E;
+  transition: width 0.75s cubic-bezier(0.25, 1, 0.35, 1);
+  z-index: 10;
+  pointer-events: none;
 }
+
+/* Right panel comes from right on hover */
+.minimal-packaging-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+  background: #0D3B2E;
+  transition: width 0.75s cubic-bezier(0.25, 1, 0.35, 1);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.minimal-packaging-card:hover {
+  border-color: #C59B27;
+  box-shadow: 0 16px 36px -10px rgba(13, 59, 46, 0.15);
+  transform: none !important;
+}
+
+/* On hover: Both panels slide in and close seamlessly in the center */
+.minimal-packaging-card:hover::before,
+.minimal-packaging-card:hover::after {
+  width: 50.5%;
+}
+
+.minimal-packaging-card .card-front-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.minimal-packaging-card .card-hover-reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.15s;
+  pointer-events: none;
+}
+
+.minimal-packaging-card:hover .card-hover-reveal {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   Dual-Side Fill Button (Sharp Borders, Zero Movement, Slow Symmetrical Fill)
+   ========================================================================== */
+.btn-geometric-wipe {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0px !important;
+  background-color: #0D3B2E;
+  color: #FFFFFF;
+  border: 1px solid #C59B27;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: color 0.65s cubic-bezier(0.25, 1, 0.35, 1), 
+              border-color 0.65s cubic-bezier(0.25, 1, 0.35, 1), 
+              box-shadow 0.65s cubic-bezier(0.25, 1, 0.35, 1);
+  cursor: pointer;
+  transform: none !important;
+}
+
+/* Left panel comes from left */
+.btn-geometric-wipe::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #C59B27, #D4AF37);
+  transition: width 0.85s cubic-bezier(0.25, 1, 0.35, 1);
+  z-index: 1;
+}
+
+/* Right panel comes from right */
+.btn-geometric-wipe::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(270deg, #C59B27, #D4AF37);
+  transition: width 0.85s cubic-bezier(0.25, 1, 0.35, 1);
+  z-index: 1;
+}
+
+/* Hover: Both panels meet seamlessly in the center */
+.btn-geometric-wipe:hover::before,
+.btn-geometric-wipe:hover::after {
+  width: 50.5%;
+}
+
+.btn-geometric-wipe:hover {
+  color: #0D3B2E;
+  border-color: #C59B27;
+  box-shadow: 0 10px 25px -6px rgba(197, 155, 39, 0.3);
+  transform: none !important;
+}
+
+/* Children sit on top of the incoming panels */
+.btn-geometric-wipe > * {
+  position: relative;
+  z-index: 2;
+  transition: color 0.65s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+.btn-geometric-wipe .btn-icon {
+  transition: color 0.65s cubic-bezier(0.25, 1, 0.35, 1);
+  transform: none !important;
+}
+
+.btn-geometric-wipe:hover .btn-icon {
+  color: #0D3B2E;
+  transform: none !important;
+}
+
+/* Card variant: Light/Minimal dual-side fill */
+.btn-geometric-wipe-light {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0px !important;
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+  border: 1px solid rgba(197, 155, 39, 0.65);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: color 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+              border-color 0.65s ease;
+  cursor: pointer;
+  transform: none !important;
+}
+
+.btn-geometric-wipe-light::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: #C59B27;
+  transition: width 0.8s cubic-bezier(0.25, 1, 0.35, 1);
+  z-index: 1;
+}
+
+.btn-geometric-wipe-light::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+  background: #C59B27;
+  transition: width 0.8s cubic-bezier(0.25, 1, 0.35, 1);
+  z-index: 1;
+}
+
+.btn-geometric-wipe-light:hover::before,
+.btn-geometric-wipe-light:hover::after {
+  width: 50.5%;
+}
+
+.btn-geometric-wipe-light:hover {
+  color: #0D3B2E;
+  border-color: #C59B27;
+  transform: none !important;
+}
+
+.btn-geometric-wipe-light > * {
+  position: relative;
+  z-index: 2;
+  transition: color 0.65s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+.btn-geometric-wipe-light .btn-icon {
+  transition: color 0.65s cubic-bezier(0.25, 1, 0.35, 1);
+  transform: none !important;
+}
+
+.btn-geometric-wipe-light:hover .btn-icon {
+  color: #0D3B2E;
+  transform: none !important;
+}
+
+
+
+

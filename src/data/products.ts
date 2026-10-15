@@ -66,7 +66,7 @@ export const productsData: Product[] = [
     description: "Authentic Jai Sri Ram (JSR / BPT 5204) medium-grain rice cultivated in Telangana and Andhra Pradesh. Milled under strict hygienic conditions to ensure consistent texture, low broken percentage, and high table yield.",
     features: ["JSR / BPT 5204 Varietal", "Medium Slender Grain", "Machine Sortexed", "Moisture ≤ 13.0%", "Aged Harvest"],
     packaging: ["5kg", "10kg", "25kg", "50kg", "PP Woven Sacks"],
-    image: "https://images.unsplash.com/photo-1594488518337-33e144d18ec3?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&q=80&w=800",
     isFeatured: false,
     specs: {
       variety: "Jai Sri Ram (JSR / BPT 5204 Selection)",
@@ -270,7 +270,7 @@ export const productsData: Product[] = [
     description: "Indian export red and pink onions harvested from Nashik and Kurnool hubs. Graded by equatorial diameter (45mm to 60mm+), dry-cured for outer skin retention, and packed in leno mesh bags for ocean transit ventilation.",
     features: ["Nashik / Kurnool Red & Pink", "Size: 45mm–60mm+", "Dry-Cured Outer Skin", "Leno Mesh Ventilation", "Long Ocean Transit Life"],
     packaging: ["5kg", "10kg", "25kg", "50kg", "Leno Mesh Bags"],
-    image: "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cf?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1518977822534-7049a61ee0c2?auto=format&fit=crop&q=80&w=800",
     isFeatured: false,
     specs: {
       variety: "Medium Red / Dark Red / Pink Onion",
@@ -320,7 +320,7 @@ export const productsData: Product[] = [
     description: "Cultivated PKM-1 and PKM-2 Moringa pods selected for tender seeds, rich inner pulp, and uniform straight length (45cm to 60cm). Bundled and packed in ventilated export cartons for air cargo delivery.",
     features: ["PKM-1 / PKM-2 Hybrid", "Length: 45cm–60cm", "Tender Green Pods", "Air Cargo Delivery", "Export Graded"],
     packaging: ["5kg", "10kg", "Export Corrugated Boxes"],
-    image: "https://images.unsplash.com/photo-1592417817098-8f3d6eb19655?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&q=80&w=800",
     isFeatured: false,
     specs: {
       variety: "PKM-1 / PKM-2 Moringa Oleifera",
@@ -445,7 +445,7 @@ export const productsData: Product[] = [
     description: "100% raw, antibiotic-free natural honey harvested from registered apiaries. Tested for C3/C4 sugar adulteration via NMR spectroscopy, with moisture ≤ 18.0% and high natural diastase activity.",
     features: ["Raw Multi-Flora & Mustard", "Moisture ≤ 18.0%", "NMR Tested Zero Sugar Syrup", "Antibiotic Free", "Bulk Drums & Retail Jars"],
     packaging: ["250g", "500g", "1kg Jars", "300kg Food Grade Drums"],
-    image: "https://images.unsplash.com/photo-1587049352847-4a222e784d38?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&q=80&w=800",
     isFeatured: false,
     specs: {
       variety: "Multi-Flora / Mustard / Forest Floral",
