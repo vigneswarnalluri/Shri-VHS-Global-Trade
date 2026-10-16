@@ -150,16 +150,28 @@
   pointer-events: none;
 }
 
-.minimal-packaging-card:hover {
+.minimal-packaging-card:hover,
+.minimal-packaging-card.is-active,
+.minimal-packaging-card[data-active="true"] {
   border-color: #C59B27;
   box-shadow: 0 16px 36px -10px rgba(13, 59, 46, 0.15);
   transform: none !important;
 }
 
-/* On hover: Both panels slide in and close seamlessly in the center */
+/* On hover or mobile active: Both panels slide in and close seamlessly in the center */
 .minimal-packaging-card:hover::before,
-.minimal-packaging-card:hover::after {
+.minimal-packaging-card:hover::after,
+.minimal-packaging-card.is-active::before,
+.minimal-packaging-card.is-active::after,
+.minimal-packaging-card[data-active="true"]::before,
+.minimal-packaging-card[data-active="true"]::after {
   width: 50.5%;
+}
+
+.minimal-packaging-card:hover img,
+.minimal-packaging-card.is-active img,
+.minimal-packaging-card[data-active="true"] img {
+  transform: scale(1.05);
 }
 
 .minimal-packaging-card .card-front-content {
@@ -180,7 +192,9 @@
   pointer-events: none;
 }
 
-.minimal-packaging-card:hover .card-hover-reveal {
+.minimal-packaging-card:hover .card-hover-reveal,
+.minimal-packaging-card.is-active .card-hover-reveal,
+.minimal-packaging-card[data-active="true"] .card-hover-reveal {
   opacity: 1;
   pointer-events: auto;
 }

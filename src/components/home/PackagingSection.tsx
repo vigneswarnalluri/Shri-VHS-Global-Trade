@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { SectionHeading } from "../ui/SectionHeading";
 import {
   Package,
@@ -34,6 +35,89 @@ interface PackagingOption {
 }
 
 export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote }) => {
+  const [activeMobileIndex, setActiveMobileIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Only enable scroll auto-hover on mobile/tablet (screens < 1024px)
+          if (window.innerWidth >= 1024) {
+            setActiveMobileIndex(null);
+            ticking = false;
+            return;
+          }
+
+          const section = sectionRef.current;
+          if (!section) {
+            ticking = false;
+            return;
+          }
+
+          const sectionRect = section.getBoundingClientRect();
+          // If section is not within viewport range
+          if (sectionRect.bottom < 80 || sectionRect.top > window.innerHeight - 80) {
+            setActiveMobileIndex(null);
+            ticking = false;
+            return;
+          }
+
+          const viewportCenter = window.innerHeight / 2;
+          let closestIndex: number | null = null;
+          let minDistance = Infinity;
+
+          cardRefs.current.forEach((el, index) => {
+            if (!el) return;
+            const rect = el.getBoundingClientRect();
+            // Card must be visible in viewport
+            if (rect.bottom > 80 && rect.top < window.innerHeight - 80) {
+              const cardCenter = rect.top + rect.height / 2;
+              const distance = Math.abs(viewportCenter - cardCenter);
+              if (distance < minDistance) {
+                minDistance = distance;
+                closestIndex = index;
+              }
+            }
+          });
+
+          // Activate card if its center is within the active reading band (within 38% of viewport height)
+          if (closestIndex !== null && minDistance < window.innerHeight * 0.38) {
+            setActiveMobileIndex(closestIndex);
+          } else {
+            setActiveMobileIndex(null);
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  const handleCardClick = (index: number, title: string) => {
+    if (window.innerWidth < 1024) {
+      if (activeMobileIndex === index) {
+        onOpenQuote?.(title);
+      } else {
+        setActiveMobileIndex(index);
+      }
+    } else {
+      onOpenQuote?.(title);
+    }
+  };
   const packagingOptions: PackagingOption[] = [
     {
       id: "retail",
@@ -102,7 +186,7 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
   ];
 
   return (
-    <section id="packaging" className="py-20 sm:py-24 bg-white border-t border-[#EFECE6] scroll-mt-16">
+    <section id="packaging" ref={sectionRef} className="py-20 sm:py-24 bg-white border-t border-[#EFECE6] scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
@@ -115,114 +199,130 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
 
         {/* ================= 4 SPACIOUS MINIMALIST CARDS ================= */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-          {packagingOptions.map((opt) => (
-            <div
-              key={opt.id}
-              onClick={() => onOpenQuote?.(opt.title)}
-              className="minimal-packaging-card h-[395px] p-5 sm:p-5.5 select-none flex flex-col justify-between group"
-              role="button"
-              tabIndex={0}
-              aria-label={`Inspect ${opt.tabLabel}`}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  onOpenQuote?.(opt.title);
-                }
-              }}
-            >
-              {/* DEFAULT FRONT VIEW (UNHOVERED) */}
-              <div className="card-front-content">
-                
-                {/* Top Row: Category index */}
-                <div className="flex items-center pb-2.5 border-b border-[#F0ECE1]">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-xs font-bold text-[#C59B27] tracking-wider">
-                      {opt.badgeNumber}
-                    </span>
-                    <span className="text-[#D8D4C8] text-xs font-light">/</span>
-                    <span className="text-[10px] font-bold tracking-widest text-[#7A8E87] uppercase">
-                      {opt.categoryCode}
-                    </span>
+          {packagingOptions.map((opt, index) => {
+            const isActive = activeMobileIndex === index;
+            return (
+              <div
+                key={opt.id}
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                data-active={isActive ? "true" : "false"}
+                onClick={() => handleCardClick(index, opt.title)}
+                className={cn(
+                  "minimal-packaging-card h-[395px] p-5 sm:p-5.5 select-none flex flex-col justify-between group",
+                  isActive && "is-active"
+                )}
+                role="button"
+                tabIndex={0}
+                aria-label={`Inspect ${opt.tabLabel}`}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onOpenQuote?.(opt.title);
+                  }
+                }}
+              >
+                {/* DEFAULT FRONT VIEW (UNHOVERED) */}
+                <div className="card-front-content">
+                  
+                  {/* Top Row: Category index */}
+                  <div className="flex items-center pb-2.5 border-b border-[#F0ECE1]">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs font-bold text-[#C59B27] tracking-wider">
+                        {opt.badgeNumber}
+                      </span>
+                      <span className="text-[#D8D4C8] text-xs font-light">/</span>
+                      <span className="text-[10px] font-bold tracking-widest text-[#7A8E87] uppercase">
+                        {opt.categoryCode}
+                      </span>
+                    </div>
                   </div>
+
+                  {/* Center: Image Frame */}
+                  <div className="my-auto py-2">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden border border-[#E8E5DC] bg-[#F7F5EE] shadow-2xs">
+                      <Image
+                        src={opt.image}
+                        alt={opt.imageAlt}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover group-hover:scale-105 group-data-[active=true]:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Bottom Row: Typography and Specifications Bar */}
+                  <div className="pt-1">
+                    <h4 className="text-[15px] font-bold text-[#0F1F1A] tracking-tight leading-snug">
+                      {opt.tabLabel}
+                    </h4>
+                    <p className="text-xs text-[#5C6E67] font-normal mt-0.5 truncate">
+                      {opt.badge}
+                    </p>
+
+                    <div className="mt-3 pt-2.5 border-t border-[#F0ECE1] flex items-center text-xs">
+                      <span className="text-[11px] font-semibold text-[#0D3B2E] bg-[#FAF8F2] border border-[#E5E2D9] px-2.5 py-0.5 whitespace-nowrap">
+                        {opt.tareSummary}
+                      </span>
+                    </div>
+                  </div>
+
                 </div>
 
-                {/* Center: Image Frame */}
-                <div className="my-auto py-2">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden border border-[#E8E5DC] bg-[#F7F5EE] shadow-2xs">
-                    <Image
-                      src={opt.image}
-                      alt={opt.imageAlt}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
+                {/* HOVER REVEAL OVERLAY (DUAL-SIDE GREEN SWEEP) */}
+                <div className="card-hover-reveal p-5 sm:p-5.5 flex flex-col justify-between text-white">
+                  <div>
+                    <div className="pb-2.5 border-b border-white/15">
+                      <span className="text-[10px] font-bold tracking-widest text-[#C59B27] uppercase">
+                        {opt.badgeNumber} · SPECIFICATION
+                      </span>
+                    </div>
+
+                    <h4 className="text-[15.5px] sm:text-base font-bold text-white tracking-tight leading-tight mt-2.5">
+                      {opt.tabLabel}
+                    </h4>
+                    <p className="text-[11px] text-[#C59B27] mt-0.5 font-medium">
+                      {opt.compliance}
+                    </p>
+
+                    <p className="text-xs text-white/80 line-clamp-2 leading-relaxed mt-2 mb-3">
+                      {opt.summary}
+                    </p>
+
+                    <div className="space-y-2 text-xs pt-2.5 border-t border-white/15">
+                      <div>
+                        <span className="text-[9.5px] uppercase tracking-wider text-white/60 block font-medium">
+                          Formats:
+                        </span>
+                        <span className="font-semibold text-white block text-[11.5px] truncate">
+                          {opt.formats}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between text-[11px] pt-0.5 whitespace-nowrap gap-2">
+                        <span className="text-white/60 whitespace-nowrap shrink-0">Container Load:</span>
+                        <span className="font-bold text-[#C59B27] whitespace-nowrap text-right">{opt.capacitySummary}</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                {/* Bottom Row: Typography and Specifications Bar */}
-                <div className="pt-1">
-                  <h4 className="text-[15px] font-bold text-[#0F1F1A] tracking-tight leading-snug">
-                    {opt.tabLabel}
-                  </h4>
-                  <p className="text-xs text-[#5C6E67] font-normal mt-0.5 truncate">
-                    {opt.badge}
-                  </p>
-
-                  <div className="mt-3 pt-2.5 border-t border-[#F0ECE1] flex items-center text-xs">
-                    <span className="text-[11px] font-semibold text-[#0D3B2E] bg-[#FAF8F2] border border-[#E5E2D9] px-2.5 py-0.5 whitespace-nowrap">
-                      {opt.tareSummary}
-                    </span>
+                  <div className="pt-3 border-t border-white/15 flex items-center justify-end">
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onOpenQuote?.(opt.title);
+                      }}
+                      className="btn-geometric-wipe-light px-4 py-1.5 text-[11px] shadow-2xs rounded-none cursor-pointer"
+                    >
+                      <span>Request Quote</span>
+                    </div>
                   </div>
                 </div>
 
               </div>
-
-              {/* HOVER REVEAL OVERLAY (DUAL-SIDE GREEN SWEEP) */}
-              <div className="card-hover-reveal p-5 sm:p-5.5 flex flex-col justify-between text-white">
-                <div>
-                  <div className="pb-2.5 border-b border-white/15">
-                    <span className="text-[10px] font-bold tracking-widest text-[#C59B27] uppercase">
-                      {opt.badgeNumber} · SPECIFICATION
-                    </span>
-                  </div>
-
-                  <h4 className="text-[15.5px] sm:text-base font-bold text-white tracking-tight leading-tight mt-2.5">
-                    {opt.tabLabel}
-                  </h4>
-                  <p className="text-[11px] text-[#C59B27] mt-0.5 font-medium">
-                    {opt.compliance}
-                  </p>
-
-                  <p className="text-xs text-white/80 line-clamp-2 leading-relaxed mt-2 mb-3">
-                    {opt.summary}
-                  </p>
-
-                  <div className="space-y-2 text-xs pt-2.5 border-t border-white/15">
-                    <div>
-                      <span className="text-[9.5px] uppercase tracking-wider text-white/60 block font-medium">
-                        Formats:
-                      </span>
-                      <span className="font-semibold text-white block text-[11.5px] truncate">
-                        {opt.formats}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between text-[11px] pt-0.5 whitespace-nowrap gap-2">
-                      <span className="text-white/60 whitespace-nowrap shrink-0">Container Load:</span>
-                      <span className="font-bold text-[#C59B27] whitespace-nowrap text-right">{opt.capacitySummary}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-3 border-t border-white/15 flex items-center justify-end">
-                  <div className="btn-geometric-wipe-light px-4 py-1.5 text-[11px] shadow-2xs rounded-none">
-                    <span>Request Quote</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Minimal Bottom CTA & Assurance Strip */}
