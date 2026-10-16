@@ -43,7 +43,7 @@ const FloatingDockMobile = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("flex md:hidden items-center justify-center gap-5 pt-2", className)}>
+    <div className={cn("flex md:hidden items-center justify-center gap-3 sm:gap-4 pt-1", className)}>
       {items.map((item) => (
         <a
           href={item.href}
@@ -51,9 +51,9 @@ const FloatingDockMobile = ({
           target={item.target ?? "_blank"}
           rel="noopener noreferrer"
           aria-label={item.title}
-          className="flex h-10 w-10 items-center justify-center bg-transparent text-white/80 hover:text-[#C59B27] transition-colors"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.06] border border-white/10 text-white/80 hover:text-[#C59B27] hover:border-[#C59B27]/50 hover:bg-white/10 active:scale-95 transition-all shadow-xs"
         >
-          <div className="h-6 w-6">{item.icon}</div>
+          <div className="h-4.5 w-4.5">{item.icon}</div>
         </a>
       ))}
     </div>

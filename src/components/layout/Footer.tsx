@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Globe } from "lucide-react";
 import { FloatingDock } from "@/components/ui/floating-dock";
@@ -60,75 +59,103 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
   ];
 
   return (
-    <footer className="relative z-20 bg-[#07241C] text-white pt-16 pb-12 border-t border-white/10">
+    <footer className="relative z-20 bg-[#07241C] text-white pt-12 sm:pt-16 pb-12 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-10 sm:pb-12 border-b border-white/10">
 
           {/* Col 1 & 2: Company Overview */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center">
-              <Image
-                src="/logo.png"
-                alt="Shri VHS Global Trade Logo"
-                width={240}
-                height={80}
-                className="h-14 sm:h-16 w-auto object-contain shrink-0"
-                style={{ width: "auto" }}
-              />
-            </div>
+          <div className="col-span-2 lg:col-span-2 space-y-4">
+            <h3 className="text-base sm:text-lg font-bold text-white tracking-wide">
+              {companyData.name}
+            </h3>
 
-            <p className="text-sm text-gray-300 leading-relaxed max-w-md">
+            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed max-w-md">
               {companyData.description}
             </p>
 
-            <div className="space-y-2 text-xs text-gray-300">
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-[#C59B27] shrink-0" />
-                <span>{companyData.contact.address}</span>
+            <div className="space-y-2.5 text-xs text-gray-300">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="h-4 w-4 text-[#C59B27] shrink-0 mt-0.5" />
+                <span className="leading-relaxed">{companyData.contact.address}</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 text-[#C59B27] shrink-0" />
-                <a href={`tel:${companyData.contact.phone.replace(/\s+/g, '')}`} className="hover:text-white transition-colors">
+                <a
+                  href={`tel:${companyData.contact.phone.replace(/\s+/g, '')}`}
+                  className="hover:text-[#C59B27] transition-colors font-medium"
+                >
                   {companyData.contact.phone}
                 </a>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <Globe className="h-4 w-4 text-[#C59B27] shrink-0" />
-                <span>{companyData.contact.email}</span>
+                <a
+                  href={`mailto:${companyData.contact.email}`}
+                  className="hover:text-[#C59B27] transition-colors font-medium break-all"
+                >
+                  {companyData.contact.email}
+                </a>
               </div>
             </div>
           </div>
 
-          {/* Col 3: Product Categories */}
-          <div>
-            <h4 className="text-xs uppercase tracking-widest font-semibold text-[#C59B27] mb-4">
+          {/* Col 3: Product Categories (Left column on mobile) */}
+          <div className="col-span-1 lg:col-span-1">
+            <h4 className="text-xs uppercase tracking-widest font-semibold text-[#C59B27] mb-3.5 sm:mb-4">
               Export Range
             </h4>
-            <ul className="space-y-2.5 text-xs text-gray-300">
+            <ul className="space-y-2 sm:space-y-2.5 text-xs text-gray-300">
               {categoriesData.map((cat) => (
                 <li key={cat.id}>
-                  <Link href="/#products" className="hover:text-white transition-colors flex items-center gap-1">
-                    <span>{cat.name}</span>
+                  <Link
+                    href="/#products"
+                    className="hover:text-[#C59B27] transition-colors block py-0.5 leading-snug"
+                  >
+                    {cat.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 4: Quick Navigation */}
-          <div>
-            <h4 className="text-xs uppercase tracking-widest font-semibold text-[#C59B27] mb-4">
+          {/* Col 4: Quick Navigation (Right column on mobile) */}
+          <div className="col-span-1 lg:col-span-1">
+            <h4 className="text-xs uppercase tracking-widest font-semibold text-[#C59B27] mb-3.5 sm:mb-4">
               Quick Links
             </h4>
-            <ul className="space-y-2.5 text-xs text-gray-300">
-              <li><Link href="/#about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/#process" className="hover:text-white transition-colors">Farm to Global Process</Link></li>
-              <li><Link href="/#packaging" className="hover:text-white transition-colors">Packaging Standards</Link></li>
-              <li><Link href="/#quality" className="hover:text-white transition-colors">Quality &amp; Compliance</Link></li>
-              <li><Link href="/#markets" className="hover:text-white transition-colors">Global Connectivity</Link></li>
-              <li><Link href="/contact" className="hover:text-[#C59B27] font-semibold transition-colors">Contact Trade Desk</Link></li>
+            <ul className="space-y-2 sm:space-y-2.5 text-xs text-gray-300">
               <li>
-                <Link href="/quote" className="text-[#C59B27] font-semibold hover:underline cursor-pointer">
+                <Link href="/#about" className="hover:text-[#C59B27] transition-colors block py-0.5 leading-snug">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/#process" className="hover:text-[#C59B27] transition-colors block py-0.5 leading-snug">
+                  Farm to Global Process
+                </Link>
+              </li>
+              <li>
+                <Link href="/#packaging" className="hover:text-[#C59B27] transition-colors block py-0.5 leading-snug">
+                  Packaging Standards
+                </Link>
+              </li>
+              <li>
+                <Link href="/#quality" className="hover:text-[#C59B27] transition-colors block py-0.5 leading-snug">
+                  Quality &amp; Compliance
+                </Link>
+              </li>
+              <li>
+                <Link href="/#markets" className="hover:text-[#C59B27] transition-colors block py-0.5 leading-snug">
+                  Global Connectivity
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-[#C59B27] font-semibold transition-colors block py-0.5 leading-snug">
+                  Contact Trade Desk
+                </Link>
+              </li>
+              <li>
+                <Link href="/quote" className="text-[#C59B27] font-semibold hover:underline block py-0.5 leading-snug">
                   Request B2B Quote
                 </Link>
               </li>
@@ -136,13 +163,20 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
           </div>
 
           {/* Col 5: Export Desk Notice */}
-          <div>
-            <h4 className="text-xs uppercase tracking-widest font-semibold text-[#C59B27] mb-4">
-              B2B Trade Desk
-            </h4>
-            <p className="text-xs text-gray-300 leading-relaxed mb-4">
-              We cater exclusively to global importers, food distributors, retail chains, and institutional buyers seeking authentic Indian agricultural commodities.
-            </p>
+          <div className="col-span-2 lg:col-span-1 bg-white/[0.04] p-5 sm:p-6 lg:p-0 rounded-2xl lg:rounded-none border border-white/10 lg:border-0 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-3 lg:mb-4">
+                <h4 className="text-xs uppercase tracking-widest font-semibold text-[#C59B27]">
+                  B2B Trade Desk
+                </h4>
+                <span className="lg:hidden inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-[#C59B27]/15 text-[#C59B27] border border-[#C59B27]/25">
+                  Direct Exporter
+                </span>
+              </div>
+              <p className="text-xs text-gray-300 leading-relaxed mb-4">
+                We cater exclusively to global importers, food distributors, retail chains, and institutional buyers seeking authentic Indian agricultural commodities.
+              </p>
+            </div>
             <Link
               href="/quote"
               onClick={(e) => {
@@ -160,8 +194,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
         </div>
 
         {/* Bottom Bar: Copyright on Left, Socials in Middle, Location on Right */}
-        <div className="pt-8 flex flex-col lg:flex-row items-center justify-between gap-6 text-xs text-gray-400">
-          <p className="order-2 lg:order-1 text-center lg:text-left text-gray-400">
+        <div className="pt-8 flex flex-col lg:flex-row items-center justify-between gap-5 sm:gap-6 text-xs text-gray-400">
+          <p className="order-2 lg:order-1 text-center lg:text-left text-gray-400 text-xs">
             © {new Date().getFullYear()} Shri VHS Global Trade Private Limited. All rights reserved.
           </p>
 
@@ -173,7 +207,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
             />
           </div>
 
-          <div className="order-3 flex items-center gap-3 text-[11px] text-gray-400 text-center lg:text-right">
+          <div className="order-3 flex items-center justify-center gap-2 sm:gap-3 text-[11px] text-gray-400 text-center lg:text-right">
             <span>Hyderabad, Telangana, India</span>
             <span>•</span>
             <span>Indian Merchant Exporter</span>
