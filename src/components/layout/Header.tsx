@@ -215,8 +215,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                   'static',
                   '[&>div:last-child]:inset-x-0 [&>div:last-child]:top-full [&>div:last-child]:w-full',
                   '[&_[data-slot=navigation-menu-viewport]]:mx-auto [&_[data-slot=navigation-menu-viewport]]:mt-3 [&_[data-slot=navigation-menu-viewport]]:max-w-[1104px]',
-                  '[&_[data-slot=navigation-menu-viewport]]:rounded-2xl [&_[data-slot=navigation-menu-viewport]]:border [&_[data-slot=navigation-menu-viewport]]:border-[#E2DFD5]',
-                  '[&_[data-slot=navigation-menu-viewport]]:bg-white [&_[data-slot=navigation-menu-viewport]]:shadow-[0_25px_70px_-15px_rgba(7,36,28,0.22),0_0_0_1px_rgba(13,59,46,0.06)]',
+                  '[&_[data-slot=navigation-menu-viewport]]:rounded-2xl [&_[data-slot=navigation-menu-viewport]]:border [&_[data-slot=navigation-menu-viewport]]:border-[#C59B27]/35',
+                  '[&_[data-slot=navigation-menu-viewport]]:bg-[#062018] [&_[data-slot=navigation-menu-viewport]]:shadow-[0_30px_90px_-15px_rgba(0,0,0,0.7),0_0_0_1px_rgba(197,155,39,0.25)]',
                   '[&_[data-slot=navigation-menu-viewport]]:overflow-hidden',
                   '[&_[data-slot=navigation-menu-viewport][data-state=closed]]:hidden [&_[data-slot=navigation-menu-viewport][data-state=closed]]:border-0'
                 )}
@@ -247,44 +247,51 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                       Products &amp; Range
                     </NavigationMenuTrigger>
 
-                    <NavigationMenuContent className="p-0 bg-white border-0 shadow-none">
-                      <div className="w-[1104px] max-w-[calc(100vw-3rem)] bg-white text-[#0F1F1A]">
+                    <NavigationMenuContent className="p-0 bg-transparent border-0 shadow-none">
+                      <div className="w-[1104px] max-w-[calc(100vw-3rem)] bg-gradient-to-br from-[#07241C] via-[#051C15] to-[#03130E] text-white relative overflow-hidden">
+
+                        {/* Ambient Atmospheric Luxury Sheen & Pattern */}
+                        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                          <div className="absolute -top-24 -right-24 w-[420px] h-[350px] bg-[radial-gradient(ellipse_at_top_right,rgba(197,155,39,0.18)_0%,transparent_65%)] blur-2xl" />
+                          <div className="absolute -bottom-24 -left-24 w-[400px] h-[300px] bg-[radial-gradient(ellipse_at_bottom_left,rgba(13,59,46,0.6)_0%,transparent_70%)] blur-2xl" />
+                          <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px]" />
+                        </div>
 
                         {/* Main Grid: 3 Harmonious Columns (Col-Span 6 / 3 / 3) */}
-                        <div className="grid grid-cols-12 gap-8 p-7">
+                        <div className="grid grid-cols-12 gap-8 p-7 relative z-10">
 
                           {/* Column 1: Categories (Col-Span 6) */}
                           <div className="col-span-6 flex flex-col justify-between">
                             <div>
-                              <div className="flex items-center justify-between h-7 pb-3 mb-4 border-b border-[#EFECE6]">
-                                <span className="text-[11px] font-semibold tracking-wider text-[#7A8E87] uppercase whitespace-nowrap">
+                              <div className="flex items-center justify-between h-7 pb-3 mb-4 border-b border-white/10">
+                                <span className="text-[11px] font-bold tracking-widest text-[#E5C365] uppercase whitespace-nowrap">
                                   Export Categories
                                 </span>
                                 <Link
                                   href="/#products"
-                                  className="text-xs font-medium text-[#0D3B2E] hover:underline inline-flex items-center gap-1 group whitespace-nowrap"
+                                  className="text-xs font-semibold text-[#E5C365] hover:text-white inline-flex items-center gap-1 group whitespace-nowrap transition-colors"
                                 >
                                   <span>View all 18 commodities</span>
                                   <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                                 </Link>
                               </div>
 
-                              <div className="grid grid-cols-2 gap-x-6 gap-y-2.5">
+                              <div className="grid grid-cols-2 gap-3">
                                 {categoriesData.map((cat) => (
                                   <Link
                                     key={cat.id}
                                     href="/#products"
-                                    className="group rounded-lg p-2.5 -mx-2.5 hover:bg-[#F7F7F5] transition-colors"
+                                    className="group rounded-xl p-3 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-[#C59B27]/50 hover:shadow-lg hover:shadow-black/20 transition-all duration-200"
                                   >
                                     <div className="flex items-baseline justify-between gap-2">
-                                      <span className="text-sm font-medium text-[#0F1F1A] group-hover:text-[#0D3B2E] transition-colors truncate">
+                                      <span className="text-sm font-bold text-white group-hover:text-[#E5C365] transition-colors truncate">
                                         {cat.name}
                                       </span>
-                                      <span className="text-[11px] text-[#8F9E98] group-hover:text-[#0D3B2E] transition-colors shrink-0">
+                                      <span className="text-[10.5px] font-mono text-[#E5C365] font-semibold bg-[#C59B27]/15 px-2 py-0.5 rounded border border-[#C59B27]/30 shrink-0">
                                         {cat.itemCount} items
                                       </span>
                                     </div>
-                                    <p className="text-xs text-[#5C6E67] mt-0.5 truncate">
+                                    <p className="text-xs text-gray-300 mt-1 truncate font-light">
                                       {categorySummaries[cat.id] || cat.description}
                                     </p>
                                   </Link>
@@ -294,100 +301,102 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                           </div>
 
                           {/* Column 2: Export Formats (Col-Span 3) */}
-                          <div className="col-span-3 flex flex-col justify-between border-l border-[#EFECE6] pl-8">
+                          <div className="col-span-3 flex flex-col justify-between border-l border-white/10 pl-8">
                             <div>
-                              <div className="flex items-center h-7 pb-3 mb-4 border-b border-[#EFECE6]">
-                                <span className="text-[11px] font-semibold tracking-wider text-[#7A8E87] uppercase whitespace-nowrap">
+                              <div className="flex items-center h-7 pb-3 mb-4 border-b border-white/10">
+                                <span className="text-[11px] font-bold tracking-widest text-[#E5C365] uppercase whitespace-nowrap">
                                   Export Formats
                                 </span>
                               </div>
 
-                              <div className="space-y-3">
+                              <div className="space-y-3.5">
                                 <Link href="/#packaging" className="group block">
-                                  <span className="text-xs font-semibold text-[#0F1F1A] group-hover:text-[#0D3B2E] transition-colors">
+                                  <span className="text-xs font-bold text-white group-hover:text-[#E5C365] transition-colors">
                                     Retail Packaging
                                   </span>
-                                  <p className="text-[11.5px] text-[#6B7C76] mt-0.5 leading-snug">
+                                  <p className="text-[11.5px] text-gray-300 mt-0.5 leading-snug font-light">
                                     500g to 5kg branded consumer packs &amp; pouches
                                   </p>
                                 </Link>
 
                                 <Link href="/#packaging" className="group block">
-                                  <span className="text-xs font-semibold text-[#0F1F1A] group-hover:text-[#0D3B2E] transition-colors">
+                                  <span className="text-xs font-bold text-white group-hover:text-[#E5C365] transition-colors">
                                     Wholesale Units
                                   </span>
-                                  <p className="text-[11.5px] text-[#6B7C76] mt-0.5 leading-snug">
+                                  <p className="text-[11.5px] text-gray-300 mt-0.5 leading-snug font-light">
                                     25kg &amp; 50kg PP woven, multi-wall paper &amp; jute
                                   </p>
                                 </Link>
 
                                 <Link href="/#packaging" className="group block">
-                                  <span className="text-xs font-semibold text-[#0F1F1A] group-hover:text-[#0D3B2E] transition-colors">
+                                  <span className="text-xs font-bold text-white group-hover:text-[#E5C365] transition-colors">
                                     Bulk Container Freight
                                   </span>
-                                  <p className="text-[11.5px] text-[#6B7C76] mt-0.5 leading-snug">
+                                  <p className="text-[11.5px] text-gray-300 mt-0.5 leading-snug font-light">
                                     20ft &amp; 40ft FCL ocean shipments (24–26 MT)
                                   </p>
                                 </Link>
 
                                 <Link href="/#packaging" className="group block">
-                                  <span className="text-xs font-semibold text-[#0F1F1A] group-hover:text-[#0D3B2E] transition-colors">
+                                  <span className="text-xs font-bold text-white group-hover:text-[#E5C365] transition-colors">
                                     Custom Specifications
                                   </span>
-                                  <p className="text-[11.5px] text-[#6B7C76] mt-0.5 leading-snug">
+                                  <p className="text-[11.5px] text-gray-300 mt-0.5 leading-snug font-light">
                                     Private labeling, custom grading &amp; SGS inspection
                                   </p>
                                 </Link>
                               </div>
                             </div>
 
-                            <div className="pt-3 border-t border-[#EFECE6] space-y-1 text-xs">
-                              <div className="flex items-center gap-1.5 text-[11px] text-[#6B7C76]">
-                                <span>Gateway Ports:</span>
-                                <span className="font-medium text-[#0F1F1A]">JNPT · Mundra · Chennai</span>
+                            <div className="pt-3 border-t border-white/10 space-y-1.5 text-xs text-gray-300">
+                              <div className="flex items-center gap-1.5 text-[11px]">
+                                <span className="text-gray-400">Gateway Ports:</span>
+                                <span className="font-semibold text-white">JNPT · Mundra · Chennai</span>
                               </div>
-                              <div className="flex items-center gap-1.5 text-[11px] text-[#6B7C76]">
-                                <span>Export Terms:</span>
-                                <span className="font-medium text-[#0D3B2E]">FOB · CIF · CFR Delivery</span>
+                              <div className="flex items-center gap-1.5 text-[11px]">
+                                <span className="text-gray-400">Export Terms:</span>
+                                <span className="font-semibold text-[#E5C365]">FOB · CIF · CFR Delivery</span>
                               </div>
                             </div>
                           </div>
 
                           {/* Column 3: Commercial Desk (Col-Span 3) */}
-                          <div className="col-span-3 flex flex-col justify-between border-l border-[#EFECE6] pl-8">
+                          <div className="col-span-3 flex flex-col justify-between border-l border-white/10 pl-8">
                             <div>
-                              <div className="flex items-center h-7 pb-3 mb-4 border-b border-[#EFECE6]">
-                                <span className="text-[11px] font-semibold tracking-wider text-[#7A8E87] uppercase whitespace-nowrap">
+                              <div className="flex items-center h-7 pb-3 mb-4 border-b border-white/10">
+                                <span className="text-[11px] font-bold tracking-widest text-[#E5C365] uppercase whitespace-nowrap">
                                   Commercial Desk
                                 </span>
                               </div>
 
-                              <h5 className="text-xs font-semibold text-[#0F1F1A]">
-                                Request Commercial Quote
-                              </h5>
-                              <p className="text-xs text-[#6B7C76] mt-1 leading-relaxed">
-                                Get instant FOB/CIF export pricing for bulk orders from Hyderabad, India.
-                              </p>
+                              <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10">
+                                <h5 className="text-xs font-bold text-white">
+                                  Request Commercial Quote
+                                </h5>
+                                <p className="text-xs text-gray-300 mt-1 leading-relaxed font-light">
+                                  Get instant FOB/CIF export pricing for bulk orders from Hyderabad, India.
+                                </p>
 
-                              <Link
-                                href="/quote"
-                                onClick={(e) => {
-                                  if (onOpenQuote) {
-                                    e.preventDefault();
-                                    onOpenQuote();
-                                  }
-                                }}
-                                className="btn-geometric-wipe w-full mt-4 py-2.5 px-3 text-xs rounded-none shadow-xs text-center"
-                              >
-                                <span>Inquire Now</span>
-                              </Link>
+                                <Link
+                                  href="/quote"
+                                  onClick={(e) => {
+                                    if (onOpenQuote) {
+                                      e.preventDefault();
+                                      onOpenQuote();
+                                    }
+                                  }}
+                                  className="btn-geometric-wipe w-full mt-4 py-2.5 px-3 text-xs rounded-none shadow-sm text-center"
+                                >
+                                  <span>Inquire Now</span>
+                                </Link>
+                              </div>
                             </div>
 
-                            <div className="pt-3 border-t border-[#EFECE6] space-y-1 text-xs">
+                            <div className="pt-3 border-t border-white/10 space-y-1.5 text-xs">
                               <a
                                 href="/catalogue.pdf"
                                 download="Shri_VHS_Global_Trade_Catalogue.pdf"
-                                className="text-[#0D3B2E] hover:underline flex items-center gap-1.5 font-medium text-[11.5px]"
+                                className="text-[#E5C365] hover:text-white transition-colors flex items-center gap-1.5 font-semibold text-[11.5px]"
                               >
                                 <FileText className="h-3.5 w-3.5 text-[#C59B27]" />
                                 <span>Download Catalogue</span>
@@ -396,10 +405,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                                 href="https://wa.me/917095851852"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-[#6B7C76] hover:text-[#0D3B2E] transition-colors flex items-center gap-1.5 text-[11px]"
+                                className="text-gray-300 hover:text-white transition-colors flex items-center gap-1.5 text-[11px]"
                               >
                                 <span>WhatsApp:</span>
-                                <span className="font-medium text-[#0F1F1A]">+91 70958 51852</span>
+                                <span className="font-semibold text-white">+91 70958 51852</span>
                               </a>
                             </div>
                           </div>
@@ -407,19 +416,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                         </div>
 
                         {/* Bottom Minimal Footer Strip */}
-                        <div className="px-7 py-3 bg-[#FAF9F6] border-t border-[#EFECE6] flex items-center justify-between text-xs text-[#7A8E87]">
+                        <div className="px-7 py-3 bg-[#03130E] border-t border-white/10 flex items-center justify-between text-xs text-gray-400 relative z-10">
                           <div className="flex items-center gap-2">
-                            <span>Merchant Exporter</span>
+                            <span className="text-white/80 font-medium">Merchant Exporter</span>
                             <span className="text-[#C59B27]">•</span>
-                            <span>APEDA</span>
+                            <span className="text-white/80 font-medium">APEDA</span>
                             <span className="text-[#C59B27]">•</span>
-                            <span>Spices Board</span>
+                            <span className="text-white/80 font-medium">Spices Board</span>
                             <span className="text-[#C59B27]">•</span>
-                            <span>FSSAI Certified</span>
+                            <span className="text-white/80 font-medium">FSSAI Certified</span>
                             <span className="text-[#C59B27]">•</span>
-                            <span>ISO 9001:2015</span>
+                            <span className="text-white/80 font-medium">ISO 9001:2015</span>
                           </div>
-                          <div className="flex items-center gap-1.5 text-[#5C6E67]">
+                          <div className="flex items-center gap-1.5 text-[#E5C365] font-semibold">
                             <span>Direct Dispatch from Hyderabad, India</span>
                           </div>
                         </div>
@@ -471,15 +480,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
             {/* Right Action Section */}
             <div className="flex items-center gap-2">
               <div className="hidden md:block">
-                <a href="/quote" className="block">
-                  <RunActionButton onClick={onOpenQuote} />
-                </a>
+                <RunActionButton onClick={onOpenQuote} href="/quote" />
               </div>
 
               {/* Mobile Trigger & StaggeredMenu Integration */}
               <div className="lg:hidden flex items-center gap-2">
                 <a
                   href="/quote"
+                  onClick={(e) => {
+                    if (onOpenQuote) {
+                      e.preventDefault();
+                      onOpenQuote();
+                    }
+                  }}
                   className="h-9 px-3.5 text-xs font-bold bg-[#C59B27] text-white rounded-full shadow-xs sm:hidden hover:bg-[#D4AF37] transition-all cursor-pointer inline-flex items-center justify-center"
                 >
                   Quote

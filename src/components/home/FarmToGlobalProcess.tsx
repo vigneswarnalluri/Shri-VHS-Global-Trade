@@ -12,7 +12,6 @@ export const FarmToGlobalProcess: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <SectionHeading
-          badge="Export Lifecycle"
           title="Farm-to-Global Process"
           description="A meticulous 7-stage quality control and export logistics workflow ensuring prime product integrity from farm harvest to ocean container delivery."
           align="center"

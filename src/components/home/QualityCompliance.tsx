@@ -31,7 +31,6 @@ export const QualityCompliance: React.FC = () => {
           
           <div className="lg:col-span-6 space-y-6">
             <SectionHeading
-              badge="Quality Control & Standards"
               title="Uncompromising Quality & International Compliance"
               description="At Shri VHS Global Trade, quality assurance is embedded into every operational step—from farm gate procurement to container seal inspection."
             />

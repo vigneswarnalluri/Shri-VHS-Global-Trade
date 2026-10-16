@@ -1,5 +1,5 @@
 import React from "react";
-import { Phone, ShieldCheck } from "lucide-react";
+import { Phone } from "lucide-react";
 import { companyData } from "@/data/company";
 
 interface FinalCTAProps {
@@ -16,11 +16,6 @@ export const FinalCTA: React.FC<FinalCTAProps> = () => {
           
           <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-[#C59B27]/20 rounded-full blur-2xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-white/5 rounded-full blur-2xl pointer-events-none" />
-
-          <div className="inline-flex items-center gap-2 mb-4 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-[#C59B27]">
-            <ShieldCheck className="h-4 w-4" />
-            <span>Direct Commercial Trade Desk</span>
-          </div>
 
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-tight">
             Looking for a Reliable Agricultural Export Partner from India?

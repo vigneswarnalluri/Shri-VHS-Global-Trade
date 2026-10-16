@@ -9,7 +9,6 @@ import {
   Box,
   Layers,
   Shield,
-  ShieldCheck,
   CheckCircle2,
 } from "lucide-react";
 
@@ -50,7 +49,7 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
       icon: Package,
       formats: "Stand-Up Pouches · Quad-Seal · PET Bottles",
       tareSummary: "100g to 5kg",
-      capacitySummary: "18,000–20,000 kg / 20ft FCL",
+      capacitySummary: "18,000–20,000 kg / FCL",
     },
     {
       id: "wholesale",
@@ -66,7 +65,7 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
       icon: Box,
       formats: "25kg PP Woven Sacks · Multi-Wall Kraft · Tins",
       tareSummary: "10kg to 30kg",
-      capacitySummary: "24,000–25,000 kg / 20ft FCL",
+      capacitySummary: "24,000–25,000 kg / FCL",
     },
     {
       id: "bulk",
@@ -82,7 +81,7 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
       icon: Layers,
       formats: "1,000kg FIBC Jumbo Bags · 50kg PP/Jute",
       tareSummary: "50kg to 1,000kg",
-      capacitySummary: "24,000–26,000 kg / 20ft FCL",
+      capacitySummary: "24,000–26,000 kg / FCL",
     },
     {
       id: "custom",
@@ -98,7 +97,7 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
       icon: Shield,
       formats: "8-Color Rotogravure · Custom Barcoding",
       tareSummary: "Custom Specs",
-      capacitySummary: "Optimized 3D FCL Utilization",
+      capacitySummary: "Optimized FCL Load",
     },
   ];
 
@@ -108,7 +107,6 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
         
         {/* Section Heading */}
         <SectionHeading
-          badge="Export Readiness"
           title="Packaging Solutions"
           description="Standardized commercial, retail, and bulk packaging specifications engineered for ocean transit and international customs compliance."
           align="center"
@@ -135,8 +133,8 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
               {/* DEFAULT FRONT VIEW (UNHOVERED) */}
               <div className="card-front-content">
                 
-                {/* Top Row: Category index + Export Ready status badge */}
-                <div className="flex items-center justify-between pb-2.5 border-b border-[#F0ECE1]">
+                {/* Top Row: Category index */}
+                <div className="flex items-center pb-2.5 border-b border-[#F0ECE1]">
                   <div className="flex items-center gap-1.5">
                     <span className="text-xs font-bold text-[#C59B27] tracking-wider">
                       {opt.badgeNumber}
@@ -146,9 +144,6 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
                       {opt.categoryCode}
                     </span>
                   </div>
-                  <span className="text-[9.5px] font-semibold tracking-wider text-[#0D3B2E] bg-[#0D3B2E]/5 border border-[#0D3B2E]/15 px-2 py-0.5 uppercase whitespace-nowrap">
-                    Export Ready
-                  </span>
                 </div>
 
                 {/* Center: Image Frame */}
@@ -173,12 +168,9 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
                     {opt.badge}
                   </p>
 
-                  <div className="mt-3 pt-2.5 border-t border-[#F0ECE1] flex items-center justify-between text-xs">
+                  <div className="mt-3 pt-2.5 border-t border-[#F0ECE1] flex items-center text-xs">
                     <span className="text-[11px] font-semibold text-[#0D3B2E] bg-[#FAF8F2] border border-[#E5E2D9] px-2.5 py-0.5 whitespace-nowrap">
                       {opt.tareSummary}
-                    </span>
-                    <span className="text-[11px] font-semibold tracking-wider text-[#C59B27] shrink-0 uppercase group-hover:text-[#0D3B2E] transition-colors">
-                      Specs
                     </span>
                   </div>
                 </div>
@@ -188,11 +180,10 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
               {/* HOVER REVEAL OVERLAY (DUAL-SIDE GREEN SWEEP) */}
               <div className="card-hover-reveal p-5 sm:p-5.5 flex flex-col justify-between text-white">
                 <div>
-                  <div className="flex items-center justify-between pb-2.5 border-b border-white/15">
+                  <div className="pb-2.5 border-b border-white/15">
                     <span className="text-[10px] font-bold tracking-widest text-[#C59B27] uppercase">
                       {opt.badgeNumber} · SPECIFICATION
                     </span>
-                    <ShieldCheck className="h-4 w-4 text-[#C59B27]" />
                   </div>
 
                   <h4 className="text-[15.5px] sm:text-base font-bold text-white tracking-tight leading-tight mt-2.5">
@@ -216,15 +207,14 @@ export const PackagingSection: React.FC<PackagingSectionProps> = ({ onOpenQuote 
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-between text-[11.5px] pt-0.5">
-                      <span className="text-white/60">Container Load:</span>
-                      <span className="font-bold text-[#C59B27]">{opt.capacitySummary}</span>
+                    <div className="flex items-center justify-between text-[11px] pt-0.5 whitespace-nowrap gap-2">
+                      <span className="text-white/60 whitespace-nowrap shrink-0">Container Load:</span>
+                      <span className="font-bold text-[#C59B27] whitespace-nowrap text-right">{opt.capacitySummary}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-white/15 flex items-center justify-between">
-                  <span className="text-[11px] font-medium text-white/60">Export Ready</span>
+                <div className="pt-3 border-t border-white/15 flex items-center justify-end">
                   <div className="btn-geometric-wipe-light px-4 py-1.5 text-[11px] shadow-2xs rounded-none">
                     <span>Request Quote</span>
                   </div>

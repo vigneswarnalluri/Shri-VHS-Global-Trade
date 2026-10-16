@@ -13,7 +13,6 @@ export const AboutPreview: React.FC = () => {
           
           <div className="lg:col-span-6 space-y-6">
             <SectionHeading
-              badge="About Our Company"
               title="Shri VHS Global Trade Private Limited"
               description={companyData.description}
             />

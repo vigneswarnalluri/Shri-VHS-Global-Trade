@@ -110,7 +110,6 @@ export const WhyUs: React.FC<WhyUsProps> = ({ onOpenQuote }) => {
         
         {/* Section Heading */}
         <SectionHeading
-          badge="Company Value Proposition"
           title="Why Global Buyers Partner with Shri VHS"
           description="Built on strict commercial discipline, direct agricultural origin sourcing, and committed international B2B client satisfaction."
           align="center"
